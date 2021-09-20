@@ -1,0 +1,222 @@
+body
+  font-family: 'Montserrat', sans-serif
+  font-weight: 500
+  color: $dark
+  overflow-x: hidden
+.text-manrope
+  font-family: 'Manrope', sans-serif
+  font-weight: 800
+.img
+  width: 100%
+  max-width: 100%
+  height: auto
+.border-r-8
+  border-radius: 8px
+.text-fs-16
+  font-size: 16px
+.text-fs-18
+  font-size: 18px
+.text-fs-20
+  font-size: 20px
+.text-fs-24
+  font-size: 24px
+  line-height: 38px
+.text-fs-28
+  font-size: 28px
+.text-fs-26
+  font-size: 26px
+.text-lh-150
+  line-height: 145%
+.section-title
+  margin-bottom: 20px
+  font-weight: 800
+  font-size: 28px
+  line-height: 36px
+  span
+    display: block
+.section-subtitle
+  margin-bottom: 50px
+  font-weight: 700
+  font-size: 16px
+  line-height: 24px
+  font-style: italic
+  span
+    display: block
+a
+  color: inherit
+  text-decoration: none
+
+.container
+  max-width: 1170px
+  padding: 0 15px
+  margin: 0 auto
+.link
+  text-decoration: underline
+  color: $primary
+
+.with-dot
+  position: relative
+  font-weight: 700
+  line-height: 22px
+  padding-left: 32px
+  &::before
+    position: absolute
+    content: ''
+    width: 12px
+    height: 12px
+    border-radius: 100%
+    left: 0
+    top: 50%
+    transform: translateY(-50%)
+  &.dot-blue
+    &::before
+      background: $primary
+  &.dot-red
+    &::before
+      background: $negative
+  &.dot-green
+    &::before
+      background: $positive
+
+
+.sign-form
+  width: 370px
+  max-width: 90vw
+.divider
+  position: relative
+  text-align: center
+  z-index: 1
+  p
+    background: #fff
+    &::after
+      position: absolute
+      content: ''
+      width: 40%
+      left: 0
+      height: 1px
+      background: #E9E9E9
+      top: 50%
+      transform: translateY(-50%)
+    &::before
+      position: absolute
+      content: ''
+      width: 40%
+      right: 0
+      height: 1px
+      background: #E9E9E9
+      top: 50%
+      transform: translateY(-50%)
+.text-underline
+  text-decoration: underline
+.social-button
+  position: relative
+  border-radius: 5px
+  text-align: center
+  color: #ffffff
+  font-size: 13px
+  padding: 15px 0
+  cursor: pointer
+  margin-bottom: 10px
+  transition: all .2s linear
+  &__icon
+    position: absolute
+    left: 15px
+    &::after
+      position: absolute
+      content: ''
+      height: 45px
+      width: 1px
+      background: #dcdcdc
+      top: -13px
+      right: -15px
+  &.google
+    background: #39CE3F
+    &:hover
+      box-shadow: 0 0 20px 0 #39ce3f
+  &.apple
+    background: #000000
+    &:hover
+      box-shadow: 0 0 20px 0 #000000
+  &.facebook
+    background: #2E66F5
+    &:hover
+      box-shadow: 0 0 20px 0 #2E66F5
+  &.vk
+    background: #5AB9E1
+    &:hover
+      box-shadow: 0 0 20px 0 #5AB9E1
+
+@media (max-width: 768px)
+  .section-title
+    font-size: 20px
+    line-height: 28px
+  .social-button
+    padding-left: 40px
+  .text-fs-18
+    font-size: 16px
+
+.rounded-block
+  background: #F7F9FF
+  border-radius: 20px !important
+  padding: 30px
+
+.q-message
+  margin-bottom: 24px
+  &-text
+    padding: 20px 45px
+    &--sent
+      border-radius: 10px 10px 0 10px
+
+      min-width: 50%
+      margin-left: auto
+    &--received
+      border-radius: 10px 10px 10px 0px
+      min-width: 50%
+
+
+.q-editor
+  border: none
+  border-radius: 8px
+.q-editor__toolbar
+    border-bottom: 3px solid #F7F9FF
+
+.q-date__navigation > div
+  &:nth-child(2)
+    & .block
+      font-weight: bold
+      font-size: 18px
+  &:nth-child(4)
+    display: none
+  &:nth-child(5)
+    display: none
+  &:nth-child(6)
+    display: none
+
+.q-date__today
+  box-shadow: 0 0 0px 2px $warning
+.q-date__event
+  bottom: 2px
+  height: 25px
+  width: 25px
+  border-radius: 100%
+  z-index: -1
+.q-message-stamp
+  font-size: 10px
+
+.files-grid
+  display: grid
+  grid-template-columns: repeat(auto-fill,minmax(150px,1fr))
+  align-items: center
+  grid-gap: 25px
+.file-item
+  display: grid
+  grid-template-columns: 1fr 4fr
+  align-items: center
+  border: 1px dashed transparent
+  user-select: none
+  padding: 5px
+  &.selected
+    border: 1px dashed $grey-4
+.dn
+  display: none
+
