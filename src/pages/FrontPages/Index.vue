@@ -91,7 +91,7 @@
 
                 </div>
                 <div  class="">
-                  <p class="no-margin feedback-item-text" v-html="$i18n.locale === 'ru' ? feedback.parent_text : feedback.parent_text_en"></p>
+                  <p class="no-margin feedback-item-text">{{$i18n.locale === 'ru' ? feedback.parent_text : feedback.parent_text_en}}</p>
                 </div>
               </div>
               <div class="feedback-item  full-height son">
@@ -107,7 +107,7 @@
                 </div>
                 <div  class="">
 
-               <p class="no-margin feedback-item-text" v-html="$i18n.locale === 'ru' ? feedback.kid_text : feedback.kid_text_en"></p>
+               <p class="no-margin feedback-item-text" >{{$i18n.locale === 'ru' ? feedback.kid_text : feedback.kid_text_en}}</p>
                 </div>
               </div>
             </div>

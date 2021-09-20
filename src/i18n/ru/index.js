@@ -46,7 +46,7 @@ export default {
   account_created: 'Аккаунт зарегистрирован',
   email_in_use: 'Аккаунт с таким e-mail уже зарегистрирован',
   tariff_mini_group:'Мини-группы',
-  tariff_individual:'Мини-группы',
+  tariff_individual:'Индивидуально',
   tariff_discount:'скидка',
   //кнопки
 

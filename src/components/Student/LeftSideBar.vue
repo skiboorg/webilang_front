@@ -4,18 +4,23 @@
       <div class="q-mb-lg">
       <img src="~assets/logo.svg" alt="">
     </div>
-    <q-avatar v-if="current_group.image" class="q-mb-lg" size="150px">
+    <q-avatar v-if="current_group" class="q-mb-lg" size="150px">
       <img :src="current_group.image" >
     </q-avatar>
     <p class="q-mb-sm text-bold">{{$t('your_group')}}</p>
+
     <p v-if="user_groups.length===0">Группа еще не назначена</p>
-    <q-select v-if="user_groups.length>0" class="q-mb-lg" dense bg-color="white" outlined v-model="current_group" :options="user_groups" :label="$t('your_group')" />
+      <div v-else>
+         <q-select v-if="user_groups.length>0" class="q-mb-lg" dense bg-color="white" outlined v-model="current_group" :options="user_groups" :label="$t('your_group')" />
     <q-separator v-if="current_group.users" class="bg-grey-3" spaced="lg"/>
     <p v-if="current_group.users" class="q-mb-sm text-left text-weight-light">{{$t('group_members')}}</p>
     <div v-if="current_group.users" class="group-members q-mb-lg">
       <AvatarWithModal :user="user" v-for="user in current_group.users" :key="user.id"/>
     </div>
+
     <q-separator class="bg-grey-3" spaced="lg"/>
+      </div>
+
     </div>
 
 

@@ -9,7 +9,7 @@ const state = () => ({
   user_groups:[],
   teacher_groups:[],
   notifications:[],
-  current_group:{},
+  current_group:{is_empty:true},
   teacher_current_group:{},
   lesson:{},
   chats:[],
@@ -116,7 +116,7 @@ const actions = {
   },
   setUserCurrentGroup({commit,getters,dispatch},data){
     console.log('set',data)
-    if (getters.user_groups.length>0){
+    if (!getters.user_groups.is_empty){
      commit('updateCurrentGroup', getters.user_groups[data])
       dispatch('setCurrentGroupIndex', data)
     }
@@ -155,8 +155,20 @@ export const getters = {
   messages: (state) => state.messages,
   current_chat: (state) => state.current_chat,
   current_group_index: (state) => state.current_group_index,
-  student_upcoming_lessons: (state) => state.current_group.lessons.filter(x=>!x.is_over),
-  student_over_lessons: (state) => state.current_group.lessons.filter(x=>x.is_over),
+  student_upcoming_lessons: (state) => {
+    if (!state.current_group.is_empty){
+      console.log(state.current_group)
+      return  state.current_group.lessons.filter(x=>!x.is_over)
+    }
+
+  },
+  student_over_lessons: (state) =>{
+    if (!state.current_group.is_empty){
+       console.log('dddddddddddddddddddd')
+     return state.current_group.lessons.filter(x=>x.is_over)
+    }
+  }
+
 
 }
 

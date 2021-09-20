@@ -3,7 +3,7 @@
     <div class="top-header-title">
       <p class="text-weight-bold q-mb-none">{{$t($route.meta.title)}}</p>
     </div>
-    <div class="top-header-buttons">
+    <div  class="gt-sm top-header-buttons">
       <div class="button" @click="$router.push($auth.user.is_teacher ?{name:'teacher-notifications'} : {name:'student-notifications'})">
         <div v-if="new_notifications" class="button__notify">{{new_notifications}}</div>
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -154,5 +154,8 @@ export default {
       opacity: 1
       pointer-events: all
       top: 60px
-
+@media (max-width: 1024px)
+  .top-header
+    grid-template-columns: 1fr
+    margin: 0 -10px
 </style>

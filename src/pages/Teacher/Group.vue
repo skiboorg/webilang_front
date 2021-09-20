@@ -5,10 +5,10 @@
   <div class="page-wrapper">
     <div class="group-name">
       <p class="text-center text-body1 text-weight-bolder text-uppercase q-mb-sm">{{teacher_current_group.label}}</p>
-      <p class="text-center text-italic text-weight-light ">{{teacher_current_group.level.name}}</p>
+      <p class="text-center text-italic q-mb-none text-weight-light ">{{teacher_current_group.level.name}}</p>
     </div>
     <div class="group-add-lesson rounded-block">
-      <q-btn @click="addLessonModal=true" no-caps :label="$t('teacher_add_lesson')" color="primary" unelevated class="border-r-8" icon="add"/>
+      <q-btn  @click="addLessonModal=true" no-caps :label="$t('teacher_add_lesson')" color="primary" unelevated class="border-r-8 add-button" icon="add"/>
       <q-input  dense outlined bg-color="white" :label="$t('dictionary_search')"/>
     </div>
     <div class="group-info">
@@ -21,7 +21,7 @@
 
       </div>
       <div class="">
-        <p class="q-mb-sm text-right text-weight-bold">{{$t('group_members')}}</p>
+        <p class="q-mb-sm group-info-members text-weight-bold">{{$t('group_members')}}</p>
         <div class="group-members">
           <q-avatar class="group-member" size="40px"  v-for="user in teacher_current_group.users" :key="user.id">
             <img :src="user.user_avatar" alt="">
@@ -31,13 +31,11 @@
       </div>
     </div>
     <div ref="group-list" class="rounded-block  group-list">
-      <div class="group-list-header q-mb-md">
+      <div  class="gt-sm group-list-header q-mb-md">
         <p class="no-margin text-bold ">{{$t('lessons_date')}}</p>
         <p class="no-margin text-bold">{{$t('lessons_theme')}}</p>
         <p></p>
         <p></p>
-
-
       </div>
       <div  class="group-list">
         <q-no-ssr>
@@ -49,15 +47,20 @@
             <div class="group-list-row"  v-for="(lesson,index) in teacher_current_group.lessons" :key="lesson.id">
               <div class="group-list-row__item" :class="{'b-w':index%2>0}">
                 <q-no-ssr>
+                 <p class="lt-md q-mb-sm text-bold ">{{$t('lessons_date')}}</p>
                   <p class="no-margin ">{{new Date(lesson.date).toLocaleDateString()}} | {{$filters.normalizeTime(lesson.time)}}</p>
                 </q-no-ssr>
               </div>
 
               <div :class="{'b-w':index%2>0}" class="flex items-center justify-between group-list-row__item">
+                <div class="">
+                   <p class="lt-md q-mb-sm text-bold">{{$t('lessons_theme')}}</p>
                 <p style="max-width: 70%" class="no-margin ellipsis link">
                   <router-link :to="{name:'teacher-lesson',params:{id:lesson.id}}">{{lesson.theme}}</router-link>
                 </p>
-                <div class="q-mr-lg">
+                </div>
+
+                <div class="q-mr-none q-mr-md-lg">
                   <q-btn @click="editLessonIndex=index, editLessonModal=true" class="q-mr-sm" size="10px" dense flat round color="warning" icon="edit"/>
                   <q-btn size="10px"
                          @click="lesson_to_delete.id=lesson.id,lesson_to_delete.name=lesson.theme, delLessonModal=true"
@@ -92,7 +95,7 @@
   <q-dialog
     v-model="addLessonModal"
     full-height>
-    <q-card class=" rounded-block full-height bg-white" style="width: 850px;max-width: 90vw">
+    <q-card class="modal-dialog rounded-block full-height bg-white" style="width: 850px;max-width: 95vw">
       <q-card-section class="row items-center no-padding q-mb-lg">
         <div class="text-h6 text-weight-bolder">{{$t('teacher_add_lesson')}}</div>
         <q-space />
@@ -134,8 +137,9 @@
             <q-scroll-area
               :thumb-style="thumbStyle"
               :bar-style="barStyle"
+              class="q-mb-md q-md-md-none"
               style="max-width: 100%;height: 80px">
-              <div class="add-lesson-activeDates">
+              <div class=" add-lesson-activeDates">
                 <div class="add-lesson-recentDate" v-for="(lesson,index) in teacher_current_group.lessons" :key="index">
                   <p class="no-margin text-weight-thin text-grey-6">{{ new Date(lesson.date).toLocaleDateString()}} </p>
 
@@ -145,7 +149,7 @@
           </div>
         </div>
         <div class="add-lesson-bottom">
-          <div class="add-lesson-bottom-header">
+          <div  class="gt-sm add-lesson-bottom-header">
             <p class="no-margin text-weight-bold">{{$t('lessons_dates')}}</p>
             <p class="no-margin text-weight-bold">{{$t('lessons_time')}}</p>
             <p class="no-margin text-weight-bold">{{$t('lessons_theme')}}</p>
@@ -158,8 +162,12 @@
             <div class="add-lesson-bottom-lessons">
 
               <div class="add-lesson-bottom-lesson" v-for="(lesson,index) in new_lessons" :key="index">
-                <p class="no-margin">{{new Date(lesson.date).toLocaleDateString()}}</p>
-                <q-input dense mask="time"  outlined v-model="lesson.time">
+                <div class="">
+                  <p class="lt-md no-margin text-weight-bold">{{$t('lessons_dates')}}</p>
+                  <p class="no-margin">{{new Date(lesson.date).toLocaleDateString()}}</p></div>
+                <div class="">
+                   <p class="lt-md no-margin text-weight-bold">{{$t('lessons_time')}}</p>
+                  <q-input dense mask="time"  outlined v-model="lesson.time">
                   <template v-slot:append>
                     <q-icon name="access_time" class="cursor-pointer">
                       <q-popup-proxy transition-show="scale" transition-hide="scale">
@@ -172,10 +180,17 @@
                     </q-icon>
                   </template>
                 </q-input>
-                <div class="flex items-center justify-between">
+                  </div>
+
+
+                <div class="">
+                   <p class="lt-md no-margin text-weight-bold">{{$t('lessons_theme')}}</p>
+                  <div class="flex items-center justify-between">
                   <q-input style="flex-basis: 80%" dense outlined v-model="lesson.theme"/>
                   <q-btn @click="removeDate(index,lesson.date)" flat dense icon="delete" round/>
                 </div>
+                </div>
+
 
               </div>
             </div>
@@ -196,7 +211,7 @@
 
   <!--  del dialog-->
   <q-dialog v-model="delLessonModal" persistent>
-    <q-card class="rounded-block bg-white">
+    <q-card class=" rounded-block bg-white">
       <q-card-section class="q-pb-none">
 
         <p class="q-ml-sm text-center">{{$t('teacher_del_lesson')}} <br> <span class="text-negative text-bold">{{lesson_to_delete.name}}</span> ?</p>
@@ -217,7 +232,7 @@
     v-model="editLessonModal"
     full-height
     @before-show="updateEditLesson">
-    <q-card class=" rounded-block full-height bg-white" style="width: 850px;max-width: 90vw">
+    <q-card class="modal-dialog rounded-block full-height bg-white" style="width: 850px;max-width: 90vw">
       <q-card-section class="row items-center no-padding q-mb-lg">
         <div class="text-h6 text-weight-bolder">{{$t('teacher_edit_lesson_title')}}</div>
         <q-space />
@@ -255,6 +270,7 @@
             <q-scroll-area
               :thumb-style="thumbStyle"
               :bar-style="barStyle"
+              class="q-mb-md q-md-md-none"
               style="max-width: 100%;height: 180px">
               <div class="add-lesson-activeDates">
                 <div class="add-lesson-recentDate" v-for="(lesson,index) in teacher_current_group.lessons" :key="index">
@@ -289,7 +305,7 @@
     full-height
     @before-show="getLessonFiles"
   >
-    <q-card class=" rounded-block full-height bg-white" style="width: 850px;max-width: 90vw">
+    <q-card class="modal-dialog rounded-block full-height bg-white" style="width: 850px;max-width: 90vw">
       <q-card-section class="row items-center no-padding q-mb-lg">
         <div class="text-h6 text-weight-bolder">{{$t('lessons_material')}}</div>
         <q-space />
@@ -783,6 +799,8 @@ export default {
   height: fit-content
   display: grid
   grid-template-columns: 1fr 1fr
+  &-members
+    text-align: right
 .group
   &-members
     display: flex
@@ -846,6 +864,7 @@ export default {
   &-calendar
     background: #F7F9FF
     border-radius: 10px
+    width: 100%
   &-activeDates
     display: grid
     grid-template-columns: 1fr
@@ -871,6 +890,7 @@ export default {
     &-lessons
       display: grid
       grid-template-columns: 1fr
+
     &-lesson
       display: grid
       grid-template-columns: 1fr 1fr 3fr
@@ -880,5 +900,39 @@ export default {
       border-radius: 8px
       &:nth-child(even)
         background: #F5F5F5
-
+@media (max-width: 1024px)
+  .add-button
+    position: absolute
+    right: 10px
+    top: 60px
+  .group
+    &-info
+      grid-template-columns: 1fr
+      grid-gap: 15px
+      &-members
+        text-align: left
+    &-add-lesson
+      grid-template-columns: 1fr
+    &-list-row
+      grid-template-columns: 1fr
+      background: #F6F9FF !important
+      padding: 30px
+      border-radius: 20px
+      grid-gap: 20px
+      margin-bottom: 15px
+      &__item
+        &::after
+          content: none
+  .add-lesson
+    &-top
+      grid-template-columns: 1fr
+    &-bottom-lessons
+      grid-gap: 15px
+    &-bottom-lesson
+      grid-template-columns: 1fr
+      padding: 30px
+      background: #F6F9FF !important
+      border-radius: 20px
+  .modal-dialog
+    padding: 10px
 </style>

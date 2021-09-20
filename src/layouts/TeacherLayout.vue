@@ -1,34 +1,20 @@
 <template>
-
-
   <q-layout view="hHh lpR fFf">
-
-
-<Header class="lt-md"/>
+    <Header/>
     <div class="teacher-wrapper">
-       <LeftSideBar class="gt-sm"/>
-
+      <LeftSideBar class="gt-sm"/>
       <div class="teacher-inner">
         <TopBar/>
-
-                 <q-page-container>
-      <router-view />
-    </q-page-container>
-
-
-
+        <q-page-container>
+          <router-view />
+        </q-page-container>
       </div>
     </div>
-
-
-
   </q-layout>
-
 </template>
-
 <script>
 
-import Header from "components/Student/Header";
+import Header from "components/Teacher/Header";
 import LeftSideBar from "components/Teacher/LeftSideBar";
 import TopBar from "components/Student/TopBar";
 
@@ -41,12 +27,12 @@ export default {
   preFetch ({ store, currentRoute, previousRoute, redirect, ssrContext, urlPath, publicPath }) {
 
     if (!store.state.auth.loggedIn && !store.state.auth.user.is_teacher) {
-        redirect({ path: '/signin' })
-       }
+      redirect({ path: '/signin' })
+    }
     return (
       store.dispatch('data/getTeacherGroups'),
-      store.dispatch('data/getNotifications'),
-      store.dispatch('data/getRewards')
+        store.dispatch('data/getNotifications'),
+        store.dispatch('data/getRewards')
     )
   },
   data(){
@@ -78,16 +64,18 @@ export default {
     grid-gap: 30px
 
 @media (max-width: 1580px)
-  .student
-    &-wrapper
-      grid-template-columns: 1fr 5fr
-
-@media (max-width: 1366px)
-  .student
+  .teacher
     &-wrapper
       grid-template-columns: 1fr 4fr
-    &-content
-      grid-template-columns: 3fr 1fr
+
+@media (max-width: 1024px)
+  .teacher
+    &-wrapper
+      grid-template-columns: 1fr
+    &-inner
+      padding: 0 10px
+      margin-top: 55px
+
 
 
 </style>

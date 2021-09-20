@@ -1,29 +1,19 @@
 <template>
-
-
   <q-layout view="hHh lpR fFf">
-
-
-<Header class="lt-md"/>
+    <Header />
     <div class="student-wrapper">
       <LeftSideBar class="gt-sm"/>
-
       <div class="student-inner">
         <TopBar/>
         <div class="student-content">
-                 <q-page-container>
-      <router-view />
-    </q-page-container>
-         <RightSideBar class="gt-sm"/>
+          <q-page-container>
+            <router-view />
+          </q-page-container>
+          <RightSideBar class="gt-sm"/>
         </div>
-
       </div>
     </div>
-
-
-
   </q-layout>
-
 </template>
 
 <script>
@@ -43,14 +33,14 @@ export default {
   preFetch ({ store, currentRoute, previousRoute, redirect, ssrContext, urlPath, publicPath }) {
 
     if (!store.state.auth.loggedIn ) {
-        redirect({ path: '/signin' })
-       }
+      redirect({ path: '/signin' })
+    }
     // if (!store.state.auth.user.personal_lessons_left > 0 || !store.state.auth.user.group_lessons_left > 0) {
     //     redirect({ path: '/student/payment' })
     //    }
     return (
       store.dispatch('data/getUserGroups'),
-      store.dispatch('data/getNotifications')
+        store.dispatch('data/getNotifications')
     )
   },
   data(){
@@ -93,5 +83,14 @@ export default {
     &-content
       grid-template-columns: 3fr 1fr
 
+@media (max-width: 1024px)
+  .student
+    &-wrapper
+      grid-template-columns: 1fr
+    &-content
+      grid-template-columns: 1fr
+    &-inner
+      padding: 0 10px
+      margin-top: 55px
 
 </style>

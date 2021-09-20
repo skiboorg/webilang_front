@@ -9,8 +9,8 @@
             <q-circular-progress
             show-value
             :value="$auth.user.total_progress"
-            size="140px"
-            class="col-4"
+            :size="$q.screen.lt.md ?  '50px' : '140px'"
+            class="col-6 col-md-4 offset-3 offset-md-0"
             color="warning"
             track-color="amber-1">
               <div class="flex column items-center justify-center">
@@ -19,7 +19,7 @@
               <p class="no-margin text-caption  text-bold">{{$t('course_done_bottom')}}</p>
               </div>
             </q-circular-progress>
-            <div class="col-7 offset-1">
+            <div class="col-12 col-md-7 offset-0 offset-md-1">
               <p class="q-mb-none text-weight-light">{{$t('next_lesson')}}</p>
               <q-no-ssr>
                  <p class="text-bold">{{new Date(student_upcoming_lessons[0].date).toLocaleDateString()}} | {{$filters.normalizeTime(student_upcoming_lessons[0].time)}}</p>
@@ -232,4 +232,7 @@ export default {
   padding-bottom: 15px
   &:last-child
     border-bottom: none
+@media (max-width: 1024px)
+  .grid
+    grid-template-columns: 1fr
 </style>
