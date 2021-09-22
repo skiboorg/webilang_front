@@ -1,4 +1,13 @@
 export default {
+  reg_error:'Error. Please check entered data',
+  item_preview:'File preview',
+  chat_new_message:'Your message',
+  back:'Back',
+  time_left:'Time left:',
+  today:'Today',
+  over_lesson:'Over lesson',
+  coming_lesson:'Coming lesson',
+  replaced_lesson:'Transferred lesson',
   //кнопки,формы
   want_free_lesson:`I want a free trial lesson`,
   your_name:`Tell us your name, please?`,

@@ -1,7 +1,7 @@
 <template>
   <div class="lessons-wrapper">
     <div ref="lessons-list" class="rounded-block  lessons-list">
-      <div class="lessons-list-header q-mb-md">
+      <div class="gt-sm lessons-list-header q-mb-md">
         <p class="no-margin text-bold ">{{$t('lessons_date')}}</p>
         <p class="no-margin text-bold">{{$t('lessons_theme')}}</p>
         <p class="no-margin text-bold">{{$t('lessons_teacher')}}</p>
@@ -17,16 +17,32 @@
           :style="{'height':height - 100 + 'px'}">
           <div class="lessons-list-row" @click="selectedLesson=lesson.id" v-for="(lesson,index) in student_upcoming_lessons" :key="lesson.id">
             <q-no-ssr>
-              <p class="no-margin text-weight-light">{{new Date(lesson.date).toLocaleDateString()}} | {{$filters.normalizeTime(lesson.time)}}</p>
-            </q-no-ssr>
+              <div class="">
+                <p class="lt-md no-margin text-bold ">{{$t('lessons_date')}}</p>
+                <p class="no-margin text-weight-light">{{new Date(lesson.date).toLocaleDateString()}} | {{$filters.normalizeTime(lesson.time)}}</p>
+              </div>
 
-            <p class="no-margin text-weight-light ellipsis lesson-theme">{{lesson.theme}}</p>
-            <p class="no-margin text-weight-light">{{current_group.teacher.firstname}} {{current_group.teacher.lastname}}</p>
-            <p class="no-margin text-weight-light">
+            </q-no-ssr>
+            <div class="">
+              <p class="lt-md no-margin text-bold">{{$t('lessons_theme')}}</p>
+             <p class="no-margin text-weight-light ellipsis lesson-theme">{{lesson.theme}}</p>
+            </div>
+            <div class="">
+              <p class="lt-md no-margin text-bold">{{$t('lessons_teacher')}}</p>
+             <p class="no-margin text-weight-light">{{current_group.teacher.firstname}} {{current_group.teacher.lastname}}</p>
+            </div>
+            <div class="">
+               <p class="lt-md no-margin text-bold">{{$t('lessons_status')}}</p>
+              <p class="no-margin text-weight-light">
               <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="5" cy="5.5" r="5" fill="#39CE3F"/>
               </svg>
-              {{$t('lessons_status_planned')}}</p>
+              {{$t('lessons_status_planned')}}
+            </p>
+            </div>
+
+
+
 
           </div>
           <div class="lessons-list-divider"></div>
@@ -150,4 +166,8 @@ export default {
     margin: 15px 0
 .lessons-material
   height: 190px
+@media (max-width: 768px)
+  .lessons-list
+    &-row
+      grid-template-columns: 1fr
 </style>

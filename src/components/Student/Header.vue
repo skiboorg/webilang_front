@@ -15,16 +15,21 @@
    <q-drawer v-model="studentMenu"   bordered>
      <LeftSideBar/>
     </q-drawer>
+   <q-drawer v-model="studentWidgets"  side="right" bordered class="q-pa-sm">
+     <RightSideBar />
+    </q-drawer>
 </template>
 
 <script>
 
 
 import LeftSideBar from "components/Student/LeftSideBar";
+import RightSideBar from "components/Student/RightSideBar";
 
 export default {
   components:{
     LeftSideBar,
+    RightSideBar
   },
   data() {
     return {

@@ -47,17 +47,17 @@
             <div class="group-list-row"  v-for="(lesson,index) in teacher_current_group.lessons" :key="lesson.id">
               <div class="group-list-row__item" :class="{'b-w':index%2>0}">
                 <q-no-ssr>
-                 <p class="lt-md q-mb-sm text-bold ">{{$t('lessons_date')}}</p>
+                  <p class="lt-md q-mb-sm text-bold ">{{$t('lessons_date')}}</p>
                   <p class="no-margin ">{{new Date(lesson.date).toLocaleDateString()}} | {{$filters.normalizeTime(lesson.time)}}</p>
                 </q-no-ssr>
               </div>
 
               <div :class="{'b-w':index%2>0}" class="flex items-center justify-between group-list-row__item">
-                <div class="">
-                   <p class="lt-md q-mb-sm text-bold">{{$t('lessons_theme')}}</p>
-                <p style="max-width: 70%" class="no-margin ellipsis link">
-                  <router-link :to="{name:'teacher-lesson',params:{id:lesson.id}}">{{lesson.theme}}</router-link>
-                </p>
+                <div style="max-width: 70%">
+                  <p class="lt-md q-mb-sm text-bold">{{$t('lessons_theme')}}</p>
+                  <p  class="no-margin ellipsis link">
+                    <router-link :to="{name:'teacher-lesson',params:{id:lesson.id}}">{{lesson.theme}}</router-link>
+                  </p>
                 </div>
 
                 <div class="q-mr-none q-mr-md-lg">
@@ -80,7 +80,10 @@
               </div>
 
               <div class="text-center group-list-row__item">
-                <q-btn v-if="!lesson.is_over" size="12px" :disable="lesson.link === '' " style="width: 140px" no-caps :label="$t('enter_classroom')" color="primary" />
+                <q-btn :to="{name:'teacher-lesson',params:{id:lesson.id}}"
+                       v-if="!lesson.is_over" size="12px" :disable="lesson.link === '' "
+                       style="width: 140px"
+                       no-caps :label="$t('enter_classroom')" color="primary" />
               </div>
             </div>
           </q-scroll-area>
@@ -166,29 +169,29 @@
                   <p class="lt-md no-margin text-weight-bold">{{$t('lessons_dates')}}</p>
                   <p class="no-margin">{{new Date(lesson.date).toLocaleDateString()}}</p></div>
                 <div class="">
-                   <p class="lt-md no-margin text-weight-bold">{{$t('lessons_time')}}</p>
+                  <p class="lt-md no-margin text-weight-bold">{{$t('lessons_time')}}</p>
                   <q-input dense mask="time"  outlined v-model="lesson.time">
-                  <template v-slot:append>
-                    <q-icon name="access_time" class="cursor-pointer">
-                      <q-popup-proxy transition-show="scale" transition-hide="scale">
-                        <q-time format24h v-model="lesson.time">
-                          <div class="row items-center justify-end">
-                            <q-btn v-close-popup :label="$t('save_btn')" color="primary" flat />
-                          </div>
-                        </q-time>
-                      </q-popup-proxy>
-                    </q-icon>
-                  </template>
-                </q-input>
-                  </div>
+                    <template v-slot:append>
+                      <q-icon name="access_time" class="cursor-pointer">
+                        <q-popup-proxy transition-show="scale" transition-hide="scale">
+                          <q-time format24h v-model="lesson.time">
+                            <div class="row items-center justify-end">
+                              <q-btn v-close-popup :label="$t('save_btn')" color="primary" flat />
+                            </div>
+                          </q-time>
+                        </q-popup-proxy>
+                      </q-icon>
+                    </template>
+                  </q-input>
+                </div>
 
 
                 <div class="">
-                   <p class="lt-md no-margin text-weight-bold">{{$t('lessons_theme')}}</p>
+                  <p class="lt-md no-margin text-weight-bold">{{$t('lessons_theme')}}</p>
                   <div class="flex items-center justify-between">
-                  <q-input style="flex-basis: 80%" dense outlined v-model="lesson.theme"/>
-                  <q-btn @click="removeDate(index,lesson.date)" flat dense icon="delete" round/>
-                </div>
+                    <q-input style="flex-basis: 80%" dense outlined v-model="lesson.theme"/>
+                    <q-btn @click="removeDate(index,lesson.date)" flat dense icon="delete" round/>
+                  </div>
                 </div>
 
 
@@ -319,7 +322,7 @@
             <svg class="q-mx-sm" width="8" height="9" viewBox="0 0 8 9" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="4" cy="4.5" r="4" fill="#FFB61C"/>
             </svg>
-            <p class="q-mb-none text-weight-bold ">{{$auth.user.folders.find(x=>x.id===selectedFolder).name}}</p>
+            <p class="q-mb-none text-weight-bold ">{{this.server_folders.find(x=>x.id===selectedFolder).name}}</p>
 
           </div>
           <div class="files-grid">
@@ -334,9 +337,10 @@
            ]" v-for="(item,index) in all_files" :key="index">
               <div v-if="item.files">
                 <div class="file-item cursor-pointer" @click="openFolder(item.id)">
-                  <q-icon class="q-mr-md cursor-pointer" size="60px" name="folder" color="warning"/>
-                  <p v-if="!item.is_new" class="no-margin text-weight-regular ">{{item.name}}</p>
-                  <q-input v-else autofocus @keydown="keyDown" @blur="folderAction" dense borderless bg-color="blue-1" label-color="white" v-model="folderName"/>
+                  <q-icon class="q-mr-md cursor-pointer" size="60px"
+                          :name="item.user ===$auth.user.id ? 'folder_shared' : 'folder' "
+                          color="warning"/>
+                  <p class="no-margin text-weight-regular ">{{item.name}}</p>
                 </div>
               </div>
               <div v-else >
@@ -347,6 +351,22 @@
                   class="file-item  relative-position">
                   <q-icon class="q-mr-md" size="40px" name="description" color="grey-7"/>
                   <p class="no-margin text-weight-regular ellipsis">{{item.filename}} </p>
+                  <q-menu
+                    touch-position
+                    context-menu
+                    class="q-pa-sm">
+                    <q-list dense style="min-width: 100px">
+                      <q-item @click="previewModal=true" clickable v-close-popup>
+                        <q-item-section>{{$t('item_preview')}}</q-item-section>
+                      </q-item>
+<!--                      <q-item clickable v-close-popup>-->
+<!--                        <q-item-section>{{$t('item_add_materials')}}</q-item-section>-->
+<!--                      </q-item>-->
+<!--                      <q-item clickable v-close-popup>-->
+<!--                        <q-item-section>{{$t('item_add_homework')}}</q-item-section>-->
+<!--                      </q-item>-->
+                    </q-list>
+                  </q-menu>
                 </div>
               </div>
             </div>
@@ -362,14 +382,14 @@
               <q-icon size="50px" name="add" @click="uploadedMaterialsFiles=null">
 
                 <q-file
-              v-model="uploadedMaterialsFiles"
-              label="Pick files"
-              filled
-              multiple
-              class="absolute"
-              @update:model-value="uploadedMaterialsFilesUpdated"
-              style="right: 0;left: 0;opacity: 0"
-            />
+                  v-model="uploadedMaterialsFiles"
+                  label="Pick files"
+                  filled
+                  multiple
+                  class="absolute"
+                  @update:model-value="uploadedMaterialsFilesUpdated"
+                  style="right: 0;left: 0;opacity: 0"
+                />
               </q-icon>
             </div>
             <div
@@ -397,7 +417,7 @@
               </q-badge>
               <q-icon class="q-mr-md" size="40px" name="upload_file" color="grey-5"/>
               <p class="no-margin text-weight-regular ellipsis">{{item.filename}}
-               <span class="block text-caption text-positive" v-if="item.is_uploaded">{{$t('teacher_file_uploaded')}}</span>
+                <span class="block text-caption text-positive" v-if="item.is_uploaded">{{$t('teacher_file_uploaded')}}</span>
               </p>
             </div>
 
@@ -413,14 +433,14 @@
               <q-icon size="50px" name="add" @click="uploadedHomeworkFiles=null">
 
                 <q-file
-              v-model="uploadedHomeworkFiles"
-              label="Pick files"
-              filled
-              multiple
-              class="absolute"
-              @update:model-value="uploadedHomeworkFilesUpdated"
-              style="right: 0;left: 0;opacity: 0"
-            />
+                  v-model="uploadedHomeworkFiles"
+                  label="Pick files"
+                  filled
+                  multiple
+                  class="absolute"
+                  @update:model-value="uploadedHomeworkFilesUpdated"
+                  style="right: 0;left: 0;opacity: 0"
+                />
               </q-icon>
             </div>
             <div
@@ -436,7 +456,7 @@
               <q-icon class="q-mr-md" size="40px" name="description" color="grey-7"/>
               <p class="no-margin text-weight-regular ellipsis">{{item.filename}} </p>
             </div>
-              <div
+            <div
               v-for="(item,index) in uploadedHomework"
               :key="index"
               @click="selectedFile=item.id"
@@ -456,9 +476,9 @@
         <p class="text-bold">{{$t('teacher_comment')}}</p>
         <q-input class="q-mb-md q-mb-lg-lg" type="textarea" outlined bg-color="white" v-model="comment"/>
         <div class="text-right">
-            <q-btn @click="saveLessonFiles" :loading="is_loading" :label="$t('save_btn')"
-                   class="border-r-8" color="primary" unelevated/>
-          </div>
+          <q-btn @click="saveLessonFiles" :loading="is_loading" :label="$t('save_btn')"
+                 class="border-r-8" color="primary" unelevated/>
+        </div>
 
 
       </q-card-section>
@@ -467,6 +487,25 @@
     </q-card>
   </q-dialog>
   <!--  add files dialog-->
+  <!--  preview dialog-->
+  <q-dialog v-model="previewModal" full-height transition-show="scale" transition-hide="scale">
+      <q-card style="width: 850px;max-width: 90vw">
+        <q-card-section class="flex items-center justify-between">
+          <div class="text-h6">{{$t('item_preview')}}</div>
+          <q-btn v-close-popup icon="close" round flat/>
+        </q-card-section>
+        <q-card-section style="height: 90%">
+          <iframe frameborder="0"  scrolling="yes" src="https://docs.google.com/gview?url=https://file-examples-com.github.io/uploads/2017/08/file_example_PPT_250kB.ppt&embedded=true"  height="100%" width="100%"></iframe>
+        </q-card-section>
+
+
+
+
+      </q-card>
+    </q-dialog>
+  <!--  preview dialog-->
+
+
 </template>
 
 <script>
@@ -480,6 +519,7 @@ export default {
   },
   data() {
     return {
+      previewModal:false,
       comment:'',
       selectedFolder:null,
       selectedFile:null,
@@ -490,6 +530,8 @@ export default {
       uploadedMaterialsFiles:[],
       uploadedHomeworkFiles:[],
       all_files:[],
+      server_folders:[],
+      server_files:[],
       selected_lesson_id:null,
       is_loading:false,
       addLessonModal:false,
@@ -555,13 +597,14 @@ export default {
 
     }
   },
-  mounted() {
+  async mounted() {
     this.height = this.$refs['group-list'].offsetHeight
     this.recent_dates = this.teacher_current_group.lessons.map(x=>x.date.replaceAll('-','/'))
-    this.updateFiles()
+    await this.updateFiles()
   },
   methods: {
     ...mapActions('data',['getTeacherGroups','setTeacherCurrentGroup']),
+
     getLessonFiles(){
       let curr_lesson = this.teacher_current_group.lessons.find(x=>x.id===this.selected_lesson_id)
       console.log(curr_lesson)
@@ -601,7 +644,7 @@ export default {
         url: '/api/lesson/save_lesson_files',
         data: formData
       })
-       this.selectedMaterials=[]
+      this.selectedMaterials=[]
       this.selectedHomework=[]
       this.uploadedMaterials=[]
       this.uploadedHomework=[]
@@ -618,7 +661,7 @@ export default {
       if (uploaded){
         this.is_loading = true
         await this.$api.post('/api/lesson/delete_file',{id,list})
-          this.is_loading = false
+        this.is_loading = false
       }
       if(list==='materials'){
         this.uploadedMaterials.splice(index,1)
@@ -678,14 +721,25 @@ export default {
         this.selectedHomework.splice(index,1)
       }
     },
-    updateFiles(){
+    async updateFiles(){
       this.all_files = []
-      for(let x of this.$auth.user.folders){
+      // for(let x of this.$auth.user.folders){
+      //   this.all_files.push(x)
+      // }
+      // for(let x of this.$auth.user.files){
+      //   this.all_files.push(x)
+      // }
+      const folders = await this.$api.get('/api/lesson/folders')
+      this.server_folders = folders.data
+      const files = await this.$api.get('/api/lesson/files')
+      this.server_files = files.data
+      for(let x of this.server_folders){
         this.all_files.push(x)
       }
-      for(let x of this.$auth.user.files){
+      for(let x of this.server_files){
         this.all_files.push(x)
       }
+
     },
     closeFolder(){
       this.selectedFolder = null
@@ -694,7 +748,8 @@ export default {
     openFolder(id){
       this.selectedFolder = id
 
-      this.all_files=this.$auth.user.folders.find(x=>x.id===id).files
+      // this.all_files=this.$auth.user.folders.find(x=>x.id===id).files
+      this.all_files=this.server_folders.find(x=>x.id===id).files
     },
     optionsFn (date) {
       return new Date(date).toLocaleDateString() >= new Date().toLocaleDateString()

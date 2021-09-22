@@ -11,15 +11,15 @@ const state = () => ({
 })
 
 const mutations = {
- updateUser(state,data){
+  updateUser(state,data){
     state.user = data
   },
   updateUserStatus(state,data){
     state.loggedIn = data
   },
   updateSocket(state,data){
-      state.socket = data
-    },
+    state.socket = data
+  },
 
 }
 
@@ -29,41 +29,41 @@ const actions = {
 
     const socket = new WebSocket(process.env.WS+'/ws/user/online/')
 
-     commit('updateSocket',socket)
-       socket.onopen = () => {
-        console.log('ws connected')
-        socket.send(JSON.stringify({'user_id':id,'message':'user online'}))
-        socket.onmessage = (res) =>{
-          //dispatch('fetchUserNotifications',id)
-          console.log('message',JSON.parse(res.data))
-          let data = JSON.parse(res.data)
-          console.log('cur path',rootState.data.current_chat)
+    commit('updateSocket',socket)
+    socket.onopen = () => {
+      console.log('ws connected')
+      socket.send(JSON.stringify({'user_id':id,'message':'user online'}))
+      socket.onmessage = (res) =>{
+        //dispatch('fetchUserNotifications',id)
+        console.log('message',JSON.parse(res.data))
+        let data = JSON.parse(res.data)
+        console.log('cur path',rootState.data.current_chat)
 //
-          if (data.event==='new_chat_mgs' && rootState.data.current_chat !== data.chat_id){
-             Notify.create({
-              message: data.message,
-              color: 'primary',
-                icon: 'chat',
-               progress: true,
-               position:'top-right',
-               classes: 'glossy'
-            })
-          }
-          if(data.event==='order'){
-            Notify.create({
-              message: data.message,
-              color: 'primary',
-                icon: 'chat',
-               progress: true,
-               position:'top-right',
-               classes: 'glossy',
-               actions: [
-                { label: 'Открыть', color: 'white', handler: () => { this.$router.push('/profile/notifications') } }
-              ]
-            })
-          }
+        if (data.event==='new_chat_mgs' && rootState.data.current_chat !== data.chat_id){
+          Notify.create({
+            message: data.message,
+            color: 'primary',
+            icon: 'chat',
+            progress: true,
+            position:'top-right',
+            classes: 'glossy'
+          })
+        }
+        if(data.event==='order'){
+          Notify.create({
+            message: data.message,
+            color: 'primary',
+            icon: 'chat',
+            progress: true,
+            position:'top-right',
+            classes: 'glossy',
+            actions: [
+              { label: 'Открыть', color: 'white', handler: () => { this.$router.push('/profile/notifications') } }
+            ]
+          })
         }
       }
+    }
   },
 
   loginUser({dispatch},data){
@@ -74,28 +74,34 @@ const actions = {
         dispatch('getUser',true)
       })
       .catch(function (error) {
-          Notify.create(
-            {
-              message: Cookies.get('lang') === 'ru' ? 'Пользователь не найден':'User not found',
-              position:'top-right',
-              color: 'red'
-            }
-          )
+        Notify.create(
+          {
+            message: Cookies.get('lang') === 'ru' ? 'Пользователь не найден':'User not found',
+            position:'top-right',
+            color: 'red'
+          }
+        )
       })
 
   },
-  async getUser ({commit,dispatch},redirect){
+  async getUser ({commit,dispatch},redirect) {
     console.log('getting user')
 
-   const response = await api.get( '/api/user/me/')
+    const response = await api.get('/api/user/me/')
     //console.log('getUser', response.data)
     commit('updateUser', response.data)
     commit('updateUserStatus', true)
 
     if (!process.env.SERVER) {
-        dispatch('connectWS', response.data.id)
+      dispatch('connectWS', response.data.id)
+    }
+    if (redirect){
+      if (response.data.is_teacher) {
+        await this.$router.push({name:'teacher-groups'})
+      } else {
+        await this.$router.push({name:'student-index'})
       }
-    redirect ? await this.$router.push('/') : null
+    }
   },
 
   logoutUser({commit}){

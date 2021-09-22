@@ -155,16 +155,21 @@ export const getters = {
   messages: (state) => state.messages,
   current_chat: (state) => state.current_chat,
   current_group_index: (state) => state.current_group_index,
+  current_group_lesson_dates:(state) =>{
+    if (!state.current_group.is_empty){
+      //console.log(state.current_group)
+      return  state.current_group.lessons.map(x=>x.date.replaceAll('-','/'))
+    }
+  },
   student_upcoming_lessons: (state) => {
     if (!state.current_group.is_empty){
-      console.log(state.current_group)
+      //console.log(state.current_group)
       return  state.current_group.lessons.filter(x=>!x.is_over)
     }
 
   },
   student_over_lessons: (state) =>{
     if (!state.current_group.is_empty){
-       console.log('dddddddddddddddddddd')
      return state.current_group.lessons.filter(x=>x.is_over)
     }
   }

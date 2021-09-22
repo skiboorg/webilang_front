@@ -1,129 +1,121 @@
 <template>
-
-    <div class="grid">
-
-      <div class="chats-wrapper">
-        <q-scroll-area
-          :thumb-style="thumbStyle"
-          :bar-style="barStyle"
-          style="max-width: 100%"
-          :style="{'height':heigth  + 'px'}">
+  <div class="grid">
+    <div :class="[chatOpen ? 'panel-hide' : '']" class="chats-wrapper">
+<!--      <q-scroll-area-->
+<!--        :thumb-style="thumbStyle"-->
+<!--        :bar-style="barStyle"-->
+<!--        style="max-width: 100%"-->
+<!--        :style="{'height':heigth  + 'px'}">-->
+<!--          </q-scroll-area>-->
         <q-separator/>
         <q-list separator>
-      <q-item clickable @click="openChat(chat.id)" v-ripple v-for="chat in chats" :key="chat.id" :class="{'bg-grey-2': current_chat===chat.id}">
-        <q-item-section avatar>
-         <q-avatar v-if="!chat.group" size="30px">
-            <img :src="$auth.user.id === chat.starter.id ? chat.opponent.user_avatar : chat.starter.user_avatar" alt="">
-         </q-avatar>
-          <q-avatar v-else size="30px">
-            <img :src="chat.group.image" alt="">
-         </q-avatar>
-        </q-item-section>
-        <q-item-section>
-          <div v-if="chat.group">
-            <q-item-label class="text-weight-bold">{{chat.group.label}}</q-item-label>
-          </div>
-          <div v-else>
-             <q-item-label v-if="chat.starter.is_superuser" class="text-weight-bold">{{$t('admin')}}</q-item-label>
-             <q-item-label v-else class="text-weight-bold">{{$auth.user.id === chat.starter.id ? chat.opponent.firstname : chat.starter.firstname}}</q-item-label>
-          </div>
-
-          <q-item-label caption lines="1" class="ellipsis text-weight-light" style="max-width: 150px">
-            <span class="text-primary text-bold text-caption" v-if="$auth.user.id === parseInt(chat.last_message_user_id)">{{$t('chat_own_last_message')}}</span>
-
-            {{chat.last_message}}
-          </q-item-label>
-        </q-item-section>
-
-      </q-item>
-
-
-
-    </q-list>
+          <q-item clickable @click="openChat(chat.id)" v-ripple v-for="chat in chats" :key="chat.id" :class="{'bg-grey-2': current_chat===chat.id}">
+            <q-item-section avatar>
+              <q-avatar v-if="!chat.group" size="30px">
+                <img :src="$auth.user.id === chat.starter.id ? chat.opponent.user_avatar : chat.starter.user_avatar" alt="">
+              </q-avatar>
+              <q-avatar v-else size="30px">
+                <img :src="chat.group.image" alt="">
+              </q-avatar>
+            </q-item-section>
+            <q-item-section>
+              <div v-if="chat.group">
+                <q-item-label class="text-weight-bold">{{chat.group.label}}</q-item-label>
+              </div>
+              <div v-else>
+                <q-item-label v-if="chat.starter.is_superuser" class="text-weight-bold">{{$t('admin')}}</q-item-label>
+                <q-item-label v-else class="text-weight-bold">{{$auth.user.id === chat.starter.id ? chat.opponent.firstname : chat.starter.firstname}}</q-item-label>
+              </div>
+              <q-item-label caption lines="1" class="ellipsis text-weight-light" style="max-width: 150px">
+                <span class="text-primary text-bold text-caption" v-if="$auth.user.id === parseInt(chat.last_message_user_id)">{{$t('chat_own_last_message')}}</span>
+                {{chat.last_message}}
+              </q-item-label>
+            </q-item-section>
+          </q-item>
+        </q-list>
         <q-separator/>
-           </q-scroll-area>
-      </div>
-      <div ref="messages-wrapper" class="messages-wrapper">
-        <q-inner-loading :showing="data_loading">
+
+    </div>
+    <div :class="[!chatOpen ? 'panel-hide' : '']" ref="messages-wrapper" class="messages-wrapper">
+      <q-inner-loading :showing="data_loading">
         <q-spinner-comment size="50px" color="primary" />
       </q-inner-loading>
-        <div class="messages-top flex items-center">
+      <div class="messages-top flex items-center justify-between">
+        <div class="flex items-center">
           <q-avatar size="30px" class="q-mr-md">
             <img v-if="!chatData.group" :src="chatData.user_avatar" alt="">
             <img v-else :src="chatData.group.image" alt="">
           </q-avatar>
-          <p v-if="!chatData.group" class="no-margin text-weight-bold">{{chatData.firstname}} {{chatData.lastname}}</p>
+          <p v-if="!chatData.group" class="no-margin text-weight-bold">
+            {{chatData.is_superuser ? $t('admin') : chatData.firstname + ' ' + chatData.lastname}}
+          </p>
           <p v-else class="no-margin text-weight-bold">{{chatData.group.label}} </p>
         </div>
-
-        <div ref="messagesContainer" class="messages-center" :style="{'height':heigth - 60 + 'px'}">
-<!--               :text="[message.message]"-->
-
-            <div  class="q-pa-xs">
-             <q-chat-message
-               v-for="message in messages" :key="message.id"
-               :sent="message.user.id === $auth.user.id"
-               text-html
+        <q-btn class="border-r-8 q-px-sm lt-sm"
+               @click="chatOpen = !chatOpen"
+               dense
+               icon="arrow_left"
+               no-caps
+               unelevated
                text-color="dark"
-              bg-color="indigo-1">
-               <template v-slot:stamp class="text-caption">{{new Date(message.createdAt).toLocaleDateString()}}, {{new Date(message.createdAt).toLocaleTimeString().split(':')[0]}}:{{new Date(message.createdAt).toLocaleTimeString().split(':')[1]}}</template>
-               <template v-if="chatData.group" v-slot:name>{{message.user.firstname}}</template>
-               <template v-if="chatData.group" v-slot:avatar>
-
-          <img
-            class="q-message-avatar "
-            :class="[message.user.id === $auth.user.id ? 'q-message-avatar--sent':'q-message-avatar--received']"
-            :src="message.user.user_avatar" alt="">
-
-        </template>
-               <div>
-                 <p class="q-mb-xs" v-html="message.message"></p>
-
-                 <p class="q-py-xs chat-attachment" v-if="message.file">
-                   <a target="_blank" :href="message.file">{{$t('chat_attachment')}}</a>
-
-                 </p>
-               </div>
-
-      </q-chat-message>
-            </div>
-
-        </div>
-        <div class="messages-bottom">
-          <q-icon size="24px" class="cursor-pointer" :color="file ? 'positive' : 'grey-6'" name="attach_file" >
-            <q-file style="position: absolute; width: 42px; opacity: 0;" v-model="file" />
-          </q-icon>
-
-
-
-          <q-icon size="24px"  class="cursor-pointer" color="grey-6" name="sentiment_satisfied_alt" >
-            <q-menu auto-close>
-              <q-card class="smiles-card">
-                <div class="smiles-grid">
-                  <p class="smiley-icon no-margin text-h5 cursor-pointer" v-for="(smiley,index) in smiles"
-                                 :key="index" v-html="smiley.code" @click="pasteSmiley(smiley.code)"></p>
-                </div>
-
-              </q-card>
-            </q-menu>
-          </q-icon>
-
-          <q-input  bg-color="white"
-                    :loading="is_loading"
-                    :disable="is_loading"
-                    @keydown="keyDown"
-                    input-class="text-dark"
-                    rounded
-                    standout="bg-white text-dark shadow-0"
-                    v-model="message" label="Напишите сообщение">
-            <template v-slot:append>
-              <q-btn round text-color="dark" :disable="!message" :loading="is_loading"  @click="sendChatMessage()" flat icon="send" />
+               color="white"
+               :label="$t('back')"/>
+      </div>
+      <div ref="messagesContainer" class="messages-center" :style="{'height':heigth - 60 + 'px'}">
+        <!--               :text="[message.message]"-->
+        <div  class="q-pa-xs">
+          <q-chat-message
+            v-for="message in messages" :key="message.id"
+            :sent="message.user.id === $auth.user.id"
+            text-html
+            text-color="dark"
+            bg-color="indigo-1">
+            <template v-slot:stamp class="text-caption">{{new Date(message.createdAt).toLocaleDateString()}}, {{new Date(message.createdAt).toLocaleTimeString().split(':')[0]}}:{{new Date(message.createdAt).toLocaleTimeString().split(':')[1]}}</template>
+            <template v-if="chatData.group" v-slot:name>{{message.user.firstname}}</template>
+            <template v-if="chatData.group" v-slot:avatar>
+              <img
+                class="q-message-avatar "
+                :class="[message.user.id === $auth.user.id ? 'q-message-avatar--sent':'q-message-avatar--received']"
+                :src="message.user.user_avatar" alt="">
             </template>
-          </q-input>
+            <div>
+              <p class="q-mb-xs" v-html="message.message"></p>
+              <p class="q-py-xs chat-attachment" v-if="message.file">
+                <a target="_blank" :href="message.file">{{$t('chat_attachment')}}</a>
+              </p>
+            </div>
+          </q-chat-message>
         </div>
       </div>
+      <div class="messages-bottom">
+        <q-icon size="24px" class="cursor-pointer" :color="file ? 'positive' : 'grey-6'" name="attach_file" >
+          <q-file style="position: absolute; width: 42px; opacity: 0;" v-model="file" />
+        </q-icon>
+        <q-icon size="24px"  class="cursor-pointer" color="grey-6" name="sentiment_satisfied_alt" >
+          <q-menu auto-close>
+            <q-card class="smiles-card">
+              <div class="smiles-grid">
+                <p class="smiley-icon no-margin text-h5 cursor-pointer" v-for="(smiley,index) in smiles"
+                   :key="index" v-html="smiley.code" @click="pasteSmiley(smiley.code)"></p>
+              </div>
+            </q-card>
+          </q-menu>
+        </q-icon>
+        <q-input  bg-color="white"
+                  :loading="is_loading"
+                  :disable="is_loading"
+                  @keydown="keyDown"
+                  input-class="text-dark"
+                  rounded
+                  standout="bg-white text-dark shadow-0"
+                  v-model="message" :label="$t('chat_new_message')">
+          <template v-slot:append>
+            <q-btn round text-color="dark" :disable="!message" :loading="is_loading"  @click="sendChatMessage()" flat icon="send" />
+          </template>
+        </q-input>
+      </div>
     </div>
-
+  </div>
 </template>
 
 <script>
@@ -180,32 +172,32 @@ export default {
       heigth:0,
       message:null,
       is_loading:false,
-      chatData:{group:{}},
-
-
+      chatOpen:false,
+      chatData:{},
     }
   },
   async beforeMount(){
     this.setCurrentChat(0)
     let query = this.$route.query
     //console.log(this.$route.query)
-    console.log('ddd',query)
-
     if (query.o_id){
       await this.getMessages(query)
       await this.getChats()
     }else {
-       await this.getChats()
-       await this.openChat(this.chats[0].id)
-    }
+      await this.getChats()
+      if (this.$q.screen.gt.sm){
+        await this.openChat(this.chats[0].id)
+      }
 
+    }
   },
-   updated() {
+  updated() {
     this.$nextTick(() => this.scrollToEnd());
   },
 
   mounted() {
     this.heigth = this.$refs['messages-wrapper'].offsetHeight
+    console.log(this.chatData)
 
   },
   methods: {
@@ -221,7 +213,7 @@ export default {
         }
       }
     },
-     async sendChatMessage(){//
+    async sendChatMessage(){//
       if (this.message){
         const rex = /[\u{1f300}-\u{1f5ff}\u{1f900}-\u{1f9ff}\u{1f600}-\u{1f64f}\u{1f680}-\u{1f6ff}\u{2600}-\u{26ff}\u{2700}-\u{27bf}\u{1f1e6}-\u{1f1ff}\u{1f191}-\u{1f251}\u{1f004}\u{1f0cf}\u{1f170}-\u{1f171}\u{1f17e}-\u{1f17f}\u{1f18e}\u{3030}\u{2b50}\u{2b55}\u{2934}-\u{2935}\u{2b05}-\u{2b07}\u{2b1b}-\u{2b1c}\u{3297}\u{3299}\u{303d}\u{00a9}\u{00ae}\u{2122}\u{23f3}\u{24c2}\u{23e9}-\u{23ef}\u{25b6}\u{23f8}-\u{23fa}]/ug;
         const updated = this.message.replace(rex, match => `<span class="chat-emoji text-h5">&#x${match.codePointAt(0).toString(16)};</span>`);
@@ -255,25 +247,25 @@ export default {
         });
     },
     async openChat(chat_id){
+      this.chatOpen = !this.chatOpen
       this.data_loading = true
       this.setCurrentChat(chat_id)
       this.socket = new WebSocket(`${process.env.WS}/ws/chat/${chat_id}`)
       const opened_chat = await this.$api.get(`/api/chat/get_chat?chat_id=${chat_id}`)
       console.log(opened_chat.data)
       console.log(this.$auth.user.id)
+
       if (opened_chat.data.starter){
         if (opened_chat.data.starter.id !== this.$auth.user.id){
-        this.chatData= opened_chat.data.starter
+          this.chatData= opened_chat.data.starter
         } else {
           this.chatData= opened_chat.data.opponent
         }
       }
       this.chatData.group = opened_chat.data.group
-      console.log(this.chatData.group)
       await this.$api.post(`/api/chat/set_chat_read/${chat_id}`)
       this.socket.onmessage = async (res) =>{
         console.log('message in chat',JSON.parse(res.data))
-        await this.getChats()
         let updated = null
         let data = JSON.parse(res.data)['message']
         console.log('DATA',data)
@@ -294,13 +286,13 @@ export default {
               user:{
                 id:data.user.id,
                 firstname:data.user.firstname,
-                avatar: data.user.user_avatar ? process.env.API+data.user.user_avatar : '/no-avatar.svg',
+                user_avatar: data.user.user_avatar //? process.env.API+data.user.user_avatar : '/no-avatar.svg',
               }
             }
           )
 
         }
-
+        await this.getChats()
         this.scrollToEnd()
 
       }
@@ -410,6 +402,7 @@ export default {
   overflow-y: auto
   overflow-x: hidden
 
+
 ::-webkit-scrollbar
   width: 5px
 
@@ -422,4 +415,10 @@ export default {
 
 ::-webkit-scrollbar-thumb:hover
   background: $primary
+
+@media (max-width: 768px)
+  .grid
+    grid-template-columns: 1fr
+  .panel-hide
+    display: none
 </style>

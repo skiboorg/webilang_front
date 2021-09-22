@@ -143,4 +143,7 @@ export default {
   &-edit
     background: #FFF5E0
     padding: 10px
+@media (max-width: 768px)
+  .add-note
+    grid-template-columns: 1fr
 </style>

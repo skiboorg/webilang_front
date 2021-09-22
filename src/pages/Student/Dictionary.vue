@@ -35,12 +35,18 @@
           :style="{'height':height -51  + 'px'}">
         <div class="words-list-row" v-for="item in filter_dictionary.length>0 ? filter_dictionary : dictionary" :key="item.id">
           <div class="words-list-row__left">
-           <p  class="no-margin text-weight-bold">{{item.word}}</p>
+           <div style="max-width: 80%">
+             <p class="no-margin text-weight-bold ellipsis"> {{item.word}}</p>
+           </div>
           </div>
 
           <div class="words-list-row__right flex items-center justify-between">
 
-            <p  class="no-margin text-weight-bold">{{item.translate}}</p>
+
+            <div style="max-width: 80%">
+             <p class="no-margin text-weight-bold ellipsis"> {{item.translate}}</p>
+           </div>
+
             <div class="words-list-row__buttons ">
               <q-btn icon="edit"
                      @click="editItem.id=item.id, editItem.word=item.word, editItem.translate=item.translate"
@@ -175,4 +181,9 @@ export default {
     &__buttons
       transition: all .2s linear
       opacity: 0
+@media (max-width: 768px)
+  .add-word
+    grid-template-columns: 1fr
+  .words-list-row
+    align-items: flex-start
 </style>

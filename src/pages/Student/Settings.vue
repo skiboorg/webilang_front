@@ -155,6 +155,7 @@ export default {
   &-user
     display: grid
     grid-template-columns: 1fr 8fr
+    grid-gap: 20px
   &-form
     display: grid
     grid-gap: 15px
@@ -178,5 +179,13 @@ export default {
 @media (max-width: 768px)
   .avatars-wrapper
     grid-template-columns: repeat(auto-fill, minmax(70px,1fr))
+  .settings
+    &-user
+      grid-template-columns: 1fr
+    &-form
+      &.x2
+        grid-template-columns: 1fr
+      &.x3
+        grid-template-columns: 1fr
 
 </style>

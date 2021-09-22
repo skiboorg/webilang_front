@@ -221,12 +221,20 @@ a
   display: none
 
 @media (max-width: 1024px)
-  .q-page-container
-    padding-top: 0 !important
+  .q-date
+    min-width: unset
+  .student-content
+    & .q-page-container
+        padding-top: 0 !important
   .rounded-block
     background: #FFFFFF
     padding: 0
   .student-content
+    & .rounded-block
+      background: #F7F9FF
+      border-radius: 20px !important
+      padding: 15px
+  .right-sidebar
     & .rounded-block
       background: #F7F9FF
       border-radius: 20px !important

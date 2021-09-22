@@ -1,5 +1,23 @@
 export default {
+  //
+  reg_error:'Ошибка.Проверьте введенные данные',
+  item_preview:'Предпросмотр',
+  item_add_materials:'Добавить к материалам',
+  item_add_homework:'Добавить к Д/З',
+  chat_new_message:'Напишите сообщение',
+  back:'Назад',
+  time_left:'До занятия:',
+  today:'Сегодняшний день',
+  over_lesson:'Пройденный урок',
+  coming_lesson:'Предстоящий урок',
+  replaced_lesson:'Перенесенный урок',
+  call_friends:'Позовите друзей!',
+  share_promo:'Отправьте промокод и получите 2 бесплатных занятия',
+  //
+
   //кнопки,формы
+
+
   want_free_lesson:`Хочу пробный бесплатный урок`,
   your_name:`Как к Вам обращаться?`,
   your_firstname:`Имя`,
@@ -8,6 +26,8 @@ export default {
   your_bithtday:`Дата рождения`,
   your_country:`Страна`,
   your_city:`Город`,
+
+
 
   your_info:`О себе`,
   your_email:`Ваш email`,

@@ -2,7 +2,10 @@
   <div class="left-sideBar text-center">
     <div class="q-px-md">
       <div class="q-mb-lg">
-      <img src="~assets/logo.svg" alt="">
+        <router-link to="/">
+           <img src="~assets/logo.svg" alt="">
+        </router-link>
+
     </div>
     <q-avatar v-if="current_group" class="q-mb-lg" size="150px">
       <img :src="current_group.image" >

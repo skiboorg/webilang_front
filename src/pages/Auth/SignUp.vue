@@ -78,23 +78,23 @@
         </div>
         <p class="no-margin" v-html="$t('google_reg')"></p>
       </div>
-      <div class="social-button apple">
-        <div class="social-button__icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g clip-path="url(#clip0)">
-              <path d="M16.4989 0C15.2194 0.0884995 13.7239 0.907495 12.8525 1.97399C12.0575 2.94148 11.4035 4.37847 11.6585 5.77497C13.0564 5.81847 14.5009 4.97997 15.3379 3.89548C16.1209 2.88598 16.7134 1.45799 16.4989 0Z" fill="white"/>
-              <path d="M21.5555 8.05167C20.327 6.51118 18.6005 5.61719 16.97 5.61719C14.8175 5.61719 13.907 6.64768 12.4116 6.64768C10.8696 6.64768 9.69807 5.62019 7.83658 5.62019C6.0081 5.62019 4.06111 6.73768 2.82661 8.64867C1.09112 11.3397 1.38812 16.3991 4.20061 20.7086C5.2071 22.2506 6.55109 23.9846 8.30908 23.9996C9.87357 24.0146 10.3146 22.9961 12.4341 22.9856C14.5535 22.9736 14.9555 24.0131 16.517 23.9966C18.2765 23.9831 19.694 22.0616 20.7005 20.5196C21.422 19.4141 21.6905 18.8576 22.25 17.6096C18.1805 16.0601 17.528 10.2732 21.5555 8.05167Z" fill="white"/>
-            </g>
-            <defs>
-              <clipPath id="clip0">
-                <rect width="24" height="24" fill="white"/>
-              </clipPath>
-            </defs>
-          </svg>
+<!--      <div class="social-button apple">-->
+<!--        <div class="social-button__icon">-->
+<!--          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--            <g clip-path="url(#clip0)">-->
+<!--              <path d="M16.4989 0C15.2194 0.0884995 13.7239 0.907495 12.8525 1.97399C12.0575 2.94148 11.4035 4.37847 11.6585 5.77497C13.0564 5.81847 14.5009 4.97997 15.3379 3.89548C16.1209 2.88598 16.7134 1.45799 16.4989 0Z" fill="white"/>-->
+<!--              <path d="M21.5555 8.05167C20.327 6.51118 18.6005 5.61719 16.97 5.61719C14.8175 5.61719 13.907 6.64768 12.4116 6.64768C10.8696 6.64768 9.69807 5.62019 7.83658 5.62019C6.0081 5.62019 4.06111 6.73768 2.82661 8.64867C1.09112 11.3397 1.38812 16.3991 4.20061 20.7086C5.2071 22.2506 6.55109 23.9846 8.30908 23.9996C9.87357 24.0146 10.3146 22.9961 12.4341 22.9856C14.5535 22.9736 14.9555 24.0131 16.517 23.9966C18.2765 23.9831 19.694 22.0616 20.7005 20.5196C21.422 19.4141 21.6905 18.8576 22.25 17.6096C18.1805 16.0601 17.528 10.2732 21.5555 8.05167Z" fill="white"/>-->
+<!--            </g>-->
+<!--            <defs>-->
+<!--              <clipPath id="clip0">-->
+<!--                <rect width="24" height="24" fill="white"/>-->
+<!--              </clipPath>-->
+<!--            </defs>-->
+<!--          </svg>-->
 
-        </div>
-        <p class="no-margin" v-html="$t('apple_reg')"></p>
-      </div>
+<!--        </div>-->
+<!--        <p class="no-margin" v-html="$t('apple_reg')"></p>-->
+<!--      </div>-->
       <div class="social-button facebook">
         <div class="social-button__icon">
           <svg width="24" height="24" viewBox="0 0 13 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -185,15 +185,16 @@ export default {
           is_social_register:this.userRegData.is_social_register,
         })
         this.$q.notify({
-          message: 'Аккаунт создан',
+          message: this.$t('account_created'),
           position: this.$q.screen.lt.sm ? 'bottom' : 'bottom-right',
           color:'positive',
           icon: 'announcement'
         })
         this.is_loading=false
+        await this.$router.push({name:'front-signin'})
       }catch (e) {
         this.$q.notify({
-          message: 'Проверьте введеные данные',
+          message: this.$t('reg_error'),
           position: this.$q.screen.lt.sm ? 'bottom' : 'bottom-right',
           color:'red',
           icon: 'announcement'
