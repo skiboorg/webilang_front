@@ -8,6 +8,8 @@ export default {
   over_lesson:'Over lesson',
   coming_lesson:'Coming lesson',
   replaced_lesson:'Transferred lesson',
+  call_friends:'Call friends!',
+  share_promo:'Submit your promo code and get 2 free lessons',
   //кнопки,формы
   want_free_lesson:`I want a free trial lesson`,
   your_name:`Tell us your name, please?`,

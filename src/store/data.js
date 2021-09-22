@@ -158,7 +158,12 @@ export const getters = {
   current_group_lesson_dates:(state) =>{
     if (!state.current_group.is_empty){
       //console.log(state.current_group)
-      return  state.current_group.lessons.map(x=>x.date.replaceAll('-','/'))
+      try{
+        return  state.current_group.lessons.map(x=>x.date.replaceAll('-','/'))
+      }catch (e) {
+        console.log(e)
+      }
+
     }
   },
   student_upcoming_lessons: (state) => {
