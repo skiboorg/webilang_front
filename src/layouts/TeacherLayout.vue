@@ -1,5 +1,6 @@
 <template>
   <q-layout view="hHh lpR fFf">
+    <q-no-ssr>
     <Header/>
     <div class="teacher-wrapper">
       <LeftSideBar class="gt-sm"/>
@@ -10,6 +11,7 @@
         </q-page-container>
       </div>
     </div>
+    </q-no-ssr>
   </q-layout>
 </template>
 <script>

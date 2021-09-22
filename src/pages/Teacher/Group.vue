@@ -356,7 +356,7 @@
                     context-menu
                     class="q-pa-sm">
                     <q-list dense style="min-width: 100px">
-                      <q-item @click="previewModal=true" clickable v-close-popup>
+                      <q-item @click="currentFileUrl=item.file, previewModal=true" clickable v-close-popup>
                         <q-item-section>{{$t('item_preview')}}</q-item-section>
                       </q-item>
 <!--                      <q-item clickable v-close-popup>-->
@@ -491,11 +491,14 @@
   <q-dialog v-model="previewModal" full-height transition-show="scale" transition-hide="scale">
       <q-card style="width: 850px;max-width: 90vw">
         <q-card-section class="flex items-center justify-between">
+
           <div class="text-h6">{{$t('item_preview')}}</div>
           <q-btn v-close-popup icon="close" round flat/>
         </q-card-section>
         <q-card-section style="height: 90%">
-          <iframe frameborder="0"  scrolling="yes" src="https://docs.google.com/gview?url=https://file-examples-com.github.io/uploads/2017/08/file_example_PPT_250kB.ppt&embedded=true"  height="100%" width="100%"></iframe>
+          <iframe frameborder="0"  scrolling="yes"
+                  :src="`https://docs.google.com/gview?url=${currentFileUrl}&embedded=true`"
+                  height="100%" width="100%"></iframe>
         </q-card-section>
 
 
@@ -519,6 +522,7 @@ export default {
   },
   data() {
     return {
+      currentFileUrl:'',
       previewModal:false,
       comment:'',
       selectedFolder:null,
