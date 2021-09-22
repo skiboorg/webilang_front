@@ -1,6 +1,9 @@
 <template>
   <q-layout view="hHh lpR fFf">
-    <Header />
+    <q-no-ssr>
+
+
+      <Header />
     <div class="student-wrapper">
       <LeftSideBar class="gt-sm"/>
       <div class="student-inner">
@@ -13,6 +16,7 @@
         </div>
       </div>
     </div>
+    </q-no-ssr>
   </q-layout>
 </template>
 

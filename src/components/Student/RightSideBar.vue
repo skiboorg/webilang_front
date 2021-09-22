@@ -1,5 +1,6 @@
 <template>
-  <div class="right-sidebar">
+  <q-no-ssr>
+    <div v-if="user_groups" class="right-sidebar">
     <div class="rounded-block timeblock q-mb-md">
       <div class="flex items-center justify-between">
         <q-no-ssr>
@@ -25,7 +26,7 @@
           {label: 'AM/PM', value: false}
         ]"
       />
-      <p class="no-margin" v-if="student_upcoming_lessons.length>0" >{{$t('time_left')}} {{timeLeft}}</p>
+      <p class="no-margin" >{{$t('time_left')}} {{timeLeft}}</p>
 
     </div>
     <div class="rounded-block q-mb-md">
@@ -72,9 +73,11 @@
     <div class="rounded-block">
       <p class="text-caption text-bold">{{$t('call_friends')}}</p>
       <p class="text-caption text-weight-thin">{{$t('share_promo')}}</p>
-      <p class="q-mb-none text-negative text-bold text-h6">FH37M4</p>
+      <p class="q-mb-none text-negative text-bold text-h6">{{$auth.user.promo}}</p>
     </div>
   </div>
+  </q-no-ssr>
+
 
 
 </template>
@@ -121,10 +124,6 @@ export default {
   methods: {
     ...mapActions('auth',['getUser']),
     setEventColor(val){
-      console.log(val)
-      // return val === this.teacher_current_group.lessons[this.editLessonIndex].date.replaceAll('-','/') ?
-      //   'primary' :
-      //   'grey-5'
       let date = val.replaceAll('/','-')
       if (this.current_group){
         let lesson = this.current_group.lessons.find(x=>x.date === date)
@@ -136,7 +135,6 @@ export default {
         }
         return 'positive'
       }
-
     },
     startTimer(){
       this.currentTime = new Date().toLocaleTimeString()
@@ -161,18 +159,18 @@ export default {
     currentTime(val){
       if(this.timeFormat){
         //console.log('24',val)
-        this.displayTime = this.$filters.normalizeTime(val)
-        if (this.student_upcoming_lessons.length>0){
+        if(this.student_upcoming_lessons.length>0){
+          this.displayTime = this.$filters.normalizeTime(val)
           let h_cur = parseInt(val.split(':')[0])
           let m_cur = parseInt(val.split(':')[1])
           let h_lesson = parseInt(this.student_upcoming_lessons[0].time.split(':')[0])
           let m_lesson = parseInt(this.student_upcoming_lessons[0].time.split(':')[1])
-
           let h_left = (h_lesson-h_cur) - 1
           let m_left = (m_lesson-m_cur) + 60
           this.timeLeft = h_left >=10 ? h_left + ' : ' + m_left : '0'+h_left + ' : ' + m_left
-
         }
+
+
       }else {
         let time  =  val.toString ().match (/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [val];
         //console.log('am',time)
@@ -188,7 +186,7 @@ export default {
     }
   },
   computed:{
-    ...mapGetters('data',['current_group','student_upcoming_lessons','current_group_lesson_dates']),
+    ...mapGetters('data',['current_group','student_upcoming_lessons','current_group_lesson_dates','user_groups']),
 
   }
 

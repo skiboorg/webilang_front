@@ -107,12 +107,15 @@ export default {
   methods:{
     ... mapActions('auth',['loginUser']),
     userLoginAction() {
+      this.is_loading = true
       this.userLogin.email = this.userInput.email
       this.userLogin.password = this.userInput.password
       this.loginUser(this.userLogin)
+      this.is_loading = false
     },
     async vkLogin(){
       //hello.all.js добавить p.query.v = '5.131';
+
       try{
         const resp = await this.$hello('vk').login({ scope: 'email' })
         console.log(resp)

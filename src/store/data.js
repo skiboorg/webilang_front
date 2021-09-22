@@ -104,7 +104,8 @@ const actions = {
    const response = await api.get( '/api/group/student')
     commit('updateUserGroups', response.data)
     dispatch('setUserCurrentGroup', 0)
-    dispatch('updateCurrentGroupIndex', 0)
+    dispatch('setCurrentGroupIndex', 0)
+   // dispatch('updateCurrentGroupIndex', 0)
 
   },
   async updateUserGroups ({commit,dispatch,getters}){
@@ -156,7 +157,7 @@ export const getters = {
   current_chat: (state) => state.current_chat,
   current_group_index: (state) => state.current_group_index,
   current_group_lesson_dates:(state) =>{
-    if (!state.current_group.is_empty){
+    //if (!state.current_group.is_empty){
       //console.log(state.current_group)
       try{
         return  state.current_group.lessons.map(x=>x.date.replaceAll('-','/'))
@@ -164,19 +165,31 @@ export const getters = {
         console.log(e)
       }
 
-    }
+    //}
   },
   student_upcoming_lessons: (state) => {
-    if (!state.current_group.is_empty){
-      //console.log(state.current_group)
+    // if (!state.current_group.is_empty){
+    //   //console.log(state.current_group)
+    //   return  state.current_group.lessons.filter(x=>!x.is_over)
+    //}
+    console.log('state.current_group',state.current_group)
+    try{
       return  state.current_group.lessons.filter(x=>!x.is_over)
+    }catch (e) {
+     console.log(e)
+      return []
     }
 
   },
   student_over_lessons: (state) =>{
-    if (!state.current_group.is_empty){
-     return state.current_group.lessons.filter(x=>x.is_over)
+    try{
+      return state.current_group.lessons.filter(x=>x.is_over)
+    }catch (e) {
+     console.log(e)
     }
+    // if (!state.current_group.is_empty){
+    //  return state.current_group.lessons.filter(x=>x.is_over)
+    // }
   }
 
 

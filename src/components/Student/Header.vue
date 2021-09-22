@@ -1,23 +1,18 @@
 <template>
- <q-header elevated class="lt-md bg-grey-1 ">
-      <q-toolbar>
-
-
-             <img src="~assets/logo.svg">
-<q-space/>
-
-
- <q-btn dense flat round icon="widgets" text-color="grey-9" @click="studentWidgets=!studentWidgets" />
- <q-btn dense flat round icon="menu" text-color="grey-9" @click="studentMenu=!studentMenu" />
-      </q-toolbar>
-    </q-header>
-<!--  side="right"-->
-   <q-drawer v-model="studentMenu"   bordered>
-     <LeftSideBar/>
-    </q-drawer>
-   <q-drawer v-model="studentWidgets"  side="right" bordered class="q-pa-sm">
-     <RightSideBar />
-    </q-drawer>
+  <q-header elevated class="lt-md bg-grey-1 ">
+    <q-toolbar>
+      <img src="~assets/logo.svg">
+      <q-space/>
+      <q-btn dense flat round icon="widgets" text-color="grey-9" @click="studentWidgets=!studentWidgets" />
+      <q-btn dense flat round icon="menu" text-color="grey-9" @click="studentMenu=!studentMenu" />
+    </q-toolbar>
+  </q-header>
+  <q-drawer v-model="studentMenu"   bordered>
+    <LeftSideBar/>
+  </q-drawer>
+  <q-drawer v-model="studentWidgets"  side="right" bordered class="q-pa-sm">
+    <RightSideBar />
+  </q-drawer>
 </template>
 
 <script>
