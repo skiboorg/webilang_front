@@ -44,7 +44,8 @@ export default {
     //    }
     return (
       store.dispatch('data/getUserGroups'),
-        store.dispatch('data/getNotifications')
+        store.dispatch('data/getNotifications'),
+        store.dispatch('data/updateUserGroups')
     )
   },
   data(){

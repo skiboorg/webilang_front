@@ -7,24 +7,25 @@
           <q-separator class="bg-grey-3 q-mb-lg"/>
           <div class="q-mb-lg row ">
             <q-circular-progress
-            show-value
-            :value="$auth.user.total_progress"
-            :size="$q.screen.lt.md ?  '50px' : '140px'"
-            class="col-6 col-md-4 offset-3 offset-md-0"
-            color="warning"
-            track-color="amber-1">
+              show-value
+              :value="$auth.user.total_progress"
+              :size="$q.screen.lt.md ?  '50px' : '140px'"
+              class="col-6 col-md-4 offset-3 offset-md-0"
+              color="warning"
+              track-color="amber-1">
               <div class="flex column items-center justify-center">
                 <p class="no-margin text-caption text-bold">{{$t('course_done_top')}}</p>
-              <p class="no-margin text-h4 text-warning text-weight-bolder">{{$auth.user.total_progress}}%</p>
-              <p class="no-margin text-caption  text-bold">{{$t('course_done_bottom')}}</p>
+                <p class="no-margin text-h4 text-warning text-weight-bolder">{{$auth.user.total_progress}}%</p>
+                <p class="no-margin text-caption  text-bold">{{$t('course_done_bottom')}}</p>
               </div>
             </q-circular-progress>
             <div class="col-12 col-md-7 offset-0 offset-md-1">
               <p class="q-mb-none text-weight-light">{{$t('next_lesson')}}</p>
-              <q-no-ssr>
-                 <p class="text-bold">{{new Date(student_upcoming_lessons[0].date).toLocaleDateString()}} | {{$filters.normalizeTime(student_upcoming_lessons[0].time)}}</p>
-              </q-no-ssr>
 
+
+              <p class="text-bold">{{new Date(student_upcoming_lessons[0].date).toLocaleDateString()}} | {{$filters.normalizeTime(student_upcoming_lessons[0].time)}}</p>
+              <p class="text-bold">{{new Date(student_upcoming_lessons[0].date).toLocaleDateString()}} | {{new Date(student_upcoming_lessons[0].date + 'T' + student_upcoming_lessons[0].time).toLocaleTimeString()}}</p>
+              <p class="text-bold">{{new Date(student_upcoming_lessons[0].date + 'T' + student_upcoming_lessons[0].time).toLocaleString()}}</p>
               <p class="q-mb-none text-weight-light">{{$t('lessons_left')}}</p>
               <p class="text-bold">{{$auth.user.personal_lessons_left}} {{$t('personal_lessons_left')}}</p>
               <p class="q-mb-none text-weight-light">{{$t('lessons_left')}}</p>
@@ -36,98 +37,106 @@
         <div class="rounded-block">
           <p class="text-bold no-margin">{{$t('activity_reward')}}</p>
           <q-no-ssr>
-          <p class="text-caption text-bold text-grey-5">{{$t('activity_reward_to_date')}} {{new Date().toLocaleDateString()}}</p>
+            <p class="text-caption text-bold text-grey-5">{{$t('activity_reward_to_date')}} {{new Date().toLocaleDateString()}}</p>
           </q-no-ssr>
           <q-separator class="bg-grey-3 q-mb-lg"/>
           <div class="rewards">
-             <q-avatar rounded class="relative-position" size="80px" v-for="reward in $auth.user.rewards">
-            <img  :src="reward.reward.image" alt="">
-            <div v-if="reward.count>1" class="reward-count"><p class="no-margin text-body1">{{reward.count}}</p></div>
-          </q-avatar>
+            <q-avatar rounded class="relative-position" size="80px" v-for="reward in $auth.user.rewards">
+              <img  :src="reward.reward.image" alt="">
+              <div v-if="reward.count>1" class="reward-count"><p class="no-margin text-body1">{{reward.count}}</p></div>
+            </q-avatar>
           </div>
-
-
         </div>
-
-         <div v-if="current_group.teacher" class="rounded-block">
+        <div v-if="current_group.teacher" class="rounded-block">
           <p class="text-bold ">{{$t('your_teacher')}}</p>
           <q-separator class="bg-grey-3 q-mb-lg"/>
-           <div class="flex items-center q-mb-lg">
-
-             <q-avatar size="60px" class="q-mr-lg">
-               <img :src="current_group.teacher.user_avatar" alt="">
-             </q-avatar>
-             <p  class="no-margin text-weight-bolder text-fs-18">{{current_group.teacher.firstname}} {{current_group.teacher.lastname}}</p>
-
-           </div>
-           <q-btn :to="{name:'student-chats',query: { o_id: current_group.teacher.id+947623 }}" color="primary" icon="mail_outline" no-caps class="border-r-8 full-width text-bold q-py-sm" :label="$t('chat_w_teacher')"/>
+          <div class="flex items-center q-mb-lg">
+            <q-avatar size="60px" class="q-mr-lg">
+              <img :src="current_group.teacher.user_avatar" alt="">
+            </q-avatar>
+            <p  class="no-margin text-weight-bolder text-fs-18">{{current_group.teacher.firstname}} {{current_group.teacher.lastname}}</p>
+          </div>
+          <q-btn :to="{name:'student-chats',query: { o_id: current_group.teacher.id+947623 }}" color="primary" icon="mail_outline" no-caps class="border-r-8 full-width text-bold q-py-sm" :label="$t('chat_w_teacher')"/>
         </div>
-
       </div>
       <div class="grid-inner">
         <div v-if="student_upcoming_lessons.length>0" class="rounded-block">
           <p class="text-bold ">{{$t('lessons_materials')}}</p>
           <q-separator class="bg-grey-3 q-mb-lg"/>
-           <p class="text-caption text-weight-light">{{$t('lesson_materials')}}</p>
+          <p class="text-caption text-weight-light">{{$t('lesson_materials')}}</p>
 
           <div class="files-grid">
-            <a class="file-item" :href="item.file" target="_blank" v-for="item in student_upcoming_lessons[0].material">
-                <q-icon class="q-mr-md" size="40px" name="description" color="grey-7"/>
-              <p class="no-margin text-weight-regular ellipsis">{{item.file.split('/')[6]}}</p>
-              </a>
-            <a class="file-item" :href="item.file" target="_blank" v-for="item in student_upcoming_lessons[0].uploaded_material">
-                <q-icon class="q-mr-md" size="40px" name="description" color="grey-7"/>
-              <p class="no-margin text-weight-regular ellipsis">{{item.file.split('/')[7]}}</p>
-              </a>
+            <!--            <a class="file-item" :href="item.file" target="_blank" v-for="item in student_upcoming_lessons[0].material"></a>-->
+            <div class="file-item" v-for="item in student_upcoming_lessons[0].material" :key="item.id">
+              <q-icon class="q-mr-md" size="40px" name="description" color="grey-7"/>
+              <p @click="currentFileUrl=item.file, previewModal=true" class="cursor-pointer no-margin text-weight-regular ellipsis">{{item.filename}}</p>
+            </div>
+
+            <div class="file-item" v-for="item in student_upcoming_lessons[0].material" :key="item.id">
+              <q-icon class="q-mr-md" size="40px" name="description" color="grey-7"/>
+              <p @click="currentFileUrl=item.file, previewModal=true" class="cursor-pointer no-margin text-weight-regular ellipsis">{{item.filename}}</p>
+            </div>
           </div>
-           <q-separator class="bg-grey-3 q-mb-lg"/>
-           <p class="text-caption text-weight-light">{{$t('home_work')}}</p>
-            <div class="files-grid">
-              <a class="file-item" :href="item.file" target="_blank" v-for="item in student_upcoming_lessons[0].homeWork">
-                <q-icon class="q-mr-md" size="40px" name="description" color="grey-7"/>
-              <p class="no-margin text-weight-regular ellipsis">{{item.file.split('/')[6]}}</p>
-              </a>
-              <a class="file-item" :href="item.file" target="_blank" v-for="item in student_upcoming_lessons[0].uploaded_homework">
-                <q-icon class="q-mr-md" size="40px" name="description" color="grey-7"/>
-              <p class="no-margin text-weight-regular ellipsis">{{item.file.split('/')[7]}}</p>
-              </a>
+          <q-separator class="bg-grey-3 q-mb-lg"/>
+          <p class="text-caption text-weight-light">{{$t('home_work')}}</p>
+          <div class="files-grid">
+                    <div class="file-item" v-for="item in student_upcoming_lessons[0].homeWork" :key="item.id">
+              <q-icon class="q-mr-md" size="40px" name="description" color="grey-7"/>
+              <p @click="currentFileUrl=item.file, previewModal=true" class="cursor-pointer no-margin text-weight-regular ellipsis">{{item.filename}}</p>
+            </div>
+
+            <div class="file-item" v-for="item in student_upcoming_lessons[0].uploaded_homework" :key="item.id">
+              <q-icon class="q-mr-md" size="40px" name="description" color="grey-7"/>
+              <p @click="currentFileUrl=item.file, previewModal=true" class="cursor-pointer no-margin text-weight-regular ellipsis">{{item.filename}}</p>
+            </div>
 
           </div>
-           <q-separator class="bg-grey-3 q-mb-lg"/>
-           <p @click="comment_visible=!comment_visible" class="comments q-mb-none">{{$t('teacher_comment')}}</p>
-          <q-slide-transition>
-      <div v-show="comment_visible">
-        <p class="q-mb-none q-pt-md">{{student_upcoming_lessons[0].comment}}</p>
-      </div>
-    </q-slide-transition>
-
+          <div v-if="student_upcoming_lessons[0].comment">
+            <q-separator  class="bg-grey-3 q-mb-lg"/>
+            <p  class="text-primary q-mb-none">{{$t('teacher_comment')}}</p>
+            <p class="q-mb-none q-pt-md">{{student_upcoming_lessons[0].comment}}</p>
+          </div>
         </div>
-          <div class="rounded-block">
+        <div class="rounded-block">
           <p class="text-bold ">{{$t('dictionary_title')}}</p>
           <q-separator class="bg-grey-3 q-mb-lg"/>
-            <div class="q-mb-lg dict-rows">
-              <div class="dict-row" v-for="item in dictionary" :key="item.id">
-                <p class="no-margin text-weight-light">{{item.word}}</p>
-                <p class="no-margin text-weight-bold">{{item.translate}}</p>
-              </div>
-
+          <div class="q-mb-lg dict-rows">
+            <div class="dict-row" v-for="item in dictionary" :key="item.id">
+              <p class="no-margin text-weight-light">{{item.word}}</p>
+              <p class="no-margin text-weight-bold">{{item.translate}}</p>
             </div>
-           <q-btn  color="positive" :to="{name:'student-dictionary'}" icon="description" no-caps class="border-r-8 full-width text-bold q-py-sm" :label="$t('open_dictionary')"/>
+
+          </div>
+          <q-btn  color="positive" :to="{name:'student-dictionary'}" icon="description" no-caps class="border-r-8 full-width text-bold q-py-sm" :label="$t('open_dictionary')"/>
         </div>
-           <div class="rounded-block">
+        <div class="rounded-block">
           <p class="text-bold ">{{$t('notes_title')}}</p>
           <q-separator class="bg-grey-3 q-mb-lg"/>
-             <div class="notes-wrapper q-mb-lg">
-                <div class="note" v-for="item in notes" :key="item.id" v-html="item.text"></div>
-             </div>
-
-           <q-btn  color="primary" :to="{name:'student-notes'}" icon="edit_note" no-caps class="border-r-8 full-width text-bold q-py-sm" :label="$t('open_notes')"/>
+          <div class="notes-wrapper q-mb-lg">
+            <div class="note" v-for="item in notes" :key="item.id" v-html="item.text"></div>
+          </div>
+          <q-btn  color="primary" :to="{name:'student-notes'}" icon="edit_note" no-caps class="border-r-8 full-width text-bold q-py-sm" :label="$t('open_notes')"/>
         </div>
       </div>
-
-
     </div>
+    <q-dialog v-model="previewModal" full-height transition-show="scale" transition-hide="scale">
+      <q-card style="width: 850px;max-width: 90vw">
+        <q-card-section class="flex items-center justify-between">
 
+          <div class="text-h6">{{$t('item_preview')}}</div>
+          <q-btn v-close-popup icon="close" round flat/>
+        </q-card-section>
+        <q-card-section style="height: 90%">
+          <iframe frameborder="0"  scrolling="yes"
+                  :src="`https://docs.google.com/gview?url=${currentFileUrl}&embedded=true`"
+                  height="100%" width="100%"></iframe>
+        </q-card-section>
+
+
+
+
+      </q-card>
+    </q-dialog>
   </q-page>
 
 </template>
@@ -140,6 +149,8 @@ import {mapGetters} from "vuex";
 export default {
   data() {
     return {
+      currentFileUrl:'',
+      previewModal:false,
       comment_visible:false,
       dictionary:[],
       notes:[]
@@ -159,7 +170,7 @@ export default {
     startTime(){
       return `${this.student_upcoming_lessons[0].time.split(':')[0]}:${this.student_upcoming_lessons[0].time.split(':')[1]}`
     }
-   },
+  },
 
 
 }

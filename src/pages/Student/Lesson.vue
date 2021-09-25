@@ -40,18 +40,12 @@
               {{$t('lessons_status_planned')}}
             </p>
             </div>
-
-
-
-
           </div>
           <div class="lessons-list-divider"></div>
-
          <div class="lessons-list-row" @click="selectedLesson=lesson.id" v-for="(lesson,index) in student_over_lessons" :key="lesson.id">
            <q-no-ssr>
               <p class="no-margin text-weight-light">{{new Date(lesson.date).toLocaleDateString()}} | {{$filters.normalizeTime(lesson.time)}}</p>
            </q-no-ssr>
-
             <p class="no-margin text-weight-light ellipsis lesson-theme">{{lesson.theme}}</p>
             <p class="no-margin text-weight-light">{{current_group.teacher.firstname}} {{current_group.teacher.lastname}}</p>
             <p class="no-margin text-weight-light">
@@ -78,7 +72,6 @@
               <p class="no-margin text-weight-regular ellipsis">{{item.file.split('/')[7]}}</p>
               </a>
           </div>
-
     </div>
   </div>
 
@@ -92,10 +85,7 @@ import {mapGetters} from "vuex";
 
 export default {
   preFetch ({ store, currentRoute, previousRoute, redirect, ssrContext, urlPath, publicPath }) {
-
-
     return store.dispatch('data/updateUserGroups')
-
   },
   data() {
     return {

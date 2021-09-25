@@ -8,7 +8,7 @@
       <p class="text-center text-italic q-mb-none text-weight-light ">{{teacher_current_group.level.name}}</p>
     </div>
     <div class="group-add-lesson rounded-block">
-      <q-btn  @click="addLessonModal=true" no-caps :label="$t('teacher_add_lesson')" color="primary" unelevated class="border-r-8 add-button" icon="add"/>
+      <q-btn  @click="link=teacher_current_group.link, addLessonModal=true" no-caps :label="$t('teacher_add_lesson')" color="primary" unelevated class="border-r-8 add-button" icon="add"/>
       <q-input  dense outlined bg-color="white" :label="$t('dictionary_search')"/>
     </div>
     <div class="group-info">
@@ -26,7 +26,6 @@
           <q-avatar class="group-member" size="40px"  v-for="user in teacher_current_group.users" :key="user.id">
             <img :src="user.user_avatar" alt="">
           </q-avatar>
-
         </div>
       </div>
     </div>
@@ -55,9 +54,7 @@
               <div :class="{'b-w':index%2>0}" class="flex items-center justify-between group-list-row__item">
                 <div style="max-width: 70%">
                   <p class="lt-md q-mb-sm text-bold">{{$t('lessons_theme')}}</p>
-                  <p  class="no-margin ellipsis link">
-                    <router-link :to="{name:'teacher-lesson',params:{id:lesson.id}}">{{lesson.theme}}</router-link>
-                  </p>
+                  <p @click="editLessonIndex=index, editLessonModal=true" class="no-margin ellipsis link cursor-pointer">{{lesson.theme}}</p>
                 </div>
 
                 <div class="q-mr-none q-mr-md-lg">

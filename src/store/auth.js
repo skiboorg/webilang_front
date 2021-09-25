@@ -33,13 +33,15 @@ const actions = {
     socket.onopen = () => {
       console.log('ws connected')
       socket.send(JSON.stringify({'user_id':id,'message':'user online'}))
-      socket.onmessage = (res) =>{
+      socket.onmessage = async (res) =>{
         //dispatch('fetchUserNotifications',id)
         console.log('message',JSON.parse(res.data))
         let data = JSON.parse(res.data)
         console.log('cur path',rootState.data.current_chat)
+
 //
         if (data.event==='new_chat_mgs' && rootState.data.current_chat !== data.chat_id){
+          await this.dispatch('data/getNotifications')
           Notify.create({
             message: data.message,
             color: 'primary',

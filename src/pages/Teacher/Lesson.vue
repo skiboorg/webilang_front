@@ -91,9 +91,9 @@
           </div>
         </div>
         <div class="">
-          <p class="q-mb-sm text-weight-thin">{{$t('teacher_lesson_account')}}</p>
-          <p class="q-mb-none text-weight-thin">Login: {{lesson.group.login}}</p>
-          <p class="q-mb-none text-weight-thin">Password: {{lesson.group.password}}</p>
+          <p class="q-mb-sm text-bold">{{$t('teacher_lesson_account')}}</p>
+          <p class="q-mb-none text-bold">Login: {{lesson.group.login}}</p>
+          <p class="q-mb-none text-bold">Password: {{lesson.group.password}}</p>
 
         </div>
       </div>

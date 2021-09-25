@@ -26,7 +26,7 @@
           {label: 'AM/PM', value: false}
         ]"
       />
-      <p class="no-margin" >{{$t('time_left')}} {{timeLeft}}</p>
+
 
     </div>
     <div class="rounded-block q-mb-md">
@@ -161,13 +161,7 @@ export default {
         //console.log('24',val)
         if(this.student_upcoming_lessons.length>0){
           this.displayTime = this.$filters.normalizeTime(val)
-          let h_cur = parseInt(val.split(':')[0])
-          let m_cur = parseInt(val.split(':')[1])
-          let h_lesson = parseInt(this.student_upcoming_lessons[0].time.split(':')[0])
-          let m_lesson = parseInt(this.student_upcoming_lessons[0].time.split(':')[1])
-          let h_left = (h_lesson-h_cur) - 1
-          let m_left = (m_lesson-m_cur) + 60
-          this.timeLeft = h_left >=10 ? h_left + ' : ' + m_left : '0'+h_left + ' : ' + m_left
+
         }
 
 
