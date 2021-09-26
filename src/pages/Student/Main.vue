@@ -24,8 +24,10 @@
 
 
               <p class="text-bold">{{new Date(student_upcoming_lessons[0].date).toLocaleDateString()}} | {{$filters.normalizeTime(student_upcoming_lessons[0].time)}}</p>
-              <p class="text-bold">{{new Date(student_upcoming_lessons[0].date).toLocaleDateString()}} | {{new Date(student_upcoming_lessons[0].date + 'T' + student_upcoming_lessons[0].time).toLocaleTimeString()}}</p>
+              <p class="text-bold">{{new Date(student_upcoming_lessons[0].date).toLocaleDateString()}} | {{new Date(student_upcoming_lessons[0].date + 'T' + student_upcoming_lessons[0].time+'+03:00').toLocaleTimeString()}}</p>
               <p class="text-bold">{{new Date(student_upcoming_lessons[0].date + 'T' + student_upcoming_lessons[0].time).toLocaleString()}}</p>
+              {{student_upcoming_lessons[0].datetime}}
+               <p class="text-bold">{{new Date(student_upcoming_lessons[0].datetime).toLocaleString()}}</p>
               <p class="q-mb-none text-weight-light">{{$t('lessons_left')}}</p>
               <p class="text-bold">{{$auth.user.personal_lessons_left}} {{$t('personal_lessons_left')}}</p>
               <p class="q-mb-none text-weight-light">{{$t('lessons_left')}}</p>
