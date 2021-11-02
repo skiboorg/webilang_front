@@ -22,10 +22,11 @@
       </div>
       <div class="">
         <p class="q-mb-sm group-info-members text-weight-bold">{{$t('group_members')}}</p>
-        <div class="group-members">
-          <q-avatar class="group-member" size="40px"  v-for="user in teacher_current_group.users" :key="user.id">
-            <img :src="user.user_avatar" alt="">
-          </q-avatar>
+        <div class="group-members q-gutter-sm">
+           <AvatarWithModal :user="user" v-for="user in teacher_current_group.users" :key="user.id"/>
+<!--          <q-avatar class="group-member" size="40px"  v-for="user in teacher_current_group.users" :key="user.id">-->
+<!--            <img :src="user.user_avatar" alt="">-->
+<!--          </q-avatar>-->
         </div>
       </div>
     </div>
@@ -47,7 +48,8 @@
               <div class="group-list-row__item" :class="{'b-w':index%2>0}">
                 <q-no-ssr>
                   <p class="lt-md q-mb-sm text-bold ">{{$t('lessons_date')}}</p>
-                  <p class="no-margin ">{{new Date(lesson.date).toLocaleDateString()}} | {{$filters.normalizeTime(lesson.time)}}</p>
+                  <p class="no-margin ">{{new Date(lesson.date).toLocaleDateString()}} |
+                    {{$filters.normalizeTime(lesson.date,lesson.time)}}</p>
                 </q-no-ssr>
               </div>
 
@@ -78,7 +80,7 @@
 
               <div class="text-center group-list-row__item">
                 <q-btn :to="{name:'teacher-lesson',params:{id:lesson.id}}"
-                       v-if="!lesson.is_over" size="12px" :disable="lesson.link === '' "
+                       v-if="!lesson.is_over" size="12px" :disable="lesson.link === '' || lesson.material.length===0"
                        style="width: 140px"
                        no-caps :label="$t('enter_classroom')" color="primary" />
               </div>
@@ -248,7 +250,6 @@
               :events="recent_dates"
               :locale="$i18n.locale === 'ru' ? localeRu : localeEn"
               color="positive"
-
               minimal
               flat
               :event-color = 'setEventColor'
@@ -282,6 +283,22 @@
           </div>
         </div>
         <div class="add-lesson-bottom">
+
+          <p class="q-mb-sm text-weight-bold">{{$t('lessons_time')}}</p>
+          <q-input dense mask="time" class="q-mb-sm" outlined v-model="lesson_to_edit.time">
+            <template v-slot:append>
+              <q-icon name="access_time" class="cursor-pointer">
+                <q-popup-proxy transition-show="scale" transition-hide="scale">
+                  <q-time format24h v-model="lesson_to_edit.time">
+                    <div class="row items-center justify-end">
+                      <q-btn v-close-popup :label="$t('save_btn')" color="primary" flat />
+                    </div>
+                  </q-time>
+                </q-popup-proxy>
+              </q-icon>
+            </template>
+          </q-input>
+
           <p class="q-mb-sm text-weight-bold">{{$t('lessons_theme')}}</p>
           <q-input class="q-mb-sm"  dense outlined v-model="lesson_to_edit.theme" />
           <p class="q-mb-sm text-weight-bold">{{$t('teacher_add_lesson_link')}}</p>
@@ -356,12 +373,12 @@
                       <q-item @click="currentFileUrl=item.file, previewModal=true" clickable v-close-popup>
                         <q-item-section>{{$t('item_preview')}}</q-item-section>
                       </q-item>
-<!--                      <q-item clickable v-close-popup>-->
-<!--                        <q-item-section>{{$t('item_add_materials')}}</q-item-section>-->
-<!--                      </q-item>-->
-<!--                      <q-item clickable v-close-popup>-->
-<!--                        <q-item-section>{{$t('item_add_homework')}}</q-item-section>-->
-<!--                      </q-item>-->
+                      <!--                      <q-item clickable v-close-popup>-->
+                      <!--                        <q-item-section>{{$t('item_add_materials')}}</q-item-section>-->
+                      <!--                      </q-item>-->
+                      <!--                      <q-item clickable v-close-popup>-->
+                      <!--                        <q-item-section>{{$t('item_add_homework')}}</q-item-section>-->
+                      <!--                      </q-item>-->
                     </q-list>
                   </q-menu>
                 </div>
@@ -486,23 +503,23 @@
   <!--  add files dialog-->
   <!--  preview dialog-->
   <q-dialog v-model="previewModal" full-height transition-show="scale" transition-hide="scale">
-      <q-card style="width: 850px;max-width: 90vw">
-        <q-card-section class="flex items-center justify-between">
+    <q-card style="width: 850px;max-width: 90vw">
+      <q-card-section class="flex items-center justify-between">
 
-          <div class="text-h6">{{$t('item_preview')}}</div>
-          <q-btn v-close-popup icon="close" round flat/>
-        </q-card-section>
-        <q-card-section style="height: 90%">
-          <iframe frameborder="0"  scrolling="yes"
-                  :src="`https://docs.google.com/gview?url=${currentFileUrl}&embedded=true`"
-                  height="100%" width="100%"></iframe>
-        </q-card-section>
-
-
+        <div class="text-h6">{{$t('item_preview')}}</div>
+        <q-btn v-close-popup icon="close" round flat/>
+      </q-card-section>
+      <q-card-section style="height: 90%">
+        <iframe frameborder="0"  scrolling="yes"
+                :src="`https://docs.google.com/gview?url=${currentFileUrl}&embedded=true`"
+                height="100%" width="100%"></iframe>
+      </q-card-section>
 
 
-      </q-card>
-    </q-dialog>
+
+
+    </q-card>
+  </q-dialog>
   <!--  preview dialog-->
 
 
@@ -510,10 +527,11 @@
 
 <script>
 
-
+import AvatarWithModal from "components/Student/AvatarWithModal";
 import {mapGetters,mapActions} from "vuex";
 
 export default {
+   components: {AvatarWithModal},
   preFetch ({ store, currentRoute}) {
     return store.dispatch('data/setTeacherCurrentGroup',currentRoute.params.id)
   },
@@ -770,6 +788,7 @@ export default {
       this.lesson_to_edit.id = this.teacher_current_group.lessons[this.editLessonIndex].id
       this.lesson_to_edit.theme = this.teacher_current_group.lessons[this.editLessonIndex].theme
       this.lesson_to_edit.link = this.teacher_current_group.lessons[this.editLessonIndex].link
+      this.lesson_to_edit.time = this.teacher_current_group.lessons[this.editLessonIndex].time
       this.lesson_to_edit.old_date =this.$t('teacher_edit_lesson_date_change_from') + ' ' + new Date(this.teacher_current_group.lessons[this.editLessonIndex].date).toLocaleDateString()
       this.lesson_to_edit.old_date_natural =this.teacher_current_group.lessons[this.editLessonIndex].date
     },
@@ -797,7 +816,8 @@ export default {
       this.delLessonModal =false
     },
     updateDates(value, reason, details){
-      let date = `${details.year}/${details.month.length>1 ? details.month : '0'+details.month}/${details.day}`
+      let date = `${details.year}/${details.month>=10 ? details.month : '0'+details.month}/${details.day}`
+
       if (reason==='add-day'){
         this.new_lessons.push({date:date,time:'00:00',theme:''})
       }
@@ -807,6 +827,7 @@ export default {
     },
     async saveAction(){
       this.is_loading = true
+      console.log(this.new_lessons)
       await this.$api.post('/api/lesson/add',{
         group_id:this.teacher_current_group.id,
         lessons:this.new_lessons,

@@ -124,7 +124,7 @@ export default {
   methods: {
     ...mapActions('auth',['getUser']),
     async updateUser(){
-
+      this.is_loading = !this.is_loading
       let formData = new FormData()
       formData.set('userData', JSON.stringify(this.userData))
       if (this.avatar){
@@ -143,6 +143,13 @@ export default {
       })
       console.log(response.data)
       await this.getUser(false)
+      this.$q.notify({
+          message: this.$t('data_saved'),
+          position: this.$q.screen.lt.sm ? 'bottom' : 'bottom-right',
+          color:'positive',
+          icon: 'announcement'
+        })
+      this.is_loading = !this.is_loading
     },
   }
 

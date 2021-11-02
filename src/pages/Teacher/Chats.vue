@@ -61,7 +61,7 @@
                color="white"
                :label="$t('back')"/>
       </div>
-      <div ref="messagesContainer" class="messages-center" :style="{'height':heigth - 60 + 'px'}">
+      <div ref="messagesContainer" class="messages-center" :style="{'height':heigth - 100 + 'px'}">
         <!--               :text="[message.message]"-->
         <div  class="q-pa-xs">
           <q-chat-message

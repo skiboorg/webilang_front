@@ -1,13 +1,19 @@
 export default {
+  data_saved:'Data saved successfully',
+   greetings_message_title:'Welcome',
+  greetings_message:'Hello student! Fill in info about yourself ',
+  greetings_message_link_text:'here',
+   password_hint:'Password must be at least 8 characters long and include letters and numbers',
+  password_len:'Minimum 8 characters',
   reg_error:'Error. Please check entered data',
   item_preview:'File preview',
   chat_new_message:'Your message',
   back:'Back',
   time_left:'Time left:',
   today:'Today',
-  over_lesson:'Over lesson',
-  coming_lesson:'Coming lesson',
-  replaced_lesson:'Transferred lesson',
+  over_lesson:'Completed lesson',
+  coming_lesson:'Upcoming lesson',
+  replaced_lesson:'Rescheduled lesson',
   call_friends:'Call friends!',
   share_promo:'Submit your promo code and get 2 free lessons',
   //кнопки,формы
@@ -43,10 +49,10 @@ export default {
    facebook_reg: `Register with <b> Facebook </b>`,
    vk_reg: `Register via <b> VK </b>`,
 
-  google_login:`Google login <b>Google</b>`,
+  google_login:`Login with <b>Google</b>`,
   apple_login:`Войти через <b>Apple</b>`,
-  facebook_login:`Facebook login <b>Facebook</b>`,
-  vk_login:`VK login <b>VK</b>`,
+  facebook_login:`Login with <b>Facebook</b>`,
+  vk_login:`Login with <b>VK</b>`,
   choose_cource:`Choose a course`,
 
   callback_modal_form: `Submit <br>a request`,
@@ -82,7 +88,7 @@ export default {
   contacts:`Contacts`,
   work_time:`Daily 9:00 to 22:00`,
   we_accept:`We accept:`,
-  copyright_text_top:`© WEBILANG, 2021. All rights reserved. Learn about <a href="#" class=«link">our privacy policy.</a>.`,
+  copyright_text_top:`© Webilang 2014-2021. All rights reserved. Learn about <a href="#" class=«link">our privacy policy.</a>.`,
   copyright_text_bottom:`By using our website, you agree to the use of cookies and your personal data for the purposes of improving the website and customer service, retargeting, statistical research, and providing relevant advertising information based on your preferences and interests.`,
   //футер
 
@@ -290,7 +296,7 @@ But there are a few scaffolds that will help: advanced organizer (a class presen
 
   //О нас
   page_about_title1:`Webilang is an online school where students learn current conversational English with American native english speaking teachers from the USA`,
-page_about_text1:`<span>6 лет</span> teach English`,
+page_about_text1:`We have been teaching English online for almost <span>10 years</span>`,
 page_about_text2:`<span>500+ </span>students have taken our courses and improved their English skills. `,
 page_about_text3:`<span>20+ </span>students were admitted to universities abroad and employed by international companies.`,
 page_about_text4:`<span>50+ </span>scored 80 or more on the State Unified English Exam.`,

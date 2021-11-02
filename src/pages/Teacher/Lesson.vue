@@ -166,6 +166,12 @@ export default {
         lesson_id:this.lesson.id,
         data:this.users
       })
+      this.$q.notify({
+          message: this.$t('data_saved'),
+          position: this.$q.screen.lt.sm ? 'bottom' : 'bottom-right',
+          color:'positive',
+          icon: 'announcement'
+        })
       this.is_loading = false
     }
 

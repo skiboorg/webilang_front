@@ -37,11 +37,12 @@
         </svg>
         <p class="no-margin text-left">{{$t('side_bar_menu_home')}}</p>
       </router-link>
-      <router-link class="menu-item" exact exact-active-class="active" :to="{name:'student-chats'}">
+      <router-link class="menu-item relative-position" exact exact-active-class="active" :to="{name:'student-chats'}">
         <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M15.8333 1.83008H4.16667C3.062 1.8314 2.00296 2.27081 1.22185 3.05193C0.440735 3.83304 0.00132321 4.89208 0 5.99674L0 15.9967C0.00132321 17.1014 0.440735 18.1604 1.22185 18.9416C2.00296 19.7227 3.062 20.1621 4.16667 20.1634H15.8333C16.938 20.1621 17.997 19.7227 18.7782 18.9416C19.5593 18.1604 19.9987 17.1014 20 15.9967V5.99674C19.9987 4.89208 19.5593 3.83304 18.7782 3.05193C17.997 2.27081 16.938 1.8314 15.8333 1.83008ZM4.16667 3.49674H15.8333C16.3323 3.49773 16.8196 3.64801 17.2325 3.92825C17.6453 4.20849 17.9649 4.60587 18.15 5.06924L11.7683 11.4517C11.2987 11.9195 10.6628 12.1821 10 12.1821C9.33715 12.1821 8.70131 11.9195 8.23167 11.4517L1.85 5.06924C2.03512 4.60587 2.35468 4.20849 2.76754 3.92825C3.1804 3.64801 3.66768 3.49773 4.16667 3.49674ZM15.8333 18.4967H4.16667C3.50363 18.4967 2.86774 18.2334 2.3989 17.7645C1.93006 17.2957 1.66667 16.6598 1.66667 15.9967V7.24674L7.05333 12.6301C7.83552 13.4103 8.89521 13.8484 10 13.8484C11.1048 13.8484 12.1645 13.4103 12.9467 12.6301L18.3333 7.24674V15.9967C18.3333 16.6598 18.0699 17.2957 17.6011 17.7645C17.1323 18.2334 16.4964 18.4967 15.8333 18.4967Z" fill="#A7AAB4"/>
         </svg>
         <p class="no-margin text-left">{{$t('side_bar_menu_chat')}}</p>
+        <q-badge v-if="chat_notifications>0" floating color="negative" rounded>{{chat_notifications}}</q-badge>
       </router-link>
       <router-link class="menu-item" exact exact-active-class="active" :to="{name:'student-dictionary'}">
         <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -96,7 +97,7 @@ export default {
 
   },
   computed:{
-    ...mapGetters('data',['user_groups']),
+    ...mapGetters('data',['user_groups','chat_notifications']),
     current_group:{
       get(){
         return this.$store.state.data.current_group

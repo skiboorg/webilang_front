@@ -61,7 +61,7 @@
                color="white"
                :label="$t('back')"/>
       </div>
-      <div ref="messagesContainer" class="messages-center" :style="{'height':heigth - 60 + 'px'}">
+      <div ref="messagesContainer" class="messages-center" :style="{'height':heigth - 100 + 'px'}">
         <!--               :text="[message.message]"-->
         <div  class="q-pa-xs">
           <q-chat-message
@@ -177,6 +177,9 @@ export default {
     }
   },
   async beforeMount(){
+    await this.$api.post('/api/user/notification',{action:'set_read_chat'})
+    await this.getNotifications()
+
     this.setCurrentChat(0)
     let query = this.$route.query
     //console.log(this.$route.query)
@@ -201,7 +204,7 @@ export default {
 
   },
   methods: {
-    ...mapActions('data',['setCurrentChat']),
+    ...mapActions('data',['setCurrentChat','getNotifications']),
     pasteSmiley(code){
       this.message ? this.message += ` ${code} ` : this.message = `${code} `
     },

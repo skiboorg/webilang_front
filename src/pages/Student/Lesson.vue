@@ -19,7 +19,8 @@
             <q-no-ssr>
               <div class="">
                 <p class="lt-md no-margin text-bold ">{{$t('lessons_date')}}</p>
-                <p class="no-margin text-weight-light">{{new Date(lesson.date).toLocaleDateString()}} | {{$filters.normalizeTime(lesson.time)}}</p>
+                <p class="no-margin text-weight-light">{{new Date(lesson.date).toLocaleDateString()}} |
+                  {{$filters.normalizeTime(lesson.date,lesson.time)}}</p>
               </div>
 
             </q-no-ssr>
@@ -44,7 +45,9 @@
           <div class="lessons-list-divider"></div>
          <div class="lessons-list-row" @click="selectedLesson=lesson.id" v-for="(lesson,index) in student_over_lessons" :key="lesson.id">
            <q-no-ssr>
-              <p class="no-margin text-weight-light">{{new Date(lesson.date).toLocaleDateString()}} | {{$filters.normalizeTime(lesson.time)}}</p>
+              <p class="no-margin text-weight-light">{{new Date(lesson.date).toLocaleDateString()}} |
+                {{$filters.normalizeTime(lesson.date,lesson.time)}}</p>
+
            </q-no-ssr>
             <p class="no-margin text-weight-light ellipsis lesson-theme">{{lesson.theme}}</p>
             <p class="no-margin text-weight-light">{{current_group.teacher.firstname}} {{current_group.teacher.lastname}}</p>

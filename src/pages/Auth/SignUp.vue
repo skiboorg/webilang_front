@@ -35,10 +35,12 @@
           :dense="!$q.screen.gt.sm"
           filled
           :type="isPwd ? 'password' : 'text'"
+          :hint="$t('password_hint')"
+          class="q-mb-md"
           v-model="userData.password1"
           :label="$t('your_password1')"
           lazy-rules
-          :rules="[val => val !== null && val !== '' || $t('field_is_requred') ]">
+          :rules="[val => val !== null && val !== '' || $t('field_is_requred'), val => val.length>=8 || $t('password_len') ]">
           <template v-slot:append>
             <q-icon
               :name="isPwd ? 'visibility_off' : 'visibility'"
@@ -52,6 +54,7 @@
           :type="isPwd ? 'password' : 'text'"
           v-model="userData.password2"
           :label="$t('your_password2')"
+
           lazy-rules
           :rules="[val => val !== null && val !== '' || $t('field_is_requred') ,
            val => val===userData.password1 || $t('passwords_not_match') ]">

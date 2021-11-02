@@ -18,7 +18,8 @@
         <p v-if="user.city" class="text-weight-light q-mb-lg">{{user.city}}</p>
         <p class="text-bold q-mb-sm">{{$t('user_description')}}</p>
         <p class="q-mb-lg">{{user.about}}</p>
-        <q-btn v-if="$auth.user.id!==user.id" :to="{name:'student-chats',query: { o_id: user.id+947623 }}" rounded no-caps class="text-weight-bold full-width q-py-sm" color="primary" label="Написать сообщение"/>
+        <q-btn v-if="$auth.user.id!==user.id && !$auth.user.is_teacher" :to="{name:'student-chats',query: { o_id: user.id+947623 }}" rounded no-caps class="text-weight-bold full-width q-py-sm" color="primary" label="Написать сообщение"/>
+        <q-btn v-if="$auth.user.is_teacher" :to="{name:'teacher-chats',query: { o_id: user.id+947623 }}" rounded no-caps class="text-weight-bold full-width q-py-sm" color="primary" label="Написать сообщение"/>
       </q-card-section>
     </q-card>
   </q-dialog>

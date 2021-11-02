@@ -19,9 +19,11 @@ export default async ({ app, router, Vue, store, ssrContext }) => {
   app.config.globalProperties.$auth = store.state.auth
 
   app.config.globalProperties.$filters = {
-  normalizeTime(value) {
-    return `${value.split(':')[0]}:${value.split(':')[1]}`
+  normalizeTime(date,time) {
+    // return `${value.split(':')[0]}:${value.split(':')[1]}`
+  return new Date(date + 'T' + time+'+03:00').toLocaleTimeString()
   }
+
 }
 
   console.info('boot: init exited')

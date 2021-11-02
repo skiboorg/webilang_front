@@ -42,8 +42,12 @@ const actions = {
 //
         if (data.event==='new_chat_mgs' && rootState.data.current_chat !== data.chat_id){
           await this.dispatch('data/getNotifications')
+         const cookies = process.env.SERVER
+            ? Cookies.parseSSR(ssrContext)
+            : Cookies
+          const lang = cookies.get('lang')
           Notify.create({
-            message: data.message,
+            message: lang === 'ru' ? 'Новое сообщение в чате':'A new message in the chat',
             color: 'primary',
             icon: 'chat',
             progress: true,
@@ -94,10 +98,11 @@ const actions = {
     commit('updateUser', response.data)
     commit('updateUserStatus', true)
 
-    if (!process.env.SERVER) {
-      dispatch('connectWS', response.data.id)
-    }
+     if (!process.env.SERVER) {
+          dispatch('connectWS', response.data.id)
+        }
     if (redirect){
+
       if (response.data.is_teacher) {
         await this.$router.push({name:'teacher-groups'})
       } else {
@@ -110,7 +115,7 @@ const actions = {
     api.post( '/auth/token/logout/')
       .then(response=>{
         //console.log('logoutUser', response)
-        api.defaults.headers.common['Authorization'] = null
+        //api.defaults.headers.common['Authorization'] = null
         Cookies.remove('auth_token')
         commit('updateUser', {})
         commit('updateUserStatus', false)

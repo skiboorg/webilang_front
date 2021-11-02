@@ -130,7 +130,8 @@ export default {
         if (lesson.is_over){
           return 'grey-5'
         }
-        if (lesson.is_has_new_datetime){
+        // new Date() < new Date(lesson.date)
+        if (lesson.is_has_new_datetime  ) {
           return 'primary'
         }
         return 'positive'
@@ -160,7 +161,7 @@ export default {
       if(this.timeFormat){
         //console.log('24',val)
         if(this.student_upcoming_lessons.length>0){
-          this.displayTime = this.$filters.normalizeTime(val)
+          this.displayTime = `${val.split(':')[0]}:${val.split(':')[1]}`
 
         }
 

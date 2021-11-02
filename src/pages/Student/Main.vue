@@ -23,11 +23,10 @@
               <p class="q-mb-none text-weight-light">{{$t('next_lesson')}}</p>
 
 
-              <p class="text-bold">{{new Date(student_upcoming_lessons[0].date).toLocaleDateString()}} | {{$filters.normalizeTime(student_upcoming_lessons[0].time)}}</p>
-              <p class="text-bold">{{new Date(student_upcoming_lessons[0].date).toLocaleDateString()}} | {{new Date(student_upcoming_lessons[0].date + 'T' + student_upcoming_lessons[0].time+'+03:00').toLocaleTimeString()}}</p>
-              <p class="text-bold">{{new Date(student_upcoming_lessons[0].date + 'T' + student_upcoming_lessons[0].time).toLocaleString()}}</p>
-              {{student_upcoming_lessons[0].datetime}}
-               <p class="text-bold">{{new Date(student_upcoming_lessons[0].datetime).toLocaleString()}}</p>
+              <p class="text-bold">{{new Date(student_upcoming_lessons[0].date).toLocaleDateString()}} |
+                {{$filters.normalizeTime(student_upcoming_lessons[0].date, student_upcoming_lessons[0].time)}}</p>
+<!--              <p class="text-bold">{{new Date(student_upcoming_lessons[0].date).toLocaleDateString()}} | {{new Date(student_upcoming_lessons[0].date + 'T' + student_upcoming_lessons[0].time+'+03:00').toLocaleTimeString()}}</p>-->
+
               <p class="q-mb-none text-weight-light">{{$t('lessons_left')}}</p>
               <p class="text-bold">{{$auth.user.personal_lessons_left}} {{$t('personal_lessons_left')}}</p>
               <p class="q-mb-none text-weight-light">{{$t('lessons_left')}}</p>
@@ -71,12 +70,21 @@
             <!--            <a class="file-item" :href="item.file" target="_blank" v-for="item in student_upcoming_lessons[0].material"></a>-->
             <div class="file-item" v-for="item in student_upcoming_lessons[0].material" :key="item.id">
               <q-icon class="q-mr-md" size="40px" name="description" color="grey-7"/>
-              <p @click="currentFileUrl=item.file, previewModal=true" class="cursor-pointer no-margin text-weight-regular ellipsis">{{item.filename}}</p>
+              <p class="no-margin text-weight-regular ellipsis">{{item.filename}}</p>
+                <a :href="item.file" class="file-item__icon download">
+                   <q-icon  name="cloud_download" size="25px" color="positive"/>
+                </a>
+               <q-icon class="file-item__icon preview" @click="currentFileUrl=item.file, previewModal=true" name="visibility" size="25px" color="primary"/>
             </div>
 
-            <div class="file-item" v-for="item in student_upcoming_lessons[0].material" :key="item.id">
+            <div class="file-item" v-for="item in student_upcoming_lessons[0].uploaded_material" :key="item.id">
               <q-icon class="q-mr-md" size="40px" name="description" color="grey-7"/>
-              <p @click="currentFileUrl=item.file, previewModal=true" class="cursor-pointer no-margin text-weight-regular ellipsis">{{item.filename}}</p>
+                <p class="no-margin text-weight-regular ellipsis">{{item.filename}}</p>
+                <a :href="item.file" class="file-item__icon download">
+                   <q-icon  name="cloud_download" size="25px" color="positive"/>
+                </a>
+               <q-icon class="file-item__icon preview" @click="currentFileUrl=item.file, previewModal=true" name="visibility" size="25px" color="primary"/>
+
             </div>
           </div>
           <q-separator class="bg-grey-3 q-mb-lg"/>
@@ -84,12 +92,22 @@
           <div class="files-grid">
                     <div class="file-item" v-for="item in student_upcoming_lessons[0].homeWork" :key="item.id">
               <q-icon class="q-mr-md" size="40px" name="description" color="grey-7"/>
-              <p @click="currentFileUrl=item.file, previewModal=true" class="cursor-pointer no-margin text-weight-regular ellipsis">{{item.filename}}</p>
-            </div>
+                 <p class="no-margin text-weight-regular ellipsis">{{item.filename}}</p>
+                <a :href="item.file" class="file-item__icon download">
+                   <q-icon  name="cloud_download" size="25px" color="positive"/>
+                </a>
+               <q-icon class="file-item__icon preview" @click="currentFileUrl=item.file, previewModal=true" name="visibility" size="25px" color="primary"/>
+
+                    </div>
 
             <div class="file-item" v-for="item in student_upcoming_lessons[0].uploaded_homework" :key="item.id">
               <q-icon class="q-mr-md" size="40px" name="description" color="grey-7"/>
-              <p @click="currentFileUrl=item.file, previewModal=true" class="cursor-pointer no-margin text-weight-regular ellipsis">{{item.filename}}</p>
+                 <p class="no-margin text-weight-regular ellipsis">{{item.filename}}</p>
+                <a :href="item.file" class="file-item__icon download">
+                   <q-icon  name="cloud_download" size="25px" color="positive"/>
+                </a>
+               <q-icon class="file-item__icon preview" @click="currentFileUrl=item.file, previewModal=true" name="visibility" size="25px" color="primary"/>
+
             </div>
 
           </div>

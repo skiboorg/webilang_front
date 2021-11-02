@@ -13,12 +13,18 @@
       style="max-width: 100%"
       :style="{'height':height -19 - 24 + 'px'}">
       <div class="notify-cards">
-        <div class="notify-card " :class="{'new':item.is_new}"  v-for="(item,index) in notifications" :key="index">
+        <div v-show="!item.is_chat" v-for="(item,index) in notifications" :key="index">
+           <div class="notify-card " :class="{'new':item.is_new}"  >
           <div class="notify-card__inner">
             <div class="">
               <q-checkbox v-if="selectMode" v-model="item.is_selected" />
-              <p class="text-weight-bold text-fs-16">{{item.title}}</p>
-              <p>{{item.text}}</p>
+              <p v-if="!item.is_first" class="text-weight-bold text-fs-16">{{item.title}}</p>
+              <p v-else class="text-weight-bold text-fs-16">{{$t('greetings_message_title')}}</p>
+              <p v-if="!item.is_first">{{item.text}}</p>
+               <p v-else>{{$t('greetings_message')}}
+
+                 <router-link class="action" :to="{name:'student-settings'}">{{$t('greetings_message_link_text')}}</router-link>
+               </p>
             </div>
             <div class="">
               <p class="no-margin text-right text-caption">{{new Date(item.created_at).toLocaleDateString()}}</p>
@@ -27,6 +33,9 @@
 
 
         </div>
+
+        </div>
+
       </div>
 
     </q-scroll-area>
