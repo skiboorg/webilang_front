@@ -9,10 +9,12 @@ export default boot(({ app, ssrContext }) => {
     : Cookies
   let token = cookies.get('auth_token')
   if (token) {
-    console.log('Token exists')
+    console.log('Token exists axios')
     api.defaults.headers.common['Authorization'] = 'Token ' + token
-  }else{
-    console.log('Token not exists')
+  }else {
+    if(process.env.SERVER){
+      api.defaults.headers.common['Authorization'] = null
+    }
   }
   app.config.globalProperties.$axios = axios
   app.config.globalProperties.$api = api
