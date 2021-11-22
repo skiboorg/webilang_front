@@ -33,9 +33,7 @@
 
 
         </div>
-
         </div>
-
       </div>
 
     </q-scroll-area>

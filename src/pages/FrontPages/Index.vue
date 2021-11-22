@@ -200,31 +200,33 @@ export default {
     &-item
       position: relative
       background: #F7F9FF
-      box-shadow: 4px 4px 25px rgba(0, 0, 0, 0.1)
+      transition: all .4s linear
       border-radius: 15px
       min-height: 250px
       padding: 120px 30px 30px 30px
       z-index: 1
+      &:hover
+        box-shadow: 4px 4px 25px rgba(0, 0, 0, 0.1)
       &.kids
         &::after
           right: 0
           top: 0
           position: absolute
-          content: url(~assets/offer-grid-i-1.png)
+          content: url(~assets/offer-grid-i-1.svg)
           z-index: -1
       &.mature
         &::after
           right: 0
           top: 0
           position: absolute
-          content: url(~assets/offer-grid-i-2.png)
+          content: url(~assets/offer-grid-i-2.svg)
           z-index: -1
       &.exam
         &::after
           right: 0
           top: 0
           position: absolute
-          content: url(~assets/offer-grid-i-3.png)
+          content: url(~assets/offer-grid-i-3.svg)
           z-index: -1
 
 

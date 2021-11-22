@@ -64,7 +64,6 @@
 
       </div>
       <div class="text-right">
-        {{selected_avatar}}
         <q-btn @click="updateUser" :loading="is_loading" no-caps :label="$t('save_changes')" color="primary" class="border-r-8 q-py-sm text-weight-bold"/>
       </div>
 

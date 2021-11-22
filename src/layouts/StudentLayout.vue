@@ -8,11 +8,11 @@
       <LeftSideBar class="gt-sm"/>
       <div class="student-inner">
         <TopBar/>
-        <div class="student-content">
+        <div :class="{'student-content' : $route.name !== 'student-payment'}">
           <q-page-container>
             <router-view />
           </q-page-container>
-          <RightSideBar class="gt-sm"/>
+          <RightSideBar v-if="$route.name !== 'student-payment'" class="gt-sm"/>
         </div>
       </div>
     </div>

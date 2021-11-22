@@ -50,8 +50,8 @@
       <div class="container">
         <div class="callback-wrapper">
           <div class="">
-            <p class="text-fs-28 text-weight-bolder q-mb-lg">Не определились с тарифом?</p>
-            <p class="callback-text">Оставьте свои данные, мы , проведем бесплатную консультацию и подберем нужный тариф</p>
+            <p class="text-fs-28 text-weight-bolder q-mb-lg">{{$t('choose_tarif')}}</p>
+            <p class="callback-text">{{$t('need_data')}}</p>
             <q-no-ssr>
                <CallbackForm/>
             </q-no-ssr>
@@ -88,45 +88,6 @@ export default {
 }
 </script>
 <style lang="sass">
-.tariffs
-  position: relative
-  background: url(~assets/tariff-bg.png) no-repeat center
-  height: 1190px
-  background-size: cover
-  padding-top: 405px
-  margin-top: -430px
-  margin-bottom: 20px
-  z-index: 1
-  &-wrapper
-    display: grid
-    grid-template-columns: repeat(3,1fr)
-    grid-gap: 30px
-    margin-top: 70px
-@media (max-width: 768px)
-  .offer
-    height: fit-content
-    &-wrapper
-      grid-template-columns: 1fr
-.tariff-item
-  position: relative
-  background: #F7F9FF
-  border-radius: 15px
-  padding: 30px
-  &-block
-    &__item
-      margin-bottom: 15px
-      &.bordered
-        margin-bottom: 30px
-        &::after
-          position: absolute
-          content: ''
-          width: 100%
-          height: 1px
-          border-bottom: 1px dashed #CEF0FB
-          margin-top: 15px
-          bottom: -15px
-          left: 0
-
 .callback
   margin-bottom: 80px
   &-wrapper

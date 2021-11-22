@@ -15,6 +15,7 @@ const routes = [
       { path: 'contacts',name:'front-contacts', component: () => import('pages/FrontPages/Contacts.vue') },
       { path: 'signin',name:'front-signin', component: () => import('pages/Auth/SignIn.vue') },
       { path: 'signup',name:'front-signup', component: () => import('pages/Auth/SignUp.vue') },
+      { path: 'policy',name:'front-policy', component: () => import('pages/FrontPages/Policy.vue') },
     ]
   },
   {
@@ -29,6 +30,7 @@ const routes = [
       {path: 'lessons', name: 'student-lessons',meta:{title:'side_bar_menu_lessons'}, component: () => import('pages/Student/Lesson.vue')},
       {path: 'payment', name: 'student-payment',meta:{title:'side_bar_menu_payment'}, component: () => import('pages/Student/Tariff.vue')},
       {path: 'settings', name: 'student-settings',meta:{title:'side_bar_menu_settings'}, component: () => import('pages/Student/Settings.vue')},
+      {path: 'checkout/:cat_id/:t_id', name: 'student-checkout',meta:{title:'side_bar_menu_payment'}, component: () => import('pages/Student/Checkout.vue')},
     ]
   },
   {

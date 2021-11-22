@@ -307,13 +307,6 @@ export default {
       this.data_loading = false
     },
     scrollToEnd() {
-      // let content = this.$refs.messages
-      // console.log('hhh',content.getScroll())
-      //
-      // const scrollTarget = content.getScrollTarget();
-      // const duration = 0; // ms - use 0 to instant scroll
-      // // content.setScrollPosition('vertical',scrollTarget.scrollHeight , duration);
-      // content.setScrollPosition('vertical',scrollTarget.scrollHeight , duration);
       let content = this.$refs.messagesContainer;
       content.scrollTop = content.scrollHeight
     },

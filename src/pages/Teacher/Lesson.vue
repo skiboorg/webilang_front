@@ -6,7 +6,7 @@
       <div class="group-name">
         <p class="text-center text-body1 text-weight-bolder text-uppercase q-mb-sm">{{lesson.theme}}</p>
         <q-no-ssr>
-        <p class="text-center text-italic text-weight-light ">{{new Date(lesson.date).toLocaleDateString()}} | {{$filters.normalizeTime(lesson.time)}}</p>
+        <p class="text-center text-italic text-weight-light ">{{new Date(lesson.date).toLocaleDateString()}} | {{$filters.normalizeTime(lesson.date,lesson.time)}}</p>
         </q-no-ssr>
       </div>
     </q-no-ssr>

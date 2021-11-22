@@ -2,6 +2,8 @@ import { api } from 'boot/axios'
 import { Cookies } from 'quasar'
 import { Notify } from 'quasar'
 
+
+
 const state = () => ({
   user:{},
   notifications_count:[],
@@ -26,7 +28,7 @@ const mutations = {
 const actions = {
   connectWS({commit,dispatch,rootState},id) {
     console.log('connecting WS',id)
-
+    let audio = new Audio('notify.mp3');
     const socket = new WebSocket(process.env.WS+'/ws/user/online/')
 
     commit('updateSocket',socket)
@@ -46,6 +48,7 @@ const actions = {
             ? Cookies.parseSSR(ssrContext)
             : Cookies
           const lang = cookies.get('lang')
+          await audio.play()
           Notify.create({
             message: lang === 'ru' ? 'Новое сообщение в чате':'A new message in the chat',
             color: 'primary',

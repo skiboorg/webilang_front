@@ -16,6 +16,11 @@ export default {
   replaced_lesson:'Rescheduled lesson',
   call_friends:'Call friends!',
   share_promo:'Submit your promo code and get 2 free lessons',
+  choose_tarif:'Not decided on the tariff?',
+  need_data:'Leave your details, we will conduct a free consultation and select the desired tariff',
+  policy_title:'Privacy Policy',
+  policy_text:`<p>Privacy Policy text</p>`,
+
   //кнопки,формы
   want_free_lesson:`I want a free trial lesson`,
   your_name:`Tell us your name, please?`,
@@ -88,7 +93,8 @@ export default {
   contacts:`Contacts`,
   work_time:`Daily 9:00 to 22:00`,
   we_accept:`We accept:`,
-  copyright_text_top:`© Webilang 2014-2021. All rights reserved. Learn about <a href="#" class=«link">our privacy policy.</a>.`,
+  copyright_text_top:`© Webilang 2014-2021. All rights reserved. Learn about`,
+  policy_link_text:`our privacy policy.`,
   copyright_text_bottom:`By using our website, you agree to the use of cookies and your personal data for the purposes of improving the website and customer service, retargeting, statistical research, and providing relevant advertising information based on your preferences and interests.`,
   //футер
 
