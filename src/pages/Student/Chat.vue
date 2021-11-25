@@ -138,18 +138,44 @@ export default {
     return {
       data_loading:false,
       smiles:[
-        {name:'GRINNING FACE',code:'😀'},
-        {name:'FACE WITH TEARS OF JOY',code:'😁'},
-        {name:'SMILING FACE WITH HALO',code:'😂'},
-        {name:'SMILING FACE WITH HORNS',code:'😈'},
-        {name:'SMILING FACE WITH HEART-SHAPED EYES',code:'😍'},
-        {name:'FACE THROWING A KISS',code:'😘'},
-        {name:'GRINNING FACE',code:'😀'},
-        {name:'FACE WITH TEARS OF JOY',code:'😁'},
-        {name:'SMILING FACE WITH HALO',code:'😂'},
-        {name:'SMILING FACE WITH HORNS',code:'😈'},
-        {name:'SMILING FACE WITH HEART-SHAPED EYES',code:'😍'},
-        {name:'FACE THROWING A KISS',code:'😘'},
+        {code:'😀'},
+        {code:'😄'},
+        {code:'😁'},
+        {code:'😆'},
+        {code:'😅'},
+        {code:'😂'},
+        {code:'🤣'},
+        {code:'😊'},
+        {code:'😇'},
+        {code:'🙂'},
+        {code:'😉'},
+        {code:'😌'},
+        {code:'😍'},
+        {code:'😚'},
+        {code:'😋'},
+        {code:'😛'},
+        {code:'😜'},
+        {code:'🤪'},
+        {code:'🤓'},
+        {code:'😎'},
+        {code:'🤩'},
+        {code:'🥳'},
+        {code:'😏'},
+        {code:'😔'},
+        {code:'😕'},
+        {code:'🥺'},
+        {code:'🤗'},
+        {code:'🤔'},
+        {code:'😯'},
+        {code:'😴'},
+        {code:'👋'},
+        {code:'👌'},
+        {code:'✌'},
+        {code:'🤞'},
+        {code:'👍'},
+        {code:'👎'},
+        {code:'✊ '},
+        {code:'🙏'}
       ],
       chats:[],
       messages:[],
@@ -382,11 +408,11 @@ export default {
   align-items: center
 
 .smiles-card
-  width: 200px
+  width: 400px
   padding: 10px
 .smiles-grid
   display: grid
-  grid-template-columns: repeat(4,1fr)
+  grid-template-columns: repeat(8,1fr)
   grid-gap: 20px
 .smiley-icon
   &:hover

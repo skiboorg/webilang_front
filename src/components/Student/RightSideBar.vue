@@ -73,7 +73,7 @@
     <div class="rounded-block">
       <p class="text-caption text-bold">{{$t('call_friends')}}</p>
       <p class="text-caption text-weight-thin">{{$t('share_promo')}}</p>
-      <p class="q-mb-none text-negative text-bold text-h6">{{$auth.user.promo}}</p>
+      <p class="q-mb-none text-negative text-bold text-h6">{{$auth.user.promo.code}}</p>
     </div>
   </div>
   </q-no-ssr>
@@ -158,15 +158,15 @@ export default {
       await this.updateUserTimeFormat()
     },
     currentTime(val){
-      if(this.timeFormat){
+      //if(this.timeFormat){
         //console.log('24',val)
-        if(this.student_upcoming_lessons.length>0){
-          this.displayTime = `${val.split(':')[0]}:${val.split(':')[1]}`
+        // if(this.student_upcoming_lessons.length>0){
+        //   this.displayTime = `${val.split(':')[0]}:${val.split(':')[1]}`
+        //
+        // }
 
-        }
 
-
-      }else {
+      //}else {
         let time  =  val.toString ().match (/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [val];
         //console.log('am',time)
         if (time.length > 1) { // If time format correct
@@ -177,7 +177,7 @@ export default {
           time[0] = +time[0] % 12 || 12; // Adjust hours
         }
         this.displayTime = time.join (''); // return adjusted time or original string
-      }
+      //}
     }
   },
   computed:{

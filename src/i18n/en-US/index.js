@@ -1,4 +1,102 @@
 export default {
+  your_tariff:'Your tariff',
+  change_tariff:'Change tariff',
+  enter_promo:'Enter promo code',
+  discount:'Discount:',
+  total:'Total:',
+  payment_method:'Payment method',
+  bank_card:'By bank card',
+  paypal:'PayPal',
+  pay:'Pay',
+  warning:`<span class = "text-bold text-negative"> Attention! </span> By clicking the button <span class = "text-bold"> "Pay" </span> you hereby agree to the terms`,
+  rules:'contract-offer.',
+  promo_not_found:'Promo code not found',
+  promo_found:'Promo code applied',
+  bonus_lessons:'Promo code for ',
+  bonus_lessons_1:'bonus lessons',
+  rules_title:'Contract-offer',
+  rules_text:`<p>Limited liability company Webilang, hereinafter referred to as "Contractor", acing under the certificate of registration under No. 1217700087780, publishes this Agreement for conducting distance English classes, webinars, workshops, business plays offered any individual or legal entity, hereinafter referred to as "Customer". Contractor and Customer are together referred to as "Parties".</p>
+<p>This Agreement is a Public Offer Agreement, under Article 435 and Part 2 of Article 437 of the Civil Code of Russian Federation, and contains all the essential terms of a paid services agreement.</p>
+<p>Acceptance of this Agreement shall be effective after payment by Customer of tuition fees and subject to the terms of this Agreement containing Contractor's contact details in this Agreement.</p>
+<ol>
+<li> Terms and definitions&nbsp;</li>
+</ol>
+<p>1.1. Services - arranging both (either) group and (or) individual English classes via the Internet, webinars, workshops and business games, as well as providing access to educational materials and checking homework by Contractor.&nbsp;</p>
+<p>1.2. Course is one or several group or private English classes, as well as webinars, workshops and business games developed by Contractor.&nbsp;</p>
+<p>1.3. Software - Webex Meeting Centre (application for web conferencing), Zoom (application for web conferencing) and Webilang Intranet (course management system).&nbsp;</p>
+<p>1.4. Website http://webilang.com - a set of software tools used to provide Services via the Internet: curriculum management system, personal account management system, blogging platform for communication within the study group.</p>
+<ol start="2">
+<li> The Agreement&nbsp;</li>
+</ol>
+<p>2.1. According to this Agreement the Contractor provides paid group and/or individual English classes via the Internet, through webinars, workshops and business games using the following software tools: Webex Meeting Centre (application for web conferencing), Zoom (application for web conferencing) and Webilang Intranet (course management system).&nbsp;</p>
+<p>2.2. Contractor determines teaching methods and format of group and individual English classes, webinars, workshops and business games.&nbsp;</p>
+<ol start="3">
+<li> Obligations of Contractor&nbsp;</li>
+</ol>
+<p>The Contractor undertakes to:&nbsp;</p>
+<p>3.1. Provide the Customer with services in accordance with the Course Curriculum and the number of classes paid by the Customer.&nbsp;</p>
+<p>3.2. Provide the Customer with access to online Course educational materials, the cost of which is included in the cost of Services.</p>
+<p>3.3. Provide the Customer with access to Course software tools after paying Course fee by the Customer.&nbsp;</p>
+<ol start="4">
+<li> Rights of Contractor&nbsp;</li>
+</ol>
+<p>Contractor is entitled to:&nbsp;</p>
+<p>4.1. Terminate Customer's access to Course software tools, unless Customer makes payment of Services under Article 8.4. of this Agreement.&nbsp;</p>
+<p>4.2. Use services of all individual and legal entities for the purpose of timely and quality performance of the obligations under this Agreement.&nbsp;</p>
+<ol start="5">
+<li> Obligations of Customer&nbsp;</li>
+</ol>
+<p>Customer undertakes to:&nbsp;</p>
+<p>5.1. Timely and fully pay the cost of Contractor's providing services in accordance with the terms established in Article 8.4. of this Agreement.&nbsp;</p>
+<p>5.2. Be responsible for attending classes (avoid missing classes without good reason, do homework).</p>
+<p>5.3. Provide complete, truthful and accurate information when registering on the Website and maintain the relevance of this information.&nbsp;</p>
+<p>5.4. Not to create a personal account for the third Party without its prior consent.&nbsp;</p>
+<p>5.5. Take responsibility for the correctness of payments made.&nbsp;</p>
+<ol start="6">
+<li> Rights of Customer&nbsp;</li>
+</ol>
+<p>Customer is entitled to:&nbsp;</p>
+<p>6.1. Change the study group (if any) only upon informing Contractor beforehand.&nbsp;</p>
+<p>6.2. Negotiate with Contractor training schedule and enrollment in a study group before making payment of Services.&nbsp;</p>
+<p>6.3. Stop taking classes should the Contractor fail to perform the obligations under this Agreement.&nbsp;</p>
+<p>6.4. Terminate this Agreement at any time by giving written notice of termination to the Contractor.&nbsp;</p>
+<ol start="7">
+<li> Liability of the Parties&nbsp;</li>
+</ol>
+<p>7.1. Rights and obligations of the Parties shall not be passed to the third Party.&nbsp;</p>
+<p>7.2. When signing this Agreement, any previous agreements, contracts, letters and other agreements, if any, whether written or verbal, relating to the subject of this Agreement, cease to be effective.&nbsp;</p>
+<p>7.3. Any dispute arising under this Agreement shall be settled by negotiation between the Parties. Should disputes cannot be settled in this manner, they are subject to be settled in court in accordance with laws in force of the Russian Federation.&nbsp;</p>
+<ol start="8">
+<li> Cost of services and payment procedure&nbsp;</li>
+</ol>
+<p>8.1. The Course fee is published on the Website.&nbsp;</p>
+<p>8.2. Contractor shall reserve the right to change the Course fee and to impose new tariffs. Any changes in Cost of Services shall be published on the Website. Contractor shall not change Сost of Services for a particular Customer, in the event the Customer has already accepted Contractor's terms and made payment of Course fee in accordance with the applicable procedure under this Agreement.&nbsp;</p>
+<p>8.3. Customers should register on the Website to make course payment and to gain access to the Course.&nbsp;</p>
+<p>8.4. Customers shall pay for Services by making 100% of advance payment for the monthly fee of the Course and not later than the starting date of the following service period.&nbsp;</p>
+<p>8.5. Payment of Services shall be carried out by one of the means listed on page Payments</p>
+<p>8.6. Cost of Services shall be appointed with due regard for all necessary taxes and expenditures of the Contractor.&nbsp;</p>
+<p>8.7. Course fees shall be presented without including commission fees determined by credit card companies, payment terminals and Internet providers.&nbsp;</p>
+<p>8.8. To determine subscription status for the Course, Customer shall log into his personal account on the Website.&nbsp;</p>
+<p>8.9. Should Customer refuse from studying due to Contractor's non-fulfillment of obligations under this Agreement, the payment made for the Course shall be subject to be partially returned with due regard for re-calculation of classes provided by Contractor.&nbsp;</p>
+<p>8.10. Should Customer terminate this Agreement, refund shall be carried out minus the cost of class attendance, as well as the commission of 20% of the paid amount. Means of refunding shall be chosen upon consultation between the Parties.&nbsp;</p>
+<ol start="9">
+<li> Force majeure&nbsp;</li>
+</ol>
+<p>9.1. This Agreement shall be terminated unilaterally in case of force majeure and inability to perform the terms of this Agreement (act of war, civil war, epidemic, accident, fire, earthquake, flood and other natural disasters), provided that One Party does not answer a written notice of another Party, referring to force major (pointing out specific circumstances and causal relationship between force major and inability to perform the terms of this Agreement) within five consecutive days from receiving the notice.&nbsp;</p>
+<ol start="10">
+<li> Contractor's details&nbsp;</li>
+</ol>
+<p>Limited liability company Webilang</p>
+<p>TIN 9704050974</p>
+<p>IEC 770401001</p>
+<p>PSRN 1217700087780</p>
+<p>Cur&shy;rent account 40702810838000197784</p>
+<p>BIC 044525225</p>
+<p>Bank PJSC Sberbank</p>
+<p>Cor&shy;re&shy;spond&shy;ing account 30101810400000000225</p>
+<p><br /><br /></p>`,
+
+
   data_saved:'Data saved successfully',
    greetings_message_title:'Welcome',
   greetings_message:'Hello student! Fill in info about yourself ',
@@ -19,7 +117,25 @@ export default {
   choose_tarif:'Not decided on the tariff?',
   need_data:'Leave your details, we will conduct a free consultation and select the desired tariff',
   policy_title:'Privacy Policy',
-  policy_text:`<p>Privacy Policy text</p>`,
+  policy_text:`<p><span style="font-weight: 400;">This policy introduces you to the necessary terms of use for this website.</span></p>
+<p><span style="font-weight: 400;">Use of these terms implies full and unconditional agreement with all and each of the provisions of this legal notice, so if you do not agree with any of the terms set forth in this document, you must not use and / or enter this site.</span></p>
+<p><span style="font-weight: 400;">We reserve the right to change this Privacy Statement at any time. Your continued use of any part of this site following notification or posting of such changes will constitute your acceptance of those changes.</span></p>
+<h2 class="section-title q-my-lg"><strong>Use of cookies</strong></h2>
+<p><span style="font-weight: 400;">This site uses cookies, which are small data files that are created on the computer that sends the information without providing the ability to retrieve that data.</span></p>
+<p><span style="font-weight: 400;">You can configure your browser to notify and reject the installation of cookies sent from this site without affecting the ability to access the content. However, we are not responsible if their deactivation would adversely affect the operation of the Site.</span></p>
+<h2 class="section-title q-my-lg"><strong>Personal Data Protection Policy</strong></h2>
+<p><span style="font-weight: 400;">In order to use certain services or access certain content, you must first provide certain personal information, which will only be used for the purposes for which it was collected.</span></p>
+<p><span style="font-weight: 400;">The information that may be requested includes, but is not limited to, the following: your name, email address (e-mail), date of birth, gender, occupation, city and country of origin and personal interests, among other information. Not all of the information requested at the time of registration on the site is required to provide, but only that which, in our opinion, is appropriate and which is made known.</span></p>
+<p><span style="font-weight: 400;">The general principle of the site is that it does not share information and does not disclose it except in cases where it is permitted by you or in the following cases:</span></p>
+<ol>
+<li><span style="font-weight: 400;">a) In the case of the requirements of the competent authorities and after the completion of the relevant legal proceedings, and b) Whenever this site believes this is necessary to comply with the terms of use and other terms of this site, or to ensure the integrity of information about other users or the site.</span></li>
+</ol>
+<p><span style="font-weight: 400;">You should be aware that if you voluntarily submit personal information online in a public place, that information may be collected and used by others. We do not control the actions of our visitors and users.</span></p>
+<h2 class="section-title q-my-lg"><strong>Responsible conduct</strong></h2>
+<p><span style="font-weight: 400;">All information provided must be truthful. To do this, you guarantee the authenticity of all data transmitted as a result of filling out forms required to subscribe to the Services, access content or areas of the site with limited access. In any case, only you will be solely responsible for any false or inaccurate information and damage caused by the information provided to this site or to third parties.</span></p>
+<p><span style="font-weight: 400;">You agree to act responsibly on this site and to treat other visitors with respect.</span></p>
+<h2 class="section-title q-my-lg"><strong>Contact</strong></h2>
+<p><span style="font-weight: 400;">If you have questions or concerns about this Policy, please contact us at any time via this email: </span><a class="link" href="mailto:info@webilang.com">info@webilang.com</a></p>`,
 
   //кнопки,формы
   want_free_lesson:`I want a free trial lesson`,
@@ -318,6 +434,7 @@ That is why we collaborate with certified native english speaking teachers who h
   //О нас
 
   //Контакты
+  contacts_title:`Contacts`,
   contacts_phone:`Phone`,
   contacts_email:`Email`,
   //Контакты
