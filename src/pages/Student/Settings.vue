@@ -16,7 +16,8 @@
           <q-btn no-caps @click="avatarModal=true" unelevated :label="$t('select_avatar')" color="primary" class="border-r-8 q-py-sm text-weight-bold"/>
 
             <q-btn no-caps unelevated :label="$t('upload_avatar')" color="warning" class="border-r-8 q-py-sm text-weight-bold">
-          <q-file  style="position: absolute; width: 100%; opacity: 0;" v-model="avatar" />
+<!--          <q-file  style="position: absolute; width: 100%; opacity: 0;" v-model="avatar" />-->
+          <q-input type="file" @change="updateUser" style="position: absolute; width: 100%; opacity: 0;" v-model="avatar" />
           </q-btn>
         </div>
       </div>
@@ -73,6 +74,7 @@
  <q-dialog
       v-model="avatarModal"
       full-height
+      @before-hide="updateUser"
     >
       <q-card class="column rounded-block full-height" style="width: 850px;max-width: 90vw">
       <q-card-section class="row items-center no-padding q-mb-lg">
@@ -127,7 +129,7 @@ export default {
       let formData = new FormData()
       formData.set('userData', JSON.stringify(this.userData))
       if (this.avatar){
-        formData.set('avatar',this.avatar)
+        formData.set('avatar',this.avatar[0])
       }
       if (this.selected_avatar){
         formData.set('selected_avatar',this.selected_avatar)

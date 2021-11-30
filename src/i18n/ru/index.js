@@ -18,7 +18,7 @@ export default {
 
   rules_title:'Договор-оферта',
 
-
+  data_saved:'Изменения сохранены',
   greetings_message_title:'Добро пожаловать',
   greetings_message:'Привет студент! Заполни инфо о себе ',
   greetings_message_link_text:'здесь',
