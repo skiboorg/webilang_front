@@ -2,7 +2,7 @@
   <div  class="settings-wrapper">
     <div class="settings-user rounded-block q-mb-lg">
       <q-avatar size="100px">
-        <img :src="$auth.user.user_avatar" alt="">
+        <img class="avatar-img" :src="$auth.user.user_avatar" alt="">
       </q-avatar>
       <div class="">
         <p class="text-weight-bold text-body1 q-mb-none">{{$auth.user.firstname}} {{$auth.user.lastname}}</p>
@@ -84,7 +84,7 @@
         <q-card-section class="no-padding" ref="avatars">
           <div class="avatars-wrapper">
             <q-avatar class="cursor-pointer avatar" @click="selected_avatar=item.id" v-close-popup :size="$q.screen.lt.md ? '80px' : '100px'" v-for="(item,index) in avatars" :key="index">
-              <img :src="item.image" alt="">
+              <img class="avatar-img" :src="item.image" alt="">
             </q-avatar>
           </div>
 

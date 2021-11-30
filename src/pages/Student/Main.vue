@@ -43,7 +43,7 @@
           <q-separator class="bg-grey-3 q-mb-lg"/>
           <div class="rewards">
             <q-avatar rounded class="relative-position" size="80px" v-for="reward in $auth.user.rewards">
-              <img  :src="reward.reward.image" alt="">
+              <img class="avatar-img" :src="reward.reward.image" alt="">
               <div v-if="reward.count>1" class="reward-count"><p class="no-margin text-body1">{{reward.count}}</p></div>
             </q-avatar>
           </div>
@@ -53,7 +53,7 @@
           <q-separator class="bg-grey-3 q-mb-lg"/>
           <div class="flex items-center q-mb-lg">
             <q-avatar size="60px" class="q-mr-lg">
-              <img :src="current_group.teacher.user_avatar" alt="">
+              <img class="avatar-img" :src="current_group.teacher.user_avatar" alt="">
             </q-avatar>
             <p  class="no-margin text-weight-bolder text-fs-18">{{current_group.teacher.firstname}} {{current_group.teacher.lastname}}</p>
           </div>

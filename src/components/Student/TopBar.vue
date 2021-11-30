@@ -23,7 +23,7 @@
       <div class="user-menu" @click="menuActive=!menuActive">
         <div class="user-menu-top">
           <q-avatar size=40px >
-            <img :src="$auth.user.user_avatar" >
+            <img  class="avatar-img" :src="$auth.user.user_avatar" >
           </q-avatar>
           <p class="no-margin ellipsis ">{{$auth.user.firstname}} </p>
           <svg width="13" height="14" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">

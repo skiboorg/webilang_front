@@ -13,10 +13,10 @@
       <q-item clickable @click="openChat(chat.id)" v-ripple v-for="chat in chats" :key="chat.id" :class="{'bg-grey-2': current_chat===chat.id}">
         <q-item-section avatar>
          <q-avatar v-if="!chat.group" size="30px">
-            <img :src="$auth.user.id === chat.starter.id ? chat.opponent.user_avatar : chat.starter.user_avatar" alt="">
+            <img class="avatar-img" :src="$auth.user.id === chat.starter.id ? chat.opponent.user_avatar : chat.starter.user_avatar" alt="">
          </q-avatar>
           <q-avatar v-else size="30px">
-            <img :src="chat.group.image" alt="">
+            <img class="avatar-img" :src="chat.group.image" alt="">
          </q-avatar>
         </q-item-section>
         <q-item-section>
@@ -49,8 +49,8 @@
       </q-inner-loading>
         <div class="messages-top flex items-center">
           <q-avatar size="30px" class="q-mr-md">
-            <img v-if="!chatData.group" :src="chatData.user_avatar" alt="">
-            <img v-else :src="chatData.group.image" alt="">
+            <img class="avatar-img" v-if="!chatData.group" :src="chatData.user_avatar" alt="">
+            <img class="avatar-img" v-else :src="chatData.group.image" alt="">
           </q-avatar>
           <p v-if="!chatData.group" class="no-margin text-weight-bold">{{chatData.firstname}} {{chatData.lastname}}</p>
           <p v-else class="no-margin text-weight-bold">{{chatData.group.label}} </p>

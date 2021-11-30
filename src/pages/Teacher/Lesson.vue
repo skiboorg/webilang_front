@@ -64,7 +64,7 @@
                     <q-item v-bind="scope.itemProps">
                       <q-item-section  avatar>
                         <q-avatar>
-                          <img  :src="scope.opt.image" >
+                          <img class="avatar-img" :src="scope.opt.image" >
                         </q-avatar>
 
                       </q-item-section>

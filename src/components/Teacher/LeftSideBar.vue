@@ -5,7 +5,7 @@
         <img src="~assets/logo.svg" alt="">
       </div>
       <q-avatar class="q-mb-lg" size="150px">
-        <img :src="$auth.user.user_avatar" >
+        <img class="avatar-img" :src="$auth.user.user_avatar" >
       </q-avatar>
     </div>
 

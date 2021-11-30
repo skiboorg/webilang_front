@@ -8,7 +8,7 @@
 
       </div>
       <q-avatar v-if="current_group" class="q-mb-lg" size="150px">
-        <img :src="current_group.image" >
+        <img class="avatar-img" :src="current_group.image" >
       </q-avatar>
       <p class="q-mb-sm text-bold">{{$t('your_group')}}</p>
 

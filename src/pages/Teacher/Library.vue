@@ -9,7 +9,8 @@
           {{$t('teacher_add_folder')}}
           <q-icon size="16px" name="folder_open"/>
         </p>
-        <p v-if="selectedFolder" @click="items.unshift({files:[],name:'dsf',is_new:true})" class="q-mb-none text-bold q-mr-lg cursor-pointer text-negative">
+<!--        <p v-if="selectedFolder" @click="items.unshift({files:[],name:'dsf',is_new:true})" class="q-mb-none text-bold q-mr-lg cursor-pointer text-negative">-->
+        <p v-if="selectedFolder" @click="deleteFolder" class="q-mb-none text-bold q-mr-lg cursor-pointer text-negative">
           {{$t('teacher_del_folder')}}
           <q-icon size="16px" name="delete_forever"/>
         </p>
@@ -136,9 +137,17 @@ export default {
   },
   methods: {
     ...mapActions('auth',['getUser']),
-    closeFolder(){
+    async closeFolder(){
       this.selectedFolder = null
-      this.updateFiles()
+      await this.updateFiles()
+    },
+    async deleteFolder(){
+      this.is_loading = true
+      await  this.$api.post('/api/lesson/delete_folder',{id:this.selectedFolder})
+      this.selectedFolder = null
+      await this.getUser(false)
+      await this.updateFiles()
+      this.is_loading = false
     },
     openFolder(id){
       this.selectedFolder = id
@@ -150,7 +159,7 @@ export default {
       this.is_loading = true
       await  this.$api.post('/api/lesson/delete_file',{id})
       await this.getUser(false)
-      this.updateFiles()
+      await this.updateFiles()
       this.is_loading = false
 
     },
@@ -174,7 +183,7 @@ export default {
       })
       this.files=null
       await this.getUser(false)
-      this.updateFiles()
+      await this.updateFiles()
       if (this.selectedFolder){
         this.openFolder(this.selectedFolder)
       }
@@ -202,7 +211,7 @@ export default {
         await this.$api.post('/api/lesson/new_folder',{name:this.folderName})
 
         await this.getUser(false)
-        this.updateFiles()
+        await this.updateFiles()
         this.is_loading = false
       }else {
         this.items.splice(0,1)

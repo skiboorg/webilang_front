@@ -115,7 +115,7 @@
           </div>
       <div class="flex items-center q-mb-sm">
         <p class="text-weight-thin q-mb-none q-mr-xs" v-html="$t('copyright_text_top')"></p>
-      <router-link class="link" :to="{name:'front-policy'}">{{$t('policy_link_text')}}</router-link>
+      <a class="link" target="_blank" :href="$i18n.locale === 'ru' ? '/policy.pdf' : '/policy_en.pdf'" >{{$t('policy_link_text')}}</a>
       </div>
 
       <p class="text-weight-thin text-caption" v-html="$t('copyright_text_bottom')"></p>

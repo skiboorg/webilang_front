@@ -41,6 +41,11 @@
 import {mapGetters} from "vuex";
 
 export default {
+  async preFetch ({ store, currentRoute, previousRoute, redirect, ssrContext, urlPath, publicPath }) {
+
+    return  await store.dispatch('data/getTeacherGroups')
+
+  },
   data() {
     return {
       search:null,

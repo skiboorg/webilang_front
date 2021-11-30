@@ -82,7 +82,7 @@
               <div class="feedback-item   full-height mom">
                 <div class="feedback-item-top flex items-center ">
                   <q-avatar  size="72px" class="q-mr-md">
-                    <img :src="feedback.parent_image" alt="">
+                    <img class="avatar-img" :src="feedback.parent_image" alt="">
                   </q-avatar>
                   <div class="">
                     <p class="text-primary q-mb-sm"> {{$i18n.locale === 'ru' ? feedback.parent : feedback.parent_en}}</p>
@@ -97,7 +97,7 @@
               <div class="feedback-item  full-height son">
                 <div class="feedback-item-top flex items-center ">
                   <q-avatar  size="72px" class="q-mr-md">
-                     <img :src="feedback.kid_image" alt="">
+                     <img class="avatar-img" :src="feedback.kid_image" alt="">
                   </q-avatar>
                   <div class="">
                      <p class="text-primary q-mb-sm"> {{$i18n.locale === 'ru' ? feedback.kid : feedback.kid_en}}</p>

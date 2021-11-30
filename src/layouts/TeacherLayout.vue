@@ -26,16 +26,17 @@ export default {
     LeftSideBar,
     TopBar
   },
-  preFetch ({ store, currentRoute, previousRoute, redirect, ssrContext, urlPath, publicPath }) {
+  async preFetch ({ store, currentRoute, previousRoute, redirect, ssrContext, urlPath, publicPath }) {
 
     if (!store.state.auth.loggedIn && !store.state.auth.user.is_teacher) {
       redirect({ path: '/signin' })
     }
-    return (
-      store.dispatch('data/getTeacherGroups'),
-        store.dispatch('data/getNotifications'),
-        store.dispatch('data/getRewards')
-    )
+
+     await store.dispatch('data/getTeacherGroups')
+      await  store.dispatch('data/getNotifications')
+      await  store.dispatch('data/getRewards')
+    return
+
   },
   data(){
     return{

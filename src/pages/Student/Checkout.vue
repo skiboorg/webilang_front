@@ -56,7 +56,8 @@
       <q-radio dense v-model="payment_method" val="paypal" color="grey-7" class="text-bold" :label="$t('paypal')" />
       </div>
       <q-btn @click="pay" unelevated color="positive" :loading="is_loading" no-caps class="text-manrope border-r-8  q-py-md q-px-xl q-mb-lg" :label="$t('pay')"/>
-      <p><span v-html="$t('warning')"></span> <router-link class="link" to="/">{{$t('rules')}}</router-link></p>
+      <p><span v-html="$t('warning')"></span> <a class="link" target="_blank" :href="$i18n.locale === 'ru' ? '/terms.pdf' : '/terms_en.pdf'" >{{$t('policy_link_text')}}</a></p>
+
 
     </div>
 
