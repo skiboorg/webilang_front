@@ -21,6 +21,7 @@ export default {
   data_saved:'Data saved successfully',
    greetings_message_title:'Welcome',
   greetings_message:'Hello student! Fill in info about yourself ',
+  greetings_message_teacher:'Hello teacher! Fill in info about yourself ',
   greetings_message_link_text:'here',
    password_hint:'Password must be at least 8 characters long and include letters and numbers',
   password_len:'Minimum 8 characters',

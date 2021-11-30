@@ -21,7 +21,7 @@
               <p v-if="!item.is_first" class="text-weight-bold text-fs-16">{{item.title}}</p>
               <p v-else class="text-weight-bold text-fs-16">{{$t('greetings_message_title')}}</p>
               <p v-if="!item.is_first">{{item.text}}</p>
-               <p v-else>{{$t('greetings_message')}}
+               <p v-else>{{$t('greetings_message_teacher')}}
 
                  <router-link class="action" :to="{name:'student-settings'}">{{$t('greetings_message_link_text')}}</router-link>
                </p>

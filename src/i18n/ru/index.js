@@ -21,6 +21,7 @@ export default {
   data_saved:'Изменения сохранены',
   greetings_message_title:'Добро пожаловать',
   greetings_message:'Привет студент! Заполни инфо о себе ',
+  greetings_message_teacher:'Привет студент! Заполни инфо о себе ',
   greetings_message_link_text:'здесь',
   password_hint:'Пароль должен состоять минимум из 8 символов, включать буквы и цифры',
   password_len:'Минимум 8 символов',

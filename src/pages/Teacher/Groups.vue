@@ -5,9 +5,9 @@
     </div>
     <div ref="group-list" class="rounded-block  group-list">
       <div class="gt-sm group-list-header q-mb-md">
-        <p class="no-margin text-bold ">{{$t('teacher_group_name')}}</p>
-        <p class="no-margin text-bold">{{$t('teacher_group_type')}}</p>
-        <p class="no-margin text-bold">{{$t('teacher_group_level')}}</p>
+        <p class="no-margin text-bold gt-sm">{{$t('teacher_group_name')}}</p>
+        <p class="no-margin text-bold gt-sm">{{$t('teacher_group_type')}}</p>
+        <p class="no-margin text-bold gt-sm">{{$t('teacher_group_level')}}</p>
       </div>
       <div  class="group-list">
         <q-scroll-area
@@ -17,15 +17,15 @@
           :style="{'height':height - 100 + 'px'}">
           <div class="group-list-row" v-for="group in teacher_groups" :key="group.id">
             <div class="">
-             <p class="no-margin text-bold ">{{$t('teacher_group_name')}}</p>
+             <p class="no-margin text-bold lt-md">{{$t('teacher_group_name')}}</p>
               <p @click="$router.push({name:'teacher-group',params:{id:group.id}})" class="no-margin  link text-weight-bold cursor-pointer">{{group.label}}</p>
             </div>
             <div class="">
-               <p class="no-margin text-bold">{{$t('teacher_group_type')}}</p>
+               <p class="no-margin text-bold lt-md">{{$t('teacher_group_type')}}</p>
               <p class="no-margin ">{{group.type.name}}</p>
             </div>
             <div class="">
-              <p class="no-margin text-bold">{{$t('teacher_group_level')}}</p>
+              <p class="no-margin text-bold lt-md">{{$t('teacher_group_level')}}</p>
               <p class="no-margin ">{{group.level.name}}</p>
             </div>
 

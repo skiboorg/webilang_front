@@ -1,7 +1,7 @@
 <template>
   <div  class="settings-wrapper">
     <div class="settings-user rounded-block q-mb-lg">
-      <q-avatar size="100px">
+      <q-avatar size="150px">
         <img class="avatar-img" :src="$auth.user.user_avatar" alt="">
       </q-avatar>
       <div class="">

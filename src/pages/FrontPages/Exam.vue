@@ -3,7 +3,7 @@
     <section class="offer">
       <div class="container">
         <div class="offer-wrapper">
-          <div class="">
+          <div class="offer-text-block">
             <h1 class="offer-title section-title">{{$t('exam_offer_title')}}</h1>
             <div class="offer-text q-mb-lg">
               <p>{{$t('exam_offer_text1')}}</p>
@@ -11,7 +11,7 @@
               <p>{{$t('exam_offer_text3')}}</p>
             </div>
 
-            <q-btn color="primary" class="text-manrope border-r-8 q-py-md q-px-xl q-mt-lg" no-caps :label="$t('open_callback_form')"/>
+            <q-btn color="primary" :class="[$q.screen.lt.md ? 'full-width' : '']" class="text-manrope border-r-8 q-py-md q-px-xl q-mt-lg" no-caps :label="$t('open_callback_form')"/>
           </div>
           <img class="" src="~assets/exam-offer-img.png" alt="">
         </div>
@@ -162,7 +162,7 @@
       swipeable
       animated
       control-color="primary"
-      navigation
+      :navigation="$q.screen.gt.sm"
       padding
       infinite
       ref="carousel"
@@ -175,7 +175,7 @@
            <template v-slot:control>
             <q-carousel-control
               position="bottom-right"
-              :offset="[18, 18]"
+              :offset="$q.screen.gt.sm ? [18, 18] : [18,0]"
               class="q-gutter-xs">
               <q-btn
                 dense color="primary" outline  icon="arrow_left"
@@ -265,6 +265,22 @@ export default {
         left: 0
         top: 50%
         transform: translateY(-50%)
+@media (max-width: 768px)
+  .offer
+    height: unset
+    padding-top: 1px
+    margin-top: 0
+    margin-bottom: 60px
+    &-wrapper
+      grid-template-columns: 1fr
+    &-text-block
+      order: 2
+      margin-top: -145px
+    img
+      order: 1
+      width: 100%
+      height: auto
+      top: -130px
 
 .tabs
   margin-bottom: 135px
@@ -368,4 +384,20 @@ export default {
 
 .paper
   margin-bottom: 80px
+@media (max-width: 768px)
+  .tabs
+    margin-bottom: 70px
+  .divider
+    margin-bottom: 70px
+  .social-wrapper
+    margin-bottom: 70px
+    padding: 0 10px
+  .about
+    margin-bottom: 70px
+    &-inner
+      margin-bottom: 70px
+  .video
+    margin-bottom: 70px
+  .section-title
+    margin-bottom: 70px
 </style>

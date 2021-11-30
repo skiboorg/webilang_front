@@ -56,7 +56,8 @@
           <router-link :to="{name:'front-kids'}" class="text-weight-thin block q-mb-md">{{$t('kids_link')}}</router-link>
           <router-link :to="{name:'front-adult'}" class="text-weight-thin block q-mb-md">{{$t('adult_link')}}</router-link>
           <router-link :to="{name:'front-exams'}" class="text-weight-thin block q-mb-md">{{$t('exams_link')}}</router-link>
-          <router-link :to="{name:'front-index'}" class="text-weight-thin block q-mb-md">{{$t('feedbacks_link')}}</router-link>
+          <router-link to="/#feedback" class="text-weight-thin block q-mb-md">{{$t('feedbacks_link')}}</router-link>
+
         </div>
         <div class="footer-list">
           <p class="text-weight-bold">{{$t('information')}}</p>

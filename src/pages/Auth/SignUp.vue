@@ -182,7 +182,7 @@ export default {
         await this.$api.post('/auth/users/', {
           firstname:this.userRegData.firstname,
           lastname:this.userRegData.lastname,
-          email:this.userRegData.email,
+          email:this.userRegData.email.toLowerCase(),
           password:this.userRegData.password,
           social_avatar:this.userRegData.avatar,
           is_social_register:this.userRegData.is_social_register,

@@ -19,7 +19,8 @@
                 <div class="tariff-item-block__item-price">
                    <q-btn class="border-r-8"
                           :to="{name:'student-checkout',params:{cat_id:category.id,t_id:tariff.id}}"
-                          unelevated color="positive"
+                          unelevated
+                          color="positive"
                           :label="$i18n.locale === 'ru' ? tariff.price_rub +' ₽' : tariff.price_usd +' $'"/>
                 </div>
               </div>

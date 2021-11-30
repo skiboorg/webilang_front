@@ -59,7 +59,7 @@
         </div>
       </div>
     </section>
-    <section class="feedback">
+    <section id="feedback" class="feedback">
       <div class="container">
         <p class="section-title text-weight-bolder text-center text-fs-28 text-lh-150" v-html="$t('feedback_title')"></p>
 
@@ -167,10 +167,15 @@ export default {
   computed:{
     ...mapGetters('data',['feedbacks'])
   },
+  mounted() {
+
+    },
+
   methods:{
     callbackSubmit(){
       console.log('cb sbmit')
-    }
+    },
+
   }
 
 }
