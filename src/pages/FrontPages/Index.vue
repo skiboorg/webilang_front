@@ -207,6 +207,7 @@ export default {
       background: #F7F9FF
       transition: all .4s linear
       border-radius: 15px
+      overflow: hidden
       min-height: 250px
       padding: 120px 30px 30px 30px
       z-index: 1

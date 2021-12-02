@@ -17,11 +17,12 @@
                   </p>
                 </div>
                 <div class="tariff-item-block__item-price">
-                   <q-btn class="border-r-8"
-                          :to="{name:'student-checkout',params:{cat_id:category.id,t_id:tariff.id}}"
-                          unelevated
-                          color="positive"
-                          :label="$i18n.locale === 'ru' ? tariff.price_rub +' ₽' : tariff.price_usd +' $'"/>
+                  <q-btn class="border-r-8 text-bold pay-btn"
+                         :to="{name:'student-checkout',params:{cat_id:category.id,t_id:tariff.id}}"
+                         unelevated
+                         text-color="warning"
+                          :label="`${tariff.price_rub}₽ (${tariff.price_usd}$)`"/>
+<!--                          :label="$i18n.locale === 'ru' ? tariff.price_rub +' ₽' : tariff.price_usd +' $'"-->
                 </div>
               </div>
             </div>
@@ -38,11 +39,11 @@
                   </p>
                 </div>
                 <div class="tariff-item-block__item-price">
-                  <q-btn class="border-r-8"
+                  <q-btn class="border-r-8 text-bold pay-btn"
                          :to="{name:'student-checkout',params:{cat_id:category.id,t_id:tariff.id}}"
                          unelevated
-                         color="positive"
-                         :label="$i18n.locale === 'ru' ? tariff.price_rub +' ₽' : tariff.price_usd +' $'"/>
+                         text-color="warning"
+                          :label="`${tariff.price_rub}₽ (${tariff.price_usd}$)`"/>
                 </div>
               </div>
             </div>
@@ -79,6 +80,11 @@ export default {
 }
 </script>
 <style lang="sass" scoped>
-
+.pay-btn
+  background: #F7F9FF !important
+  transition: all .2s linear
+  &:hover
+    background: $positive !important
+    color: #ffffff !important
 
 </style>

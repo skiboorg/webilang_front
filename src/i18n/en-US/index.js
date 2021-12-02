@@ -1,5 +1,5 @@
 export default {
-
+  recover_password:'Reset password',
   your_tariff:'Your tariff',
   change_tariff:'Change tariff',
   enter_promo:'Enter promo code',

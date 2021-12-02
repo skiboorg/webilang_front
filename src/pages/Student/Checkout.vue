@@ -14,7 +14,7 @@
               <p class="no-margin">{{$i18n.locale === 'ru' ? current_tariff.name : current_tariff.name_en}} <b v-if="current_tariff.discount>0" class="text-positive">({{$t('tariff_discount')}} {{current_tariff.discount}} %)</b></p>
               <p v-if="current_tariff.info" class="no-margin">{{$i18n.locale === 'ru' ? current_tariff.info : current_tariff.info_en}}</p>
             </div>
-            <p class="q-mb-none text-warning text-bold q-mr-lg">{{$i18n.locale === 'ru' ? current_tariff.price_rub +' ₽' : current_tariff.price_usd +' $'}}</p>
+            <p class="q-mb-none text-warning text-bold q-mr-lg">{{current_tariff.price_rub +'₽'}}({{current_tariff.price_usd +'$'}})</p>
             <svg class="arrow " :class="{rotate:faq_open}" width="22" height="13" viewBox="0 0 22 13" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M3.914 0.999141L11.0273 8.11247L18.1407 0.999141C18.8557 0.284141 20.0107 0.284141 20.7257 0.999141C21.4407 1.71414 21.4407 2.86914 20.7257 3.58414L12.3107 11.9991C11.5957 12.7141 10.4407 12.7141 9.72566 11.9991L1.31066 3.58414C0.595664 2.86914 0.595664 1.71414 1.31066 0.999141C2.02566 0.302474 3.199 0.284141 3.914 0.999141V0.999141Z" fill="#545454"/>
             </svg>
@@ -25,7 +25,7 @@
               <p class="no-margin">{{$i18n.locale === 'ru' ? tariff.name : tariff.name_en}} <b v-if="tariff.discount>0" class="text-positive">({{$t('tariff_discount')}} {{tariff.discount}} %)</b></p>
               <p v-if="tariff.info" class="no-margin">{{$i18n.locale === 'ru' ? tariff.info : tariff.info_en}}</p>
             </div>
-            <p class="q-mb-none text-warning text-bold">{{$i18n.locale === 'ru' ? tariff.price_rub +' ₽' : tariff.price_usd +' $'}}</p>
+            <p class="q-mb-none text-warning text-bold">{{tariff.price_rub +'₽'}}({{tariff.price_usd +'$'}})</p>
 
           </div>
           </div>

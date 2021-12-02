@@ -11,7 +11,7 @@
               <p>{{$t('exam_offer_text3')}}</p>
             </div>
 
-            <q-btn color="primary" :class="[$q.screen.lt.md ? 'full-width' : '']" class="text-manrope border-r-8 q-py-md q-px-xl q-mt-lg" no-caps :label="$t('open_callback_form')"/>
+           <CallbackModal :label="$t('open_callback_form')" color="primary" :nocaps="true" extra_class="q-py-md q-px-xl"/>
           </div>
           <img class="" src="~assets/exam-offer-img.png" alt="">
         </div>
@@ -54,7 +54,7 @@
             <p class="text-fs-18 text-weight-bold q-mb-lg">{{$t('exam_tab1_text13')}}</p>
             <p class="no-margin text-bold">{{$t('exam_tab1_text14')}}</p>
             <div class="text-center q-mt-xl">
-              <q-btn color="primary" class="text-manrope border-r-8 q-py-md q-px-xl" no-caps   :label="$t('open_callback_form')"/>
+               <CallbackModal :label="$t('open_callback_form')" color="primary" :nocaps="true" extra_class="q-py-md q-px-xl"/>
             </div>
 
           </div>
@@ -77,7 +77,7 @@
             <p class="text-fs-18 text-weight-bold q-mb-lg">{{$t('exam_tab2_text9')}}</p>
             <p class="no-margin text-center text-bold">{{$t('exam_tab2_text10')}}</p>
             <div class="text-center q-mt-xl">
-              <q-btn color="negative" class="text-manrope border-r-8 q-py-md q-px-xl" no-caps   :label="$t('open_callback_form')"/>
+               <CallbackModal :label="$t('open_callback_form')" color="negative" :nocaps="true" extra_class="q-py-md q-px-xl"/>
             </div>
 
           </div>
@@ -97,7 +97,7 @@
             </div>
 
             <div class="text-center q-mt-xl">
-              <q-btn color="positive" class="text-manrope border-r-8 q-py-md q-px-xl" no-caps   :label="$t('open_callback_form')"/>
+               <CallbackModal :label="$t('open_callback_form')" color="positive" :nocaps="true" extra_class="q-py-md q-px-xl"/>
             </div>
 
           </div>
@@ -123,7 +123,7 @@
           <p class="with-dot dot-blue">{{$t('exam_social_project_text3')}}</p>
         </div>
         <div class="text-center q-mt-xl">
-          <q-btn color="primary" class="text-manrope border-r-8 q-py-md q-px-xl" no-caps   :label="$t('open_callback_form')"/>
+            <CallbackModal :label="$t('open_callback_form')" color="primary" :nocaps="true" extra_class="q-py-md q-px-xl"/>
         </div>
       </div>
     </section>
@@ -213,10 +213,11 @@
 
 <script>
 import TeacherCard from "components/TeacherCard";
+import CallbackModal from "components/CallbackModal";
 import {mapGetters} from "vuex";
 export default {
   components:{
-    TeacherCard
+    TeacherCard,CallbackModal
   },
   data(){
     return{

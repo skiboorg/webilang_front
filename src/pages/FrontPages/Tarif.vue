@@ -19,7 +19,7 @@
                   </p>
                 </div>
                 <div class="tariff-item-block__item-price">
-                  <p class="no-margin text-warning">{{$i18n.locale === 'ru' ? tariff.price_rub +' ₽' : tariff.price_usd +' $'}} </p>
+                 <p class="no-margin text-warning">{{tariff.price_rub +' ₽'}} ({{ tariff.price_usd +' $'}}) </p>
                 </div>
               </div>
             </div>
@@ -36,7 +36,9 @@
                   </p>
                 </div>
                 <div class="tariff-item-block__item-price">
-                  <p class="no-margin text-warning">{{$i18n.locale === 'ru' ? tariff.price_rub +' ₽' : tariff.price_usd +' $'}} </p>
+
+                  <p class="no-margin text-warning">{{tariff.price_rub +' ₽'}} ({{ tariff.price_usd +' $'}}) </p>
+<!--                  <p class="no-margin text-warning">{{$i18n.locale === 'ru' ? tariff.price_rub +' ₽' : tariff.price_usd +' $'}} </p>-->
                 </div>
               </div>
             </div>

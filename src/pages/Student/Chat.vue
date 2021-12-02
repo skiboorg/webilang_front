@@ -110,7 +110,7 @@
                   standout="bg-white text-dark shadow-0"
                   v-model="message" :label="$t('chat_new_message')">
           <template v-slot:append>
-            <q-btn round text-color="dark" :disable="!message" :loading="is_loading"  @click="sendChatMessage()" flat icon="send" />
+            <q-btn round text-color="dark" :disable="!message && !file" :loading="is_loading"  @click="sendChatMessage()" flat icon="send" />
           </template>
         </q-input>
       </div>
@@ -266,6 +266,7 @@ export default {
       }).then((response) => {
         console.log('chat message response',response)
         this.message = null
+        this.file = null
         this.is_loading = false
       })
         .catch(function (error) {

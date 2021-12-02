@@ -25,11 +25,12 @@ export default ({
   overflow: hidden
   padding-right: 30px
   &-img
-    flex-basis: 270px
+    width: 270px
+    height: 300px
     margin-right: 30px
     img
-      width: 100%
-      height: auto
+      width: 270px
+      height: 100%
       object-fit: cover
 
   &__name
@@ -49,6 +50,8 @@ export default ({
     padding: 0
     &-img
       flex-basis: 100%
+      width: unset
+      height: unset
       margin-right: 0px
       img
         width: 100%

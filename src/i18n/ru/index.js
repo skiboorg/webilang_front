@@ -1,5 +1,6 @@
 export default {
   //
+  recover_password:'Сбросить пароль',
   your_tariff:'Ваш тариф',
   change_tariff:'Изменить тариф',
   enter_promo:'Введите промокод',
@@ -129,7 +130,7 @@ export default {
   offer_subtitle:`Учите английский вместе с <br>педагогами-носителями языка из США`,
   kids_title:`WebiLang Kids`,
   kids_text:`Обучение детей от 2 до 17 лет. Комфортная среда и увлекательные уроки с опытными педагогами.`,
-  adult_title:`Webilang for adults`,
+  adult_title:`WebiLang для взрослых`,
   adult_text:`От начинающих до продвинутых. Разговорный, деловой и академический английский.`,
   exams_title:`WebiLang Exams`,
   exams_text:`Подготовка к ЕГЭ, ОГЭ. А также к международным экзаменам (IELTS, TOEFL, KET, PET)`,

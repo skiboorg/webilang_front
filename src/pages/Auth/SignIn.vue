@@ -6,7 +6,8 @@
         <p class="no-margin text-fs-18 text-bold">{{$t('signin_label')}}</p>
         <p class="no-margin text-fs-18">{{$t('or')}} <router-link class="link text-lowercase" :to="{name:'front-signup'}">{{$t('signup_label')}}</router-link></p>
       </div>
-      <q-form @submit="userLoginAction" class="full-width q-gutter-sd q-mb-lg">
+      <div v-if="!is_password_recover" class="">
+           <q-form @submit="userLoginAction" class="full-width q-gutter-sd q-mb-lg">
         <q-input
           filled
           :dense="!$q.screen.gt.sm"
@@ -34,7 +35,7 @@
           <q-btn  :loading="is_loading" :label="$t('signin_button')"  no-caps type="submit"  color="primary" class="full-width  q-py-md text-bold"/>
         </div>
       </q-form>
-      <p class="text-right q-mb-lg"><a class="link" href="#">{{$t('lost_password')}}</a></p>
+      <p @click="is_password_recover=true" class="text-right q-mb-lg cursor-pointer link">{{$t('lost_password')}}</p>
       <div class="divider q-mb-lg"><p class="no-margin text-fs-18">{{$t('or')}}</p></div>
       <div class="social-button google">
         <div class="social-button__icon">
@@ -44,6 +45,24 @@
         </div>
         <p class="no-margin" v-html="$t('google_login')"></p>
       </div>
+      </div>
+      <div v-else class="">
+         <q-form @submit="userRestorePassword" class="full-width q-gutter-sd q-mb-lg">
+        <q-input
+          filled
+          :dense="!$q.screen.gt.sm"
+          v-model="userInput.email"
+          :label="$t('your_email')"
+          lazy-rules
+          :rules="[ val => val && val.length > 0 || $t('field_is_requred'),
+            val => email_re.test(String(val)) || $t('email_is_bad')]"/>
+
+        <div class="flex items-center justify-between q-mt-md">
+          <q-btn  :loading="is_loading" :label="$t('recover_password')"  no-caps type="submit"  color="primary" class="full-width  q-py-md text-bold"/>
+        </div>
+      </q-form>
+      </div>
+
 <!--      <div class="social-button apple">-->
 <!--        <div class="social-button__icon">-->
 <!--          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">-->
@@ -89,6 +108,7 @@ export default {
 
   data () {
     return {
+      is_password_recover:false,
       is_loading:false,
       isPwd:true,
       userInput:{
@@ -106,6 +126,11 @@ export default {
   },
   methods:{
     ... mapActions('auth',['loginUser']),
+    async userRestorePassword(){
+      this.is_loading = !this.is_loading
+      this.is_loading = !this.is_loading
+
+    },
     userLoginAction() {
 
       this.is_loading = true
