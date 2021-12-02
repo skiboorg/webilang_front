@@ -4,7 +4,8 @@
     <div class="rounded-block timeblock q-mb-md">
       <div class="flex items-center justify-between">
         <q-no-ssr>
-          <p :class="{pm:!timeFormat}" class="time no-margin">{{displayTime}}</p>
+<!--          :class="{pm:!timeFormat}"-->
+          <p  class=" time no-margin">{{displayTime}}</p>
         </q-no-ssr>
         <q-icon @click="timeSettingsOpen = !timeSettingsOpen" size="18px" class="cursor-pointer" color="grey-6" name="settings"/>
       </div>
@@ -158,15 +159,12 @@ export default {
       await this.updateUserTimeFormat()
     },
     currentTime(val){
-      //if(this.timeFormat){
-        //console.log('24',val)
-        // if(this.student_upcoming_lessons.length>0){
-        //   this.displayTime = `${val.split(':')[0]}:${val.split(':')[1]}`
-        //
-        // }
-
-
-      //}else {
+      if(this.timeFormat){
+        console.log('24',val)
+        if(this.student_upcoming_lessons.length>0){
+          this.displayTime = `${val.split(':')[0]}:${val.split(':')[1]}`
+        }
+      }else {
         let time  =  val.toString ().match (/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [val];
         //console.log('am',time)
         if (time.length > 1) { // If time format correct
@@ -177,7 +175,7 @@ export default {
           time[0] = +time[0] % 12 || 12; // Adjust hours
         }
         this.displayTime = time.join (''); // return adjusted time or original string
-      //}
+      }
     }
   },
   computed:{

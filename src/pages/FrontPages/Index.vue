@@ -218,21 +218,21 @@ export default {
           right: 0
           top: 0
           position: absolute
-          content: url(~assets/offer-grid-i-1.svg)
+          content: url(~assets/offer-grid-i-1.png)
           z-index: -1
       &.mature
         &::after
           right: 0
           top: 0
           position: absolute
-          content: url(~assets/offer-grid-i-2.svg)
+          content: url(~assets/offer-grid-i-2.png)
           z-index: -1
       &.exam
         &::after
           right: 0
           top: 0
           position: absolute
-          content: url(~assets/offer-grid-i-3.svg)
+          content: url(~assets/offer-grid-i-3.png)
           z-index: -1
 
 
