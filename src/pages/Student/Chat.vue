@@ -444,4 +444,10 @@ export default {
     grid-template-columns: 1fr
   .panel-hide
     display: none
+  .messages-bottom
+    position: fixed
+  .messages-center
+    height: 85%
+  .messages-wrapper
+    height: 70vh
 </style>
