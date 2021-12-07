@@ -95,14 +95,14 @@ export default {
       if(this.payment_method==='bank'){
         const response_sber = await this.$api.post('/api/user/sber_payment',{
           language: this.$i18n.locale,
-          currency: this.$i18n.locale === 'ru' ? '643'  : '840',
           amount: this.total_price * 100,
           tariff_id: this.current_tariff.id,
           promo_code: this.promo_code
         })
         console.log(response_sber.data)
         if (response_sber.data.success){
-            window.open(response_sber.data.url, '_blank').focus()
+            //window.open(response_sber.data.url, '_blank').focus()
+            window.location.href = response_sber.data.url
         }else{
           this.$q.notify({
           message: response_sber.data.message,
