@@ -1,4 +1,30 @@
 export default {
+  reward_notify:'You have been given an award for your performance in class',
+
+  student_info_block_1_title:'Welcome!',
+  student_info_block_1_text:'Welcome to the WebiLang educational platform! To start learning, you need to follow a few simple steps:',
+
+  student_info_block_2_title:'Step one',
+  student_info_block_2_text:'Contact the school administrator to find a teacher and convenient time for a trial lesson to determine your current language level',
+  student_info_block_2_link:'WhatsApp',
+
+  student_info_block_3_title:'Step two',
+  student_info_block_3_text:'Complete your profile under the tab setup. Choose an avatar, enter your details and tell us briefly about yourself so that the teacher and other students get to know you better',
+  student_info_block_3_link:'Settings',
+
+  student_info_block_4_title:'Step Three',
+  student_info_block_4_text:'Click payment, select the appropriate tariff and make a payment to activate your personal account and start training.',
+  student_info_block_4_link:'Payment',
+
+  student_info_block_5_title:'Step Four',
+  student_info_block_5_text:'Explore our recommendations for a successful and comfortable learning',
+  student_info_block_5_link:'help.pdf',
+
+  student_info_block_6_title:'Attention !',
+  student_info_block_6_text:'Please note that if, for some reason, you cannot attend the upcoming lesson, then you must notify the administrator one day before the start of the lesson in order to reschedule the lesson to another day. ',
+
+
+
   contacts_company_info:'ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "ВЕБИЛЭНГ"<br>' +
     'ИНН  9704050974<br>' +
     'ОГРН  1217700087780',
@@ -68,7 +94,8 @@ Office 36<br>
   your_password1:`Password`,
   your_password2:`Repeat password`,
   lost_password:`Forget your password?`,
-  agree_text:`I accept Webilang’s conditions. From our Privacy Policy, you will learn about how we use and protect your data.`,
+   agree_text:`I accept Webilang’s conditions. From our <a class="link" href="/policy_en.pdf" target="_blank">Privacy Policy</a> , you will learn about how we use and protect your data.`,
+
   free_lesson:`Sign up for a free lesson`,
   subscribe:`Subscribe`,
   open_callback_form:`Request a course`,

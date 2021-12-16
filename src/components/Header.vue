@@ -70,6 +70,16 @@
 
   </q-header>
   <q-drawer v-model="rightDrawerOpen" side="right" overlay behavior="desktop" bordered>
+     <div class="q-px-md q-mt-lg">
+ <q-btn :to="$auth.loggedIn ?
+                      $auth.user.is_teacher ? {name:'teacher-groups'} : {name:'student-index'} :
+                      {name:'front-signin'}"
+             icon="person_outline"  color="primary"
+             class="text-manrope border-r-8 q-py-sm full-width q-mb-md" no-caps :label="$t('open_profile')"/>
+      <CallbackModal :label="$t('open_callback_form')" color="warning" :nocaps="true" :outline="true" extra_class="q-py-sm  full-width"/>
+
+
+    </div>
     <q-list class="q-mb-lg">
       <q-item clickable v-ripple exact active-class="text-warning" class="text-fs-18 text-bold" :to="{name:'front-index'}">
         <q-item-section>{{$t('home_link')}}</q-item-section>
@@ -118,16 +128,7 @@
 
       />
     </div>
-    <div class="q-px-md">
 
-      <CallbackModal :label="$t('open_callback_form')" color="warning" :nocaps="true" :outline="true" extra_class="q-py-sm q-mb-sm full-width"/>
-
-      <q-btn :to="$auth.loggedIn ?
-                      $auth.user.is_teacher ? {name:'teacher-groups'} : {name:'student-index'} :
-                      {name:'front-signin'}"
-             icon="person_outline"  color="primary"
-             class="text-manrope border-r-8 q-py-sm full-width" no-caps :label="$t('open_profile')"/>
-    </div>
 
   </q-drawer>
 </template>

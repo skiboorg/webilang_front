@@ -142,8 +142,11 @@ export default {
     this.height = this.$refs['group-list'].offsetHeight
 
   },
+
   async beforeMount() {
+   await this.$api.post('/api/lesson/archive',{id:this.lesson.id})
     const resp = await this.$api.get(`/api/lesson/get_presence?l_id=${this.lesson.id}`)
+
     this.precence = resp.data.map(x=>x.user)
     console.log(this.precence)
 

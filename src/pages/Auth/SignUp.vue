@@ -66,7 +66,13 @@
           </template>
         </q-input>
 
-        <q-checkbox class="q-mb-md text-caption text-weight-thin" v-model="agree" :label="$t('agree_text')" />
+        <div class="flex items-center no-wrap q-mb-lg">
+          <q-checkbox  class="q-mr-md  " v-model="agree"  />
+          <p class="no-margin text-weight-thin text-caption" v-html="$t('agree_text')"></p>
+        </div>
+
+
+
 
         <q-btn :disable="!agree" :loading="is_loading" :label="$t('signup_label')"  no-caps type="submit"  color="primary" class="full-width  q-py-md text-bold"/>
 

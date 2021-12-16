@@ -80,9 +80,9 @@
 
               <div class="text-center group-list-row__item">
                 <q-btn :to="{name:'teacher-lesson',params:{id:lesson.id}}"
-                       v-if="!lesson.is_over" size="12px"
+                      size="12px"
                        style="width: 140px"
-                       no-caps :label="$t('enter_classroom')" color="primary" />
+                       no-caps :label="$t('enter_classroom')" :color="lesson.is_over ? 'grey-5' : 'primary'" />
               </div>
             </div>
           </q-scroll-area>

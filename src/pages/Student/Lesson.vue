@@ -64,9 +64,9 @@
       </div>
     </div>
     <div class="rounded-block lessons-material">
-      <p class="no-margin text-body1 text-weight-bold">{{lessonInfo.theme}}</p>
-      <p class="text-weight-light">{{$t('lessons_material')}}</p>
-       <div class="files-grid">
+      <p class=" text-body1 q-mb-lg text-weight-bold">{{lessonInfo.theme}}</p>
+      <p class="text-weight-light  text-primary">{{$t('lessons_material')}}</p>
+       <div class="files-grid q-mb-lg">
             <a class="file-item" :href="item.file" target="_blank" v-for="item in lessonInfo.material">
                 <q-icon class="q-mr-md" size="40px" name="description" color="grey-7"/>
               <p class="no-margin text-weight-regular ellipsis">{{item.file.split('/')[6]}}</p>
@@ -76,6 +76,20 @@
               <p class="no-margin text-weight-regular ellipsis">{{item.file.split('/')[7]}}</p>
               </a>
           </div>
+
+      <p class="text-weight-light text-primary">{{$t('home_work')}}</p>
+       <div class="files-grid q-mb-lg">
+            <a class="file-item" :href="item.file" target="_blank" v-for="item in lessonInfo.homeWork">
+                <q-icon class="q-mr-md" size="40px" name="description" color="grey-7"/>
+              <p class="no-margin text-weight-regular ellipsis">{{item.file.split('/')[6]}}</p>
+              </a>
+            <a class="file-item" :href="item.file" target="_blank" v-for="item in lessonInfo.uploaded_homework">
+                <q-icon class="q-mr-md" size="40px" name="description" color="grey-7"/>
+              <p class="no-margin text-weight-regular ellipsis">{{item.file.split('/')[7]}}</p>
+              </a>
+          </div>
+       <p  class="text-primary q-mb-none">{{$t('teacher_comment')}}</p>
+            <p class="q-mb-none q-pt-md">{{lessonInfo.comment}}</p>
     </div>
   </div>
 
@@ -133,7 +147,7 @@ export default {
 </script>
 <style lang="sass" scoped>
 .lessons-wrapper
-  height: calc(100vh - 30px - 30px - 30px - 51px)
+
   display: grid
   grid-template-columns: 1fr
   grid-gap: 24px
@@ -158,8 +172,7 @@ export default {
     height: 1px
     background: #CFCFCF
     margin: 15px 0
-.lessons-material
-  height: 190px
+
 @media (max-width: 768px)
   .lessons-list
     &-row

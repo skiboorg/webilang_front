@@ -145,7 +145,7 @@
         <div class="q-video text-center">
       <iframe
         class="video1-frame"
-        src="https://www.youtube.com/embed/k3_tw44QsZQ?rel=0"
+        src="https://www.youtube.com/embed/7FUMT1WdlwY?rel=0"
         frameborder="0"
         allowfullscreen
       />
@@ -198,7 +198,7 @@
         <div class="q-video text-center">
       <iframe
         class="video1-frame"
-        src="https://www.youtube.com/embed/k3_tw44QsZQ?rel=0"
+        src="https://www.youtube.com/embed/z7L9m79oaSQ?rel=0"
         frameborder="0"
         allowfullscreen
       />

@@ -35,7 +35,7 @@
     <div class="q-mb-lg">
 
       <p class="text-bold">{{$t('enter_promo')}}</p>
-     <q-form  @submit.prevent="promoFormSubmit" class="flex items-center">
+     <q-form  @submit.prevent="promoFormSubmit" class="flex items-center no-wrap">
             <q-input outlined v-model="promo_code" bg-color="white"  />
             <q-btn class=" text-manrope  q-py-md q-px-xl" :disable="!promo_code"
                    :loading="is_loading" no-caps color="primary" type="submit" :label="$t('lessons_sort_apply')"/>
@@ -152,10 +152,10 @@ export default {
         discount_usd = this.active_promo.discount_money_usd
         is_free_lessons = this.active_promo.is_free_lessons
       }else {
-        return this.$i18n.locale === 'ru' ? this.current_tariff.price_rub  : this.current_tariff.price_usd
+        return this.$i18n.locale === 'ru' ? this.current_tariff.price_rub  : this.current_tariff.price_rub
       }
       if(is_free_lessons){
-        return this.$i18n.locale === 'ru' ? this.current_tariff.price_rub  : this.current_tariff.price_usd
+        return this.$i18n.locale === 'ru' ? this.current_tariff.price_rub  : this.current_tariff.price_rub
       }
       if(this.$i18n.locale === 'ru'){
 
@@ -169,10 +169,10 @@ export default {
       }else{
 
          if(discount_percent){
-            return parseFloat(this.current_tariff.price_usd - this.current_tariff.price_usd * (discount_percent / 100)).toFixed(0)
+            return parseFloat(this.current_tariff.price_rub - this.current_tariff.price_rub * (discount_percent / 100)).toFixed(0)
           }
           if(discount_usd){
-            return this.current_tariff.discount_usd - discount_usd
+            return this.current_tariff.discount_rub - discount_rub
           }
 
       }
@@ -228,9 +228,14 @@ export default {
       padding-bottom: 30px
     &-item
       &__top
+
         p
-          font-size: 20px
-          line-height: 28px
-          flex-basis: 80%
+          font-size: 13px
+          line-height: 18px
+          //flex-basis: 100%
+        & .with-dot
+          padding: 0
+          &::before
+            content: none
 
 </style>
