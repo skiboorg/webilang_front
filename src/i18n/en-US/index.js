@@ -1,4 +1,7 @@
 export default {
+  contacts_company_info:'ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "ВЕБИЛЭНГ"<br>' +
+    'ИНН  9704050974<br>' +
+    'ОГРН  1217700087780',
   contacts_address:'Address',
   contacts_address_place:`Russia, Moscow<br>
 2-nd Frunzenskaya street, 8<br>

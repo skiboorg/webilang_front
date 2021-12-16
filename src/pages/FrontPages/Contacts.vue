@@ -5,6 +5,7 @@
       <div class="container">
 
         <p class="section-title">{{$t('contacts_title')}}</p>
+        <p class="q-mb-xl flex items-center text-fs-20" v-html="$t('contacts_company_info')"></p>
 
         <p class="text-fs-18 text-weight-bold ">{{$t('contacts_phone')}}</p>
         <p class="q-mb-sm flex items-center text-fs-20">
