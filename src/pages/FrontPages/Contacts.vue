@@ -19,6 +19,10 @@
           </svg>
           <a class="text-weight-bold" href="https://wa.me/79609980136">+7 (960) 998 - 01 - 36</a>
         </p>
+        <p class="text-fs-18 text-weight-bold ">{{$t('contacts_address')}}</p>
+         <p class="q-mb-xl flex items-center text-fs-20" v-html="$t('contacts_address_place')">
+
+        </p>
         <p class="text-fs-18 text-weight-bold ">{{$t('we_in_social_networks')}}</p>
         <p class="q-mb-lg">
           <a class="inline-block q-mr-md" href="https://m.facebook.com/webilang/" target="_blank"><svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
