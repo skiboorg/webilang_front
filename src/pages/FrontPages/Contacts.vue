@@ -68,7 +68,7 @@
 <style lang="sass" scoped>
 .contacts
   position: relative
-  padding-top: 100px
+  padding-top: 30px
 
   &-img
     position: absolute

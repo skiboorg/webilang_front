@@ -27,6 +27,10 @@ module.exports = configure(function (ctx) {
         server: false,
         path: 'hello'
       },
+      {
+        server: false,
+        path: 'libs'
+      },
     ],
 
     // https://v2.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css

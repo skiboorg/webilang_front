@@ -85,7 +85,7 @@
         <q-card-section class="no-padding" ref="avatars">
           <div class="avatars-wrapper">
             <q-avatar class="cursor-pointer avatar" @click="selected_avatar=item.id" v-close-popup :size="$q.screen.lt.md ? '80px' : '100px'" v-for="(item,index) in avatars" :key="index">
-              <img class="avatar-img" :src="item.image" alt="">
+              <img style="object-fit: contain" class="avatar-img" :src="item.image" alt="">
             </q-avatar>
           </div>
 
@@ -181,9 +181,9 @@ export default {
   display: grid
   grid-template-columns: repeat(auto-fill, minmax(100px,1fr))
   grid-gap: 15px
-.avatar
+.avatar-img
   &:hover
-    box-shadow: 0 0 10px 1px $grey-6
+    filter: drop-shadow(0 0 5px $grey-6)
 @media (max-width: 768px)
   .avatars-wrapper
     grid-template-columns: repeat(auto-fill, minmax(70px,1fr))

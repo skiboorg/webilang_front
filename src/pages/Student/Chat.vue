@@ -23,9 +23,13 @@
                 <q-item-label class="text-weight-bold">{{chat.group.label}}</q-item-label>
               </div>
               <div v-else>
-                <q-item-label v-if="chat.starter.is_superuser" class="text-weight-bold">{{$t('admin')}}</q-item-label>
+                <div v-if="$auth.user.is_superuser">{{chat.opponent.firstname}}</div>
+                <div v-else>
+                  <q-item-label v-if="chat.starter.is_superuser" class="text-weight-bold">{{$t('admin')}}</q-item-label>
                 <q-item-label v-else class="text-weight-bold">{{$auth.user.id === chat.starter.id ? chat.opponent.firstname : chat.starter.firstname}}</q-item-label>
-              </div>
+
+                </div>
+             </div>
               <q-item-label caption lines="1" class="ellipsis text-weight-light" style="max-width: 150px">
                 <span class="text-primary text-bold text-caption" v-if="$auth.user.id === parseInt(chat.last_message_user_id)">{{$t('chat_own_last_message')}}</span>
                 {{chat.last_message}}

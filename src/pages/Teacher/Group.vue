@@ -116,6 +116,7 @@
               minimal
               @update:model-value="updateDates"
               multiple
+              first-day-of-week="1"
               flat
               event-color = 'grey-5'
             />
@@ -251,6 +252,7 @@
               :locale="$i18n.locale === 'ru' ? localeRu : localeEn"
               color="positive"
               minimal
+              first-day-of-week="1"
               flat
               :event-color = 'setEventColor'
             />
@@ -431,7 +433,7 @@
               </q-badge>
               <q-icon class="q-mr-md" size="40px" name="upload_file" color="grey-5"/>
               <p class="no-margin text-weight-regular ellipsis">{{item.filename}}
-                <span class="block text-caption text-positive" v-if="item.is_uploaded">{{$t('teacher_file_uploaded')}}</span>
+                <span style="font-size: 9px" class="block  text-positive" v-if="item.is_uploaded">{{$t('teacher_file_uploaded')}}</span>
               </p>
             </div>
 

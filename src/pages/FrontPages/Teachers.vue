@@ -2,7 +2,7 @@
   <q-page>
     <section class="teachers">
       <div class="container">
-        <h1 class="teachers-title">Преподаватели онлайн-школы <span>WebiLang</span></h1>
+        <h1 class="teachers-title" v-html="$t('teachers_title')"></h1>
         <TeacherCard class="q-mb-lg" :teacher="item" v-for="item in teachers" :key="item.id" />
 
 

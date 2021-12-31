@@ -1,5 +1,6 @@
 export default {
-  reward_notify:'You have been given an award for your performance in class',
+
+  reward_notify:'Congratulations! You’re successfully completed a WebiLang course. Keep up the good work! :)',
 
   student_info_block_1_title:'Welcome!',
   student_info_block_1_text:'Welcome to the WebiLang educational platform! To start learning, you need to follow a few simple steps:',
@@ -25,9 +26,7 @@ export default {
 
 
 
-  contacts_company_info:'ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "ВЕБИЛЭНГ"<br>' +
-    'ИНН  9704050974<br>' +
-    'ОГРН  1217700087780',
+  contacts_company_info:'WEBILANG LLC',
   contacts_address:'Address',
   contacts_address_place:`Russia, Moscow<br>
 2-nd Frunzenskaya street, 8<br>
@@ -59,8 +58,8 @@ Office 36<br>
 
   data_saved:'Data saved successfully',
    greetings_message_title:'Welcome',
-  greetings_message:'Hello student! Fill in info about yourself ',
-  greetings_message_teacher:'Hello teacher! Fill in info about yourself ',
+  greetings_message:'Hello! Fill in info about yourself ',
+  greetings_message_teacher:'Hello! Fill in info about yourself ',
   greetings_message_link_text:'here',
    password_hint:'Password must be at least 8 characters long and include letters and numbers',
   password_len:'Minimum 8 characters',
@@ -73,8 +72,8 @@ Office 36<br>
   over_lesson:'Completed lesson',
   coming_lesson:'Upcoming lesson',
   replaced_lesson:'Rescheduled lesson',
-  call_friends:'Call friends!',
-  share_promo:'Submit your promo code and get 2 free lessons',
+  call_friends:'Invite your friends!',
+  share_promo:'Submit your promo code and get 2 free group lessons',
   choose_tarif:'Not decided on the tariff?',
   need_data:'Leave your details, we will conduct a free consultation and select the desired tariff',
   policy_title:'Privacy Policy',
@@ -152,7 +151,7 @@ Office 36<br>
   contacts:`Contacts`,
   work_time:`Daily 9:00 to 22:00`,
   we_accept:`We accept:`,
-  copyright_text_top:`© Webilang 2014-2021. All rights reserved. Learn about`,
+  copyright_text_top:`© Webilang 2014-2022. All rights reserved. Learn about`,
   policy_link_text:`our privacy policy.`,
   copyright_text_bottom:`By using our website, you agree to the use of cookies and your personal data for the purposes of improving the website and customer service, retargeting, statistical research, and providing relevant advertising information based on your preferences and interests.`,
   //футер
@@ -356,7 +355,7 @@ But there are a few scaffolds that will help: advanced organizer (a class presen
   //Как проходит обучение?
 
   //Преподаватели
-  teachers_title:`Webilang teachers <span>Webilang</span>`,
+  teachers_title:`WebiLang school teachers`,
   //Преподаватели
 
   //О нас

@@ -3,6 +3,11 @@ body
   font-weight: 500
   color: $dark
   overflow-x: hidden
+
+.text-lh-100
+  line-height: 100%
+.text-lh-120
+  line-height: 120%
 .text-manrope
   font-family: 'Manrope', sans-serif
   font-weight: 800
@@ -64,6 +69,7 @@ a
   line-height: 22px
   padding-left: 32px
   &::before
+    transition: all .2s linear
     position: absolute
     content: ''
     width: 12px
@@ -280,7 +286,7 @@ a
   z-index: 1
   &-wrapper
     display: grid
-    grid-template-columns: repeat(3,1fr)
+    grid-template-columns: repeat(2,1fr)
     grid-gap: 30px
     margin-top: 70px
 @media (max-width: 768px)
@@ -308,3 +314,44 @@ a
           margin-top: 15px
           bottom: -15px
           left: 0
+
+.user-menu
+  position: relative
+  user-select: none
+  &-top
+    background: #F7F9FF
+    height: 100%
+    display: flex
+    align-items: center
+    justify-content: space-between
+    padding: 5px
+    border-radius: 500px 100px 100px 500px
+    cursor: pointer
+    p
+      max-width: 100px
+      font-weight: 600
+      font-size: 16px
+  &-bottom
+    z-index: 100
+    pointer-events: none
+    opacity: 0
+    filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.1))
+    position: absolute
+    background: #F6F9FF
+    left: 0
+    right: 0
+    top: 70px
+    border-radius: 10px
+    transition: all .2s linear
+    &__item
+      padding: 15px
+      display: grid
+      grid-template-columns: 1fr 4fr
+    &.active
+      opacity: 1
+      pointer-events: all
+      top: 60px
+
+@media (max-width: 768px)
+  .tariff-item
+    padding: 15px

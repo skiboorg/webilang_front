@@ -20,7 +20,9 @@
             </svg>
           </div>
           <div  class="faq-item__bottom" :class="{active:faq_open}" >
-           <div @click="current_tariff=tariff" class="faq-item__top q-pb-md can-hover" v-for="tariff in current_tariff_category.tariffs" :key="tariff.id">
+             <p class="text-fs-18 text-weight-bold q-mb-sm">{{$t('tariff_mini_group')}}</p>
+           <div @click="current_tariff=tariff" class="faq-item__top q-pb-md can-hover"
+                v-for="tariff in current_tariff_category.tariffs.filter(x=>!x.is_personal)" :key="tariff.id">
             <div class="with-dot dot-blue col-grow">
               <p class="no-margin">{{$i18n.locale === 'ru' ? tariff.name : tariff.name_en}} <b v-if="tariff.discount>0" class="text-positive">({{$t('tariff_discount')}} {{tariff.discount}} %)</b></p>
               <p v-if="tariff.info" class="no-margin">{{$i18n.locale === 'ru' ? tariff.info : tariff.info_en}}</p>
@@ -28,6 +30,18 @@
             <p class="q-mb-none text-warning text-bold">{{tariff.price_rub +'₽'}}({{tariff.price_usd +'$'}})</p>
 
           </div>
+<q-separator class="q-mb-md"/>
+              <p class="text-fs-18 text-weight-bold q-mb-sm">{{$t('tariff_individual')}}</p>
+           <div @click="current_tariff=tariff" class="faq-item__top q-pb-md can-hover"
+                v-for="tariff in current_tariff_category.tariffs.filter(x=>x.is_personal)" :key="tariff.id">
+            <div class="with-dot dot-blue col-grow">
+              <p class="no-margin">{{$i18n.locale === 'ru' ? tariff.name : tariff.name_en}} <b v-if="tariff.discount>0" class="text-positive">({{$t('tariff_discount')}} {{tariff.discount}} %)</b></p>
+              <p v-if="tariff.info" class="no-margin">{{$i18n.locale === 'ru' ? tariff.info : tariff.info_en}}</p>
+            </div>
+            <p class="q-mb-none text-warning text-bold">{{tariff.price_rub +'₽'}}({{tariff.price_usd +'$'}})</p>
+
+          </div>
+
           </div>
         </div>
 
@@ -49,7 +63,7 @@
       <p v-if="active_promo.id && active_promo.is_free_lessons" class="text-positive text-bold text-fs-20">
         {{$t('bonus_lessons')}}  {{active_promo.free_lessons_count}}  {{$t('bonus_lessons_1')}}
       </p>
-      <p class="text-weight-bolder text-fs-20">{{$t('total')}} {{total_price}} {{$i18n.locale === 'ru' ? 'руб' : '$'}}</p>
+      <p class="text-weight-bolder text-fs-20">{{$t('total')}} {{total_price}} RUB</p>
       <p class="text-bold text-fs-20">{{$t('payment_method')}}</p>
       <div class="flex items-center q-mb-lg">
          <q-radio dense v-model="payment_method" val="bank" color="grey-7" class="q-mr-lg text-bold" :label="$t('bank_card')" />

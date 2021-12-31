@@ -34,9 +34,6 @@
         <p class="no-margin text-bold">{{$t('teacher_lesson_student_presence')}}</p>
         <p class="no-margin text-bold">{{$t('teacher_lesson_student_comment')}}</p>
         <p class="no-margin text-bold">{{$t('teacher_lesson_student_reward')}}</p>
-
-
-
       </div>
       <div  class="group-list">
         <q-no-ssr>
@@ -144,7 +141,7 @@ export default {
   },
 
   async beforeMount() {
-   await this.$api.post('/api/lesson/archive',{id:this.lesson.id})
+   //await this.$api.post('/api/lesson/archive',{id:this.lesson.id})
     const resp = await this.$api.get(`/api/lesson/get_presence?l_id=${this.lesson.id}`)
 
     this.precence = resp.data.map(x=>x.user)

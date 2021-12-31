@@ -35,6 +35,62 @@
           </div>
           <a v-if="student_upcoming_lessons.length>0" target="_blank" class="btn" :href="student_upcoming_lessons[0].link">{{$t('enter_classroom')}}</a>
         </div>
+        <div v-if="student_upcoming_lessons.length>0" class="lt-md rounded-block">
+          <p class="text-bold ">{{$t('lessons_materials')}}</p>
+          <q-separator class="bg-grey-3 q-mb-lg"/>
+          <p class="text-caption text-weight-light">{{$t('lesson_materials')}}</p>
+
+          <div class="files-grid">
+            <!--            <a class="file-item" :href="item.file" target="_blank" v-for="item in student_upcoming_lessons[0].material"></a>-->
+            <div class="file-item" v-for="item in student_upcoming_lessons[0].material" :key="item.id">
+              <q-icon class="q-mr-md" size="40px" name="description" color="grey-7"/>
+              <p class="no-margin text-weight-regular ellipsis">{{item.filename}}</p>
+              <a :href="item.file" class="file-item__icon download">
+                <q-icon  name="cloud_download" size="25px" color="positive"/>
+              </a>
+              <q-icon class="file-item__icon preview" @click="currentFileUrl=item.file, previewModal=true" name="visibility" size="25px" color="primary"/>
+            </div>
+
+            <div class="file-item" v-for="item in student_upcoming_lessons[0].uploaded_material" :key="item.id">
+              <q-icon class="q-mr-md" size="40px" name="description" color="grey-7"/>
+              <p class="no-margin text-weight-regular ellipsis">{{item.filename}}</p>
+              <a :href="item.file" class="file-item__icon download">
+                <q-icon  name="cloud_download" size="25px" color="positive"/>
+              </a>
+              <q-icon class="file-item__icon preview" @click="currentFileUrl=item.file, previewModal=true" name="visibility" size="25px" color="primary"/>
+
+            </div>
+          </div>
+          <q-separator class="bg-grey-3 q-mb-lg"/>
+          <p class="text-caption text-weight-light">{{$t('home_work')}}</p>
+          <div class="files-grid">
+            <div class="file-item" v-for="item in student_upcoming_lessons[0].homeWork" :key="item.id">
+              <q-icon class="q-mr-md" size="40px" name="description" color="grey-7"/>
+              <p class="no-margin text-weight-regular ellipsis">{{item.filename}}</p>
+              <a :href="item.file" class="file-item__icon download">
+                <q-icon  name="cloud_download" size="25px" color="positive"/>
+              </a>
+              <q-icon class="file-item__icon preview" @click="currentFileUrl=item.file, previewModal=true" name="visibility" size="25px" color="primary"/>
+
+            </div>
+
+            <div class="file-item" v-for="item in student_upcoming_lessons[0].uploaded_homework" :key="item.id">
+              <q-icon class="q-mr-md" size="40px" name="description" color="grey-7"/>
+              <p class="no-margin text-weight-regular ellipsis">{{item.filename}}</p>
+              <a :href="item.file" class="file-item__icon download">
+                <q-icon  name="cloud_download" size="25px" color="positive"/>
+              </a>
+              <q-icon class="file-item__icon preview" @click="currentFileUrl=item.file, previewModal=true" name="visibility" size="25px" color="primary"/>
+
+            </div>
+
+          </div>
+          <div v-if="student_upcoming_lessons[0].comment">
+            <q-separator  class="bg-grey-3 q-mb-lg"/>
+            <p  class="text-primary q-mb-none">{{$t('teacher_comment')}}</p>
+            <p class="q-mb-none q-pt-md">{{student_upcoming_lessons[0].comment}}</p>
+          </div>
+        </div>
          <div v-if="current_group.teacher" class="rounded-block">
           <p class="text-bold ">{{$t('your_teacher')}}</p>
           <q-separator class="bg-grey-3 q-mb-lg"/>
@@ -53,16 +109,29 @@
           </q-no-ssr>
           <q-separator class="bg-grey-3 q-mb-lg"/>
           <div class="rewards">
-            <q-avatar rounded class="relative-position" size="80px" v-for="reward in $auth.user.rewards">
+            <div v-show="!reward.reward.is_full_cource_reward" v-for="reward in $auth.user.rewards" :key="reward.id">
+              <q-avatar  rounded class="relative-position" size="80px" >
               <img class="avatar-img" :src="reward.reward.image" alt="">
               <div v-if="reward.count>1" class="reward-count"><p class="no-margin text-body1">{{reward.count}}</p></div>
             </q-avatar>
+            </div>
+
+          </div>
+          <q-separator spaced="md"/>
+          <div class="rewards">
+            <div v-show="reward.reward.is_full_cource_reward" v-for="reward in $auth.user.rewards" :key="reward.id">
+              <q-avatar  rounded class="relative-position" size="80px" >
+              <img class="avatar-img" :src="reward.reward.image" alt="">
+              <div v-if="reward.count>1" class="reward-count"><p class="no-margin text-body1">{{reward.count}}</p></div>
+            </q-avatar>
+            </div>
+
           </div>
         </div>
 
       </div>
       <div class="grid-inner">
-        <div v-if="student_upcoming_lessons.length>0" class="rounded-block">
+        <div v-if="student_upcoming_lessons.length>0" class="gt-sm rounded-block">
           <p class="text-bold ">{{$t('lessons_materials')}}</p>
           <q-separator class="bg-grey-3 q-mb-lg"/>
           <p class="text-caption text-weight-light">{{$t('lesson_materials')}}</p>
