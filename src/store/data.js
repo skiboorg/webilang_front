@@ -173,7 +173,7 @@ export const getters = {
     //   //console.log(state.current_group)
     //   return  state.current_group.lessons.filter(x=>!x.is_over)
     //}
-    console.log('state.current_group',state.current_group)
+    //console.log('state.current_group',state.current_group)
     try{
       return  state.current_group.lessons.filter(x=>!x.is_over)
     }catch (e) {

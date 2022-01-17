@@ -76,7 +76,7 @@
       full-height
       @before-hide="updateUser"
     >
-      <q-card class="column rounded-block full-height" style="width: 850px;max-width: 90vw">
+      <q-card class=" rounded-block full-height" style="width: 850px;max-width: 90vw">
       <q-card-section class="row items-center no-padding q-mb-lg">
           <div class="text-h6 text-weight-bolder">{{$t('choose_avatar')}}</div>
           <q-space />

@@ -207,7 +207,7 @@ export default {
     },
     currentTime(val){
       if(this.timeFormat){
-        console.log('24',val)
+        //console.log('24',val)
         if(this.student_upcoming_lessons.length>0){
           this.displayTime = `${val.split(':')[0]}:${val.split(':')[1]}`
         }
