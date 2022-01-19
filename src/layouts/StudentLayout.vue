@@ -96,6 +96,6 @@ export default {
       grid-template-columns: 1fr
     &-inner
       padding: 0 10px
-      margin-top: 55px
+      margin-top: 85px
 
 </style>

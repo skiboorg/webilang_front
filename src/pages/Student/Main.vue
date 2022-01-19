@@ -95,9 +95,10 @@
           <p class="text-bold ">{{$t('your_teacher')}}</p>
           <q-separator class="bg-grey-3 q-mb-lg"/>
           <div class="flex items-center q-mb-lg">
-            <q-avatar size="60px" class="q-mr-lg">
-              <img class="avatar-img" :src="current_group.teacher.user_avatar" alt="">
-            </q-avatar>
+              <AvatarWithModal size="60px" :user="current_group.teacher" />
+<!--            <q-avatar size="60px" class="q-mr-lg">-->
+<!--              <img class="avatar-img" :src="current_group.teacher.user_avatar" alt="">-->
+<!--            </q-avatar>-->
             <p  class="no-margin text-weight-bolder text-fs-18">{{current_group.teacher.firstname}} {{current_group.teacher.lastname}}</p>
           </div>
           <q-btn :to="{name:'student-chats',query: { o_id: current_group.teacher.id+947623 }}" color="primary" icon="mail_outline" no-caps class="border-r-8 full-width text-bold q-py-sm" :label="$t('chat_w_teacher')"/>
@@ -297,8 +298,9 @@
 
 
 import {mapGetters} from "vuex";
-
+import AvatarWithModal from "components/Student/AvatarWithModal";
 export default {
+   components: {AvatarWithModal},
   data() {
     return {
       currentFileUrl:'',

@@ -1,5 +1,6 @@
 export default {
-
+  user_found:'New password send to email',
+  user_not_found:'User not found',
   reward_notify:'Congratulations! You’re successfully completed a WebiLang course. Keep up the good work! :)',
 
   student_info_block_1_title:'Welcome!',

@@ -51,14 +51,14 @@
         <q-input
           filled
           :dense="!$q.screen.gt.sm"
-          v-model="userInput.email"
+          v-model="recover_email"
           :label="$t('your_email')"
           lazy-rules
           :rules="[ val => val && val.length > 0 || $t('field_is_requred'),
             val => email_re.test(String(val)) || $t('email_is_bad')]"/>
 
         <div class="flex items-center justify-between q-mt-md">
-          <q-btn  :loading="is_loading" :label="$t('recover_password')"  no-caps type="submit"  color="primary" class="full-width  q-py-md text-bold"/>
+          <q-btn :loading="is_loading" :label="$t('recover_password')"  no-caps type="submit"  color="primary" class="full-width  q-py-md text-bold"/>
         </div>
       </q-form>
       </div>
@@ -120,6 +120,7 @@ export default {
         password:null,
         is_social_register:false,
       },
+      recover_email:null,
       email_re:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 
     }
@@ -128,6 +129,22 @@ export default {
     ... mapActions('auth',['loginUser']),
     async userRestorePassword(){
       this.is_loading = !this.is_loading
+     const resp = await this.$api.post('/api/user/recover_password',{email:this.recover_email,lang:this.$i18n.locale})
+      if (resp.data.result){
+        this.$q.notify({
+          message: this.$t('user_found'),
+          position: this.$q.screen.lt.sm ? 'bottom' : 'bottom-right',
+          color:'positive',
+          icon: 'announcement'
+        })
+      }else {
+        this.$q.notify({
+          message: this.$t('user_not_found'),
+          position: this.$q.screen.lt.sm ? 'bottom' : 'bottom-right',
+          color:'negative',
+          icon: 'announcement'
+        })
+      }
       this.is_loading = !this.is_loading
 
     },

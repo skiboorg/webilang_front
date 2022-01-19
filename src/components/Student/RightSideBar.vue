@@ -120,7 +120,7 @@
     <div class="rounded-block">
       <p class="text-caption text-bold">{{$t('call_friends')}}</p>
       <p class="text-caption text-weight-thin">{{$t('share_promo')}}</p>
-      <p class="q-mb-none text-negative text-bold text-h6">{{$auth.user.promo.code}}</p>
+      <p v-if="$auth.loggedIn" class="q-mb-none text-negative text-bold text-h6">{{$auth.user.promo.code}}</p>
     </div>
   </div>
   </q-no-ssr>
@@ -170,7 +170,16 @@ export default {
 
   },
   methods: {
-    ...mapActions('auth',['getUser']),
+    ...mapActions('auth',['getUser','logoutUser']),
+    async logoutUserAction(){
+      document.cookie = 'auth_token' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;'
+      await this.$api.post('/auth/token/logout/')
+      this.$api.defaults.headers.common['Authorization'] = null
+      console.log(this.$api.defaults.headers.common)
+      // window.location.href='/'
+      this.logoutUser()
+      await this.$router.push('/')
+    },
     setEventColor(val){
       let date = val.replaceAll('/','-')
       if (this.current_group){

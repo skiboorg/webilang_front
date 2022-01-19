@@ -1,11 +1,12 @@
 <template>
 
-  <q-avatar @click="modalActive=!modalActive" size="40px" class="cursor-pointer" >
+  <q-avatar @click="modalActive=!modalActive" :size="size ? size : '40px'" class="cursor-pointer" >
     <img class="avatar-img" :src="user.user_avatar" alt="">
   </q-avatar>
   <q-dialog  v-model="modalActive">
     <q-card class="infoModal">
       <q-card-section class="row items-start q-pa-lg">
+
         <q-avatar @click="modalActive=!modalActive" size="150px" class="cursor-pointer" >
           <img class="avatar-img" :src="user.user_avatar" alt="">
         </q-avatar>
@@ -29,7 +30,7 @@
 
 
 export default {
-  props:['user'],
+  props:['user','size'],
   data() {
     return {
       modalActive:false,

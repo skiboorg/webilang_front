@@ -124,7 +124,7 @@ export default {
 .lesson-theme
   max-width: 80%
 .lessons-list
-  height: calc(100vh - 30px - 30px - 30px - 51px - 200px)
+  //height: calc(100vh - 30px - 30px - 30px - 51px - 200px)
   &-header
     display: grid
     grid-template-columns: repeat(4,1fr)

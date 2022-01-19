@@ -41,7 +41,7 @@
         <q-spinner-comment size="50px" color="primary" />
       </q-inner-loading>
       <div class="messages-top flex items-center justify-between">
-        <div class="flex items-center">
+        <div v-if="!data_loading" class="flex items-center">
           <q-avatar size="30px" class="q-mr-md">
             <img class="avatar-img" v-if="!chatData.group" :src="chatData.user_avatar" alt="">
             <img class="avatar-img" v-else :src="chatData.group.image" alt="">
@@ -49,8 +49,11 @@
           <p v-if="!chatData.group" class="no-margin text-weight-bold">
             {{chatData.is_superuser ? $t('admin') : chatData.firstname + ' ' + chatData.lastname}}
           </p>
+
           <p v-else class="no-margin text-weight-bold">{{chatData.group.label}} </p>
+
         </div>
+          <div v-else style="height: 30px" class=""><p class=""></p></div>
         <q-btn class="border-r-8 q-px-sm lt-sm"
                @click="chatOpen = !chatOpen"
                dense
@@ -136,7 +139,7 @@ export default {
   // },
   data() {
     return {
-      data_loading:false,
+      data_loading:true,
        smiles:[
         {code:'😀'},
         {code:'😄'},
