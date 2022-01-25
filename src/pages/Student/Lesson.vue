@@ -46,8 +46,7 @@
           <div class="lessons-list-divider"></div>
          <div class="lessons-list-row" @click="selectedLesson=lesson.id" v-for="(lesson,index) in student_over_lessons" :key="lesson.id">
            <q-no-ssr>
-              <p class="no-margin text-weight-light">{{new Date(lesson.date).toLocaleDateString()}} |
-                {{$filters.normalizeTime(lesson.date,lesson.time)}}</p>
+              <p class="no-margin text-weight-light">{{new Date(lesson.date).toLocaleDateString()}}</p>
 
            </q-no-ssr>
             <p class="no-margin text-weight-light ellipsis lesson-theme">{{lesson.theme}}</p>

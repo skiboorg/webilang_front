@@ -132,7 +132,15 @@ export default {
       this.is_loading = !this.is_loading
       const response = await this.$api.post('/api/user/check_promo',{code:this.promo_code})
       console.log(response.data)
-      if (response.data){
+      if (response.data.promo_used){
+        this.$q.notify({
+          message: this.$t('promo_used'),
+          position: this.$q.screen.lt.sm ? 'bottom' : 'bottom-right',
+          color:'negative',
+          icon: 'announcement'
+        })
+      }else {
+        if (response.data){
         this.active_promo = response.data
         this.$q.notify({
           message: this.$t('promo_found'),
@@ -149,6 +157,8 @@ export default {
           icon: 'announcement'
         })
       }
+      }
+
       this.is_loading = !this.is_loading
     }
   },

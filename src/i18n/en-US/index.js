@@ -52,6 +52,7 @@ Office 36<br>
   rules:'contract-offer.',
   promo_not_found:'Promo code not found',
   promo_found:'Promo code applied',
+  promo_used:'Promo code is not valid',
   bonus_lessons:'Promo code for ',
   bonus_lessons_1:'bonus lessons',
   rules_title:'Contract-offer',

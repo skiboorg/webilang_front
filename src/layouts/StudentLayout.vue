@@ -86,7 +86,7 @@ export default {
     &-wrapper
       grid-template-columns: 1fr 4fr
     &-content
-      grid-template-columns: 3fr 1fr
+      grid-template-columns: 65% 32%
 
 @media (max-width: 1024px)
   .student
@@ -96,6 +96,6 @@ export default {
       grid-template-columns: 1fr
     &-inner
       padding: 0 10px
-      margin-top: 85px
+      margin-top: 65px
 
 </style>

@@ -72,7 +72,7 @@
     <section class="video">
     <div class="container">
       <div class="video-wrapper">
-        <img class="img cursor-pointer" src="~assets/kids-video.png" alt="">
+        <img class="img cursor-pointer" @click="video=true" src="~assets/kids-video.png" alt="">
         <div class="video-text">
           <p class="no-margin">{{$t('kids_video_record')}}</p>
         </div>
@@ -80,6 +80,16 @@
     </div>
     </section>
   </q-page>
+  <q-dialog
+      v-model="video"
+    >
+      <q-card style="width: 700px; max-width: 100vw;">
+       <q-video
+      :ratio="16/9"
+      src="https://www.youtube.com/embed/DdWbPbANCoA?rel=0"
+    />
+      </q-card>
+    </q-dialog>
 </template>
 
 <script>
@@ -88,11 +98,16 @@
 
 import CallbackModal from "components/CallbackModal";
 
-export default ({
+export default {
   components:{
     CallbackModal
   },
-})
+  data(){
+    return{
+      video:false
+    }
+  }
+}
 </script>
 <style lang="sass" scoped>
 .offer
@@ -165,7 +180,8 @@ export default ({
       top: -100px
     &::after
       top: -125px
-      right: -90px
+      right: -30px
+      transform: scale(0.7)
 
 .groups
   position: relative

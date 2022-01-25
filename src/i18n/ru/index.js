@@ -50,6 +50,7 @@ export default {
   rules:'договора-оферты.',
   promo_not_found:'Промо-код не найден',
   promo_found:'Промо-код применен',
+  promo_used:'Промокод не действителен',
   bonus_lessons:'Промо-код на ',
   bonus_lessons_1:'бонусных занятия',
 

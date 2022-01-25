@@ -20,11 +20,11 @@
               <q-checkbox v-if="selectMode" v-model="item.is_selected" />
               <p v-if="!item.is_first" class="text-weight-bold text-fs-16">{{$i18n.locale === 'ru' ? item.title : item.title_en}}</p>
               <p v-else class="text-weight-bold text-fs-16">{{$t('greetings_message_title')}}</p>
-              <p v-if="!item.is_first">{{$i18n.locale === 'ru' ? item.text : item.text_en}}</p>
+              <p v-if="!item.is_first" v-html="$i18n.locale === 'ru' ? item.text : item.text_en"></p>
                <p v-else>{{$t('greetings_message')}}
                  <router-link class="action" :to="{name:'student-settings'}">{{$t('greetings_message_link_text')}}</router-link>
                </p>
-              <p v-if="item.is_reward">{{$t('reward_notify')}}</p>
+<!--              <p v-if="item.is_reward">{{$t('reward_notify')}}</p>-->
             </div>
             <div class="">
               <p class="no-margin text-right text-caption">{{new Date(item.created_at).toLocaleDateString()}}</p>
