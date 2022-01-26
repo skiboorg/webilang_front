@@ -168,7 +168,7 @@ export default {
   }
 }
 </script>
-<style lang="sass" scoped>
+<style lang="sass">
 
 .pay-btn
   background: #F7F9FF !important
