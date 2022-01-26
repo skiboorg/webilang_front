@@ -195,6 +195,9 @@ export default {
 @media (max-width: 768px)
   .page-wrapper
     margin-top: -50px
+  .carousel__track
+    width: 85vw
+
 
 .tariff-mobile-item
   background: #FFFFFF
