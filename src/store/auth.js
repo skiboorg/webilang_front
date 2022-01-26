@@ -101,10 +101,13 @@ const actions = {
     commit('updateUser', response.data)
     commit('updateUserStatus', true)
 
+
+
      if (!process.env.SERVER) {
           dispatch('connectWS', response.data.id)
         }
     if (redirect){
+
 
       if (response.data.is_teacher) {
         await this.$router.push({name:'teacher-groups'})

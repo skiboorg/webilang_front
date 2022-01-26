@@ -203,7 +203,7 @@ export default {
     async updateUserTimeFormat(){
       this.is_loading = !this.is_loading
       await this.$api.post('/api/user/set_time_format',{format:this.timeFormat})
-      await this.getUser()
+      //await this.getUser(false)
       this.is_loading = !this.is_loading
     }
   },
@@ -215,11 +215,14 @@ export default {
       await this.updateUserTimeFormat()
     },
     currentTime(val){
+      console.log(val)
+      console.log(this.displayTime)
       if(this.timeFormat){
         //console.log('24',val)
-        if(this.student_upcoming_lessons.length>0){
-          this.displayTime = `${val.split(':')[0]}:${val.split(':')[1]}`
-        }
+        // if(this.student_upcoming_lessons.length>0){
+        //
+        // }
+        this.displayTime = `${val.split(':')[0]}:${val.split(':')[1]}`
       }else {
         let time  =  val.toString ().match (/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [val];
         //console.log('am',time)
