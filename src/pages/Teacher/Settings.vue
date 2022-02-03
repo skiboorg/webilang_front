@@ -16,7 +16,8 @@
           <q-btn no-caps @click="avatarModal=true" unelevated :label="$t('select_avatar')" color="primary" class="border-r-8 q-py-sm text-weight-bold"/>
 
             <q-btn no-caps unelevated :label="$t('upload_avatar')" color="warning" class="border-r-8 q-py-sm text-weight-bold">
-           <q-input type="file" @change="updateUser" style="position: absolute; width: 100%; opacity: 0;" v-model="avatar" />
+<!--          <q-file  style="position: absolute; width: 100%; opacity: 0;" v-model="avatar" />-->
+          <q-input type="file" @change="updateUser" style="position: absolute; width: 100%; opacity: 0;" v-model="avatar" />
           </q-btn>
         </div>
       </div>
@@ -64,7 +65,6 @@
 
       </div>
       <div class="text-right">
-
         <q-btn @click="updateUser" :loading="is_loading" no-caps :label="$t('save_changes')" color="primary" class="border-r-8 q-py-sm text-weight-bold"/>
       </div>
 
@@ -76,7 +76,7 @@
       full-height
       @before-hide="updateUser"
     >
-      <q-card class="column rounded-block full-height" style="width: 850px;max-width: 90vw">
+      <q-card class=" rounded-block full-height" style="width: 850px;max-width: 90vw">
       <q-card-section class="row items-center no-padding q-mb-lg">
           <div class="text-h6 text-weight-bolder">{{$t('choose_avatar')}}</div>
           <q-space />
@@ -85,7 +85,7 @@
         <q-card-section class="no-padding" ref="avatars">
           <div class="avatars-wrapper">
             <q-avatar class="cursor-pointer avatar" @click="selected_avatar=item.id" v-close-popup :size="$q.screen.lt.md ? '80px' : '100px'" v-for="(item,index) in avatars" :key="index">
-              <img class="avatar-img" :src="item.image" alt="">
+              <img style="object-fit: contain" class="avatar-img" :src="item.image" alt="">
             </q-avatar>
           </div>
 
@@ -142,14 +142,15 @@ export default {
         url: '/api/user/update',
         data: formData
       })
-       this.$q.notify({
+      console.log(response.data)
+      await this.getUser(false)
+      this.$q.notify({
           message: this.$t('data_saved'),
           position: this.$q.screen.lt.sm ? 'bottom' : 'bottom-right',
           color:'positive',
           icon: 'announcement'
         })
       this.is_loading = !this.is_loading
-      await this.getUser(false)
     },
   }
 
@@ -162,6 +163,7 @@ export default {
   &-user
     display: grid
     grid-template-columns: 1fr 8fr
+    grid-gap: 20px
   &-form
     display: grid
     grid-gap: 15px
@@ -179,11 +181,19 @@ export default {
   display: grid
   grid-template-columns: repeat(auto-fill, minmax(100px,1fr))
   grid-gap: 15px
-.avatar
+.avatar-img
   &:hover
-    box-shadow: 0 0 10px 1px $grey-6
+    filter: drop-shadow(0 0 5px $grey-6)
 @media (max-width: 768px)
   .avatars-wrapper
     grid-template-columns: repeat(auto-fill, minmax(70px,1fr))
+  .settings
+    &-user
+      grid-template-columns: 1fr
+    &-form
+      &.x2
+        grid-template-columns: 1fr
+      &.x3
+        grid-template-columns: 1fr
 
 </style>

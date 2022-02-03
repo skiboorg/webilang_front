@@ -215,8 +215,8 @@ export default {
       await this.updateUserTimeFormat()
     },
     currentTime(val){
-      console.log(val)
-      console.log(this.displayTime)
+      //console.log(val)
+      //console.log(this.displayTime)
       if(this.timeFormat){
         //console.log('24',val)
         // if(this.student_upcoming_lessons.length>0){

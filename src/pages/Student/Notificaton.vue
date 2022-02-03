@@ -1,6 +1,6 @@
 <template>
   <div ref="page-wrapper" class="page-wrapper">
-    <div v-if="notifications.length>0" class="flex items-center justify-end q-mb-lg">
+    <div v-if="notifications.length>0" class="flex items-center justify-end q-mb-lg q-mt-xl q-mt-md-none">
       <p v-if="selectMode" @click="selectAll" class="q-mb-none action q-mr-md inline-block cursor-pointer">{{$t('notify_select_all')}}</p>
       <p v-if="selectMode" @click="deleteAction"  class="q-mb-none action q-mr-md inline-block cursor-pointer">{{$t('notify_delete')}}</p>
       <p v-if="!selectMode" @click="selectMode=!selectMode" class="q-mb-none action q-mr-md inline-block cursor-pointer">{{$t('notify_select')}}</p>

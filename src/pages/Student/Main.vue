@@ -19,11 +19,11 @@
                 <p class="no-margin text-caption  text-bold">{{$t('course_done_bottom')}}</p>
               </div>
             </q-circular-progress>
-            <div v-if="student_upcoming_lessons.length>0" class="col-12 col-md-7 offset-0 offset-md-1">
-              <p class="q-mb-none text-weight-light">{{$t('next_lesson')}}</p>
+            <div  class="col-12 col-md-7 offset-0 offset-md-1">
+              <p v-if="student_upcoming_lessons.length>0" class="q-mb-none text-weight-light">{{$t('next_lesson')}}</p>
 
 
-              <p class="text-bold">{{new Date(student_upcoming_lessons[0].date).toLocaleDateString()}} |
+              <p v-if="student_upcoming_lessons.length>0" class="text-bold">{{new Date(student_upcoming_lessons[0].date).toLocaleDateString()}} |
                 {{$filters.normalizeTime(student_upcoming_lessons[0].date, student_upcoming_lessons[0].time)}}</p>
               <!--              <p class="text-bold">{{new Date(student_upcoming_lessons[0].date).toLocaleDateString()}} | {{new Date(student_upcoming_lessons[0].date + 'T' + student_upcoming_lessons[0].time+'+03:00').toLocaleTimeString()}}</p>-->
 

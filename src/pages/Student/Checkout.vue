@@ -63,7 +63,8 @@
       <p v-if="active_promo.id && active_promo.is_free_lessons" class="text-positive text-bold text-fs-20">
         {{$t('bonus_lessons')}}  {{active_promo.free_lessons_count}}  {{$t('bonus_lessons_1')}}
       </p>
-      <p class="text-weight-bolder text-fs-20">{{$t('total')}} {{total_price}} RUB</p>
+      <p class="text-weight-bolder text-fs-20">{{$t('total')}}
+        {{$i18n.locale === 'ru' ? `${total_price} RUB` : `${total_price_usd} USD` }} </p>
       <p class="text-bold text-fs-20">{{$t('payment_method')}}</p>
       <div class="flex items-center q-mb-lg">
          <q-radio dense v-model="payment_method" val="bank" color="grey-7" class="q-mr-lg text-bold" :label="$t('bank_card')" />
@@ -71,7 +72,8 @@
       </div>
       <q-btn @click="pay" unelevated color="positive" :loading="is_loading" no-caps class="text-manrope border-r-8  q-py-md q-px-xl q-mb-lg" :label="$t('pay')"/>
       <p><span v-html="$t('warning')"></span> <a class="link" target="_blank" :href="$i18n.locale === 'ru' ? '/terms.pdf' : '/terms_en.pdf'" >{{$t('policy_link_text')}}</a></p>
-<p class="text-caption" v-html="$t('payment_info')"></p>
+      <p class="text-caption" v-html="$t('payment_info')"></p>
+
 
     </div>
 
@@ -126,6 +128,25 @@ export default {
         })
         }
        this.is_loading = !this.is_loading
+      }
+
+      if(this.payment_method==='paypal'){
+        const response_pay_pal = await this.$api.post('/api/user/pay_pal_payment',{
+          amount: this.total_price_usd ,
+          tariff_id: this.current_tariff.id,
+          promo_code: this.promo_code
+        })
+        if (response_pay_pal.data.success){
+           window.location.href = response_pay_pal.data.url
+        }else {
+           this.$q.notify({
+          message: response_pay_pal.data.message,
+          position: this.$q.screen.lt.sm ? 'bottom' : 'bottom-right',
+          color:'negative',
+          icon: 'announcement'
+        })
+        }
+        this.is_loading = !this.is_loading
       }
     },
     async promoFormSubmit(){
@@ -200,7 +221,44 @@ export default {
           }
 
       }
+    },
+    total_price_usd(){
+      let discount_percent
+      let discount_rub
+      let discount_usd
+      let is_free_lessons
+      if (this.active_promo.id){
+        discount_percent = this.active_promo.discount_percent
+        discount_rub = this.active_promo.discount_money_rub
+        discount_usd = this.active_promo.discount_money_usd
+        is_free_lessons = this.active_promo.is_free_lessons
+      }else {
+        return this.$i18n.locale === 'ru' ? this.current_tariff.price_usd  : this.current_tariff.price_usd
+      }
+      if(is_free_lessons){
+        return this.$i18n.locale === 'ru' ? this.current_tariff.price_usd  : this.current_tariff.price_usd
+      }
+      if(this.$i18n.locale === 'ru'){
+
+          if(discount_percent){
+            return parseFloat(this.current_tariff.price_usd - this.current_tariff.price_usd * (discount_percent / 100)).toFixed(0)
+          }
+          if(discount_rub){
+            return this.current_tariff.price_usd - discount_usd
+          }
+
+      }else{
+
+         if(discount_percent){
+            return parseFloat(this.current_tariff.price_usd - this.current_tariff.price_usd * (discount_percent / 100)).toFixed(0)
+          }
+          if(discount_usd){
+            return this.current_tariff.price_usd - discount_usd
+          }
+
+      }
     }
+
   }
 
 }
