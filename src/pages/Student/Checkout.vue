@@ -132,7 +132,7 @@ export default {
 
       if(this.payment_method==='paypal'){
         const response_pay_pal = await this.$api.post('/api/user/pay_pal_payment',{
-          amount: this.total_price_usd ,
+          amount: this.total_price,
           tariff_id: this.current_tariff.id,
           promo_code: this.promo_code
         })
