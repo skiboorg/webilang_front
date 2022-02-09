@@ -11,6 +11,9 @@
 
 
       <div  class="lessons-list">
+        <pre>
+
+        </pre>
 
         <q-scroll-area
           :thumb-style="thumbStyle"
@@ -23,7 +26,8 @@
             <p class="no-margin  ellipsis lesson-theme">{{user.email}}</p>
              <div class="groups-list">
 
-               <p class="no-margin link text-weight-bold cursor-pointer" @click="$router.push({name:'teacher-group',params:{id:groups.find(x=>x.id===group).id}})" v-for="group in user.groups" :key="group">
+               <p class="no-margin link text-weight-bold cursor-pointer"
+                  @click="$router.push({name:'teacher-group',params:{id:groups.find(x=>x.id===group).id}})" v-for="group in user.groups" :key="group">
                  {{groups.find(x=>x.id===group).label}} <span class="text-grey-6 text-caption">({{groups.find(x=>x.id===group).type.name}})</span>
                </p>
 
@@ -84,17 +88,16 @@ export default {
     this.height = this.$refs['lessons-list'].offsetHeight
     const resp = await this.$api.get('/api/group/teacher_users')
     this.groups = resp.data
+
     for(let group of this.groups){
-      let x=0
+
       for(let user of group.users){
         if(this.users.findIndex(x=>x.id===user.id)===-1){
           this.users.push(user)
-          this.users[x].groups=[]
-          this.users[x].groups.push(group.id)
-          x+=1
+          this.users.find(x=>x.id===user.id).groups=[]
+          this.users.find(x=>x.id===user.id).groups.push(group.id)
         }else{
-
-          !this.users[x].groups.includes(group.id) ? this.users[x].groups.push(group.id) : null
+          !this.users.find(x=>x.id===user.id).groups.includes(group.id) ? this.users.find(x=>x.id===user.id).groups.push(group.id) : null
         }
       }
     }
