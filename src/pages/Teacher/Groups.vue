@@ -20,11 +20,11 @@
              <p class="no-margin text-bold lt-md">{{$t('teacher_group_name')}}</p>
               <p @click="$router.push({name:'teacher-group',params:{id:group.id}})" class="no-margin  link text-weight-bold cursor-pointer">{{group.label}}</p>
             </div>
-            <div class="">
+            <div v-if="group.type" class="">
                <p class="no-margin text-bold lt-md">{{$t('teacher_group_type')}}</p>
               <p class="no-margin ">{{group.type.name}}</p>
             </div>
-            <div class="">
+            <div v-if="group.level" class="">
               <p class="no-margin text-bold lt-md">{{$t('teacher_group_level')}}</p>
               <p class="no-margin ">{{group.level.name}}</p>
             </div>
