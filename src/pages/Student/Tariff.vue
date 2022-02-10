@@ -60,13 +60,13 @@
       </div>
     </div>
     <div style="margin-top: 0" class="lt-md tariffs-wrapper">
-      <div class="tariff-item" v-for="category in tariffs" :key="category.id">
+      <div style="padding-right: 0 !important;" class="tariff-item" v-for="category in tariffs" :key="category.id">
         <p class="text-fs-24 text-weight-bolder q-mb-md">{{$i18n.locale === 'ru' ? category.name : category.name_en}}</p>
         <div class="tariff-item-block q-mb-md">
           <p class="text-fs-20 text-weight-bold q-mb-lg">{{$t('tariff_mini_group')}}</p>
           <!--             bordered-->
 
-          <carousel :items-to-show="1.25" >
+          <carousel  :items-to-show="1.25" >
 
             <slide class="" :class="[$q.screen.lt.sm ? 'q-px-sm' : 'q-px-md']" v-for="tariff in category.tariffs.filter(x=>!x.is_personal)"
                    :key="tariff.id">

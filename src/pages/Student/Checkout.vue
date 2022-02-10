@@ -65,11 +65,11 @@
       </p>
       <p class="text-weight-bolder text-fs-20">{{$t('total')}}
         {{$i18n.locale === 'ru' ? `${total_price} RUB` : `${total_price_usd} USD` }} </p>
-      <p class="text-bold text-fs-20">{{$t('payment_method')}}</p>
-      <div class="flex items-center q-mb-lg">
-         <q-radio dense v-model="payment_method" val="bank" color="grey-7" class="q-mr-lg text-bold" :label="$t('bank_card')" />
-      <q-radio dense v-model="payment_method" val="paypal" color="grey-7" class="text-bold" :label="$t('paypal')" />
-      </div>
+<!--      <p class="text-bold text-fs-20">{{$t('payment_method')}}</p>-->
+<!--      <div class="flex items-center q-mb-lg">-->
+<!--         <q-radio dense v-model="payment_method" val="bank" color="grey-7" class="q-mr-lg text-bold" :label="$t('bank_card')" />-->
+<!--      <q-radio dense v-model="payment_method" val="paypal" color="grey-7" class="text-bold" :label="$t('paypal')" />-->
+<!--      </div>-->
       <q-btn @click="pay" unelevated color="positive" :loading="is_loading" no-caps class="text-manrope border-r-8  q-py-md q-px-xl q-mb-lg" :label="$t('pay')"/>
       <p><span v-html="$t('warning')"></span> <a class="link" target="_blank" :href="$i18n.locale === 'ru' ? '/terms.pdf' : '/terms_en.pdf'" >{{$t('policy_link_text')}}</a></p>
       <p class="text-caption" v-html="$t('payment_info')"></p>
