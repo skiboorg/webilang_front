@@ -5,7 +5,7 @@
   <div class="page-wrapper">
     <div class="group-name">
       <p class="text-center text-body1 text-weight-bolder text-uppercase q-mb-sm">{{teacher_current_group.label}}</p>
-      <p class="text-center text-italic q-mb-none text-weight-light ">{{teacher_current_group.level.name}}</p>
+      <p v-if="teacher_current_group.level" class="text-center text-italic q-mb-none text-weight-light ">{{teacher_current_group.level.name}}</p>
     </div>
     <div class="group-add-lesson rounded-block">
       <q-btn  @click="link=teacher_current_group.link, addLessonModal=true" no-caps :label="$t('teacher_add_lesson')" color="primary" unelevated class="border-r-8 add-button" icon="add"/>
