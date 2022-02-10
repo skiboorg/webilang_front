@@ -104,7 +104,7 @@
 <!--        </div>-->
 <!--        <p class="no-margin" v-html="$t('apple_reg')"></p>-->
 <!--      </div>-->
-      <div class="social-button facebook">
+      <div class="social-button facebook " @click="fbRegister">
         <div class="social-button__icon">
           <svg width="24" height="24" viewBox="0 0 13 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M9.99707 3.985H12.1881V0.169C11.8101 0.117 10.5101 0 8.99607 0C5.83707 0 3.67307 1.987 3.67307 5.639V9H0.187073V13.266H3.67307V24H7.94707V13.267H11.2921L11.8231 9.001H7.94607V6.062C7.94707 4.829 8.27907 3.985 9.99707 3.985Z" fill="white"/>
@@ -157,6 +157,23 @@ export default {
     }
   },
   methods:{
+    async fbRegister(){
+       const resp = await this.$hello('facebook').login({ scope: 'email' })
+      // console.log(resp)
+       try {
+         const resp = await this.$hello('facebook').api('me')
+         //console.log(resp)
+         this.userRegData.email = resp.email
+         this.userRegData.password = btoa(resp.id)
+         this.userRegData.firstname = resp.first_name
+         this.userRegData.lastname = resp.last_name
+         this.userRegData.avatar = resp.picture
+         this.userRegData.is_social_register = true
+         await this.completeRegistration()
+       }catch (e) {
+          console.log(e)
+       }
+    },
     async vkRegister(){
       //hello.all.js добавить p.query.v = '5.131';
       try{

@@ -161,11 +161,11 @@ export default {
 
       try{
         const resp = await this.$hello('vk').login({ scope: 'email' })
-        console.log(resp)
+        //console.log(resp)
         this.userLogin.email = resp.authResponse.email
         this.userLogin.password = btoa(resp.authResponse.client_id+resp.authResponse.user_id)
         this.userLogin.is_social_register = true
-        console.log(this.userLogin.password)
+        //console.log(this.userLogin.password)
         this.loginUser(this.userLogin)
       }catch (e) {
         console.log(e)
@@ -173,11 +173,19 @@ export default {
 
     },
     async fbLogin(){
-      const resp = await this.$hello('facebook').login({ scope: 'email' })
-      console.log(resp)
-      const resp1 = await this.$hello('facebook').api('me')
-      console.log(resp1)
-
+      try {
+        const resp = await this.$hello('facebook').login({scope: 'email'})
+        //console.log(resp)
+        const resp1 = await this.$hello('facebook').api('me')
+        //console.log(resp1)
+        this.userLogin.email = resp1.email
+        this.userLogin.password = btoa(resp1.id)
+        this.userLogin.is_social_register = true
+        //console.log(this.userLogin.password)
+        this.loginUser(this.userLogin)
+      }catch (e) {
+          console.log(e)
+      }
     }
   }
 }
