@@ -88,7 +88,7 @@
           <div v-if="student_upcoming_lessons[0].comment">
             <q-separator  class="bg-grey-3 q-mb-lg"/>
             <p  class="text-primary q-mb-none">{{$t('teacher_comment')}}</p>
-            <div class="q-mb-none q-pt-md " v-html="student_upcoming_lessons[0].comment"></div>
+            <div class="q-mb-none q-pt-md teacher-comment" v-html="student_upcoming_lessons[0].comment"></div>
           </div>
         </div>
          <div v-if="current_group.teacher" class="rounded-block">
@@ -185,7 +185,7 @@
           <div v-if="student_upcoming_lessons[0].comment">
             <q-separator  class="bg-grey-3 q-mb-lg"/>
             <p  class="text-primary q-mb-none">{{$t('teacher_comment')}}</p>
-          <div class="q-mb-none q-pt-md " v-html="student_upcoming_lessons[0].comment"></div>
+          <div class="q-mb-none q-pt-md teacher-comment" v-html="student_upcoming_lessons[0].comment"></div>
           </div>
         </div>
         <div class="rounded-block">

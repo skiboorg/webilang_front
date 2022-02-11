@@ -891,6 +891,11 @@ export default {
 }
 </script>
 <style lang="sass">
+.q-editor__content
+  a
+    text-decoration: underline !important
+    color: $primary
+    font-weight: bold
 .upload-file
   border: 1px solid transparent
   text-align: center

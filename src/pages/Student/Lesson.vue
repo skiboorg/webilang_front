@@ -88,7 +88,7 @@
               </a>
           </div>
        <p  class="text-primary q-mb-none">{{$t('teacher_comment')}}</p>
-            <div class="q-mb-none q-pt-md" v-html="lessonInfo.comment"></div>
+            <div class="q-mb-none q-pt-md teacher-comment" v-html="lessonInfo.comment"></div>
     </div>
   </div>
 
