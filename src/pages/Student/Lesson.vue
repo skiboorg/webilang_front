@@ -62,10 +62,10 @@
 
       </div>
     </div>
-    <div class="rounded-block lessons-material">
+    <div  class="rounded-block lessons-material">
       <p class=" text-body1 q-mb-lg text-weight-bold">{{lessonInfo.theme}}</p>
       <p class="text-weight-light  text-primary">{{$t('lessons_material')}}</p>
-       <div class="files-grid q-mb-lg">
+       <div v-if="lessonInfo.material" class="files-grid q-mb-lg">
             <a class="file-item" :href="item.file" target="_blank" v-for="item in lessonInfo.material">
                 <q-icon class="q-mr-md" size="40px" name="description" color="grey-7"/>
               <p class="no-margin text-weight-regular ellipsis">{{item.file.split('/')[6]}}</p>
@@ -77,7 +77,7 @@
           </div>
 
       <p class="text-weight-light text-primary">{{$t('home_work')}}</p>
-       <div class="files-grid q-mb-lg">
+       <div v-if="lessonInfo.homeWork" class="files-grid q-mb-lg">
             <a class="file-item" :href="item.file" target="_blank" v-for="item in lessonInfo.homeWork">
                 <q-icon class="q-mr-md" size="40px" name="description" color="grey-7"/>
               <p class="no-margin text-weight-regular ellipsis">{{item.file.split('/')[6]}}</p>
@@ -88,7 +88,7 @@
               </a>
           </div>
        <p  class="text-primary q-mb-none">{{$t('teacher_comment')}}</p>
-            <p class="q-mb-none q-pt-md">{{lessonInfo.comment}}</p>
+            <div class="q-mb-none q-pt-md" v-html="lessonInfo.comment"></div>
     </div>
   </div>
 

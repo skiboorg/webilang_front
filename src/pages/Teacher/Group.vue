@@ -490,7 +490,44 @@
           </div>
         </div>
         <p class="text-bold">{{$t('teacher_comment')}}</p>
-        <q-input class="q-mb-md q-mb-lg-lg" type="textarea" outlined bg-color="white" v-model="comment"/>
+         <q-editor
+    style="border: 1px solid #cecece"
+    class="q-mb-md"
+      v-model="comment"
+      :dense="$q.screen.lt.md"
+      :toolbar="[
+        ['link'],
+        [
+          {
+            label: $q.lang.editor.formatting,
+            icon: $q.iconSet.editor.formatting,
+            list: 'no-icons',
+            options: [
+              'h5',
+              'h6',
+              'code'
+            ]
+          },
+          {
+            label: $q.lang.editor.fontSize,
+            icon: $q.iconSet.editor.fontSize,
+            fixedLabel: true,
+            fixedIcon: true,
+            list: 'no-icons',
+            options: [
+              'size-1',
+              'size-2',
+              'size-3',
+            ]
+          },
+
+        ],
+        ['undo', 'redo'],
+
+      ]"
+
+    />
+
         <div class="text-right">
           <q-btn @click="saveLessonFiles" :loading="is_loading" :label="$t('save_btn')"
                  class="border-r-8" color="primary" unelevated/>
