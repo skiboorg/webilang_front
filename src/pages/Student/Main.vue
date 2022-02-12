@@ -33,7 +33,7 @@
               <p class="text-bold">{{$auth.user.group_lessons_left}} {{$t('group_lessons_left')}}</p>
             </div>
           </div>
-          <a v-if="student_upcoming_lessons.length>0" target="_blank" class="btn" :href="student_upcoming_lessons[0].link">{{$t('enter_classroom')}}</a>
+          <a v-if="$auth.user.personal_lessons_left>0 || $auth.user.group_lessons_left>0" target="_blank" class="btn" :href="student_upcoming_lessons[0].link">{{$t('enter_classroom')}}</a>
         </div>
         <div v-if="student_upcoming_lessons.length>0" class="lt-md rounded-block">
           <p class="text-bold ">{{$t('lessons_materials')}}</p>
@@ -95,11 +95,11 @@
           <p class="text-bold ">{{$t('your_teacher')}}</p>
           <q-separator class="bg-grey-3 q-mb-lg"/>
           <div class="flex items-center q-mb-lg">
-              <AvatarWithModal size="60px" :user="current_group.teacher" />
+              <AvatarWithModal  size="60px" :user="current_group.teacher" />
 <!--            <q-avatar size="60px" class="q-mr-lg">-->
 <!--              <img class="avatar-img" :src="current_group.teacher.user_avatar" alt="">-->
 <!--            </q-avatar>-->
-            <p  class="no-margin text-weight-bolder text-fs-18">{{current_group.teacher.firstname}} {{current_group.teacher.lastname}}</p>
+            <p  class="q-mb-none q-ml-md text-weight-bolder text-fs-18">{{current_group.teacher.firstname}} {{current_group.teacher.lastname}}</p>
           </div>
           <q-btn :to="{name:'student-chats',query: { o_id: current_group.teacher.id+947623 }}" color="primary" icon="mail_outline" no-caps class="border-r-8 full-width text-bold q-py-sm" :label="$t('chat_w_teacher')"/>
         </div>

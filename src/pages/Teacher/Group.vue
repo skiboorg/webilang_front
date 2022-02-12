@@ -549,8 +549,13 @@
         <q-btn v-close-popup icon="close" round flat/>
       </q-card-section>
       <q-card-section style="height: 90%">
-        <iframe frameborder="0"  scrolling="yes"
-                :src="`https://docs.google.com/gview?url=${currentFileUrl}&embedded=true`"
+
+<!--        <iframe frameborder="0"  scrolling="yes"-->
+<!--                :src="`https://docs.google.com/gview?url=${currentFileUrl}&embedded=true`"-->
+<!--                height="100%" width="100%"></iframe>-->
+
+                <iframe frameborder="0"  scrolling="yes"
+                :src="`https://docviewer.yandex.ru/?url=${currentFileUrl}&embedded=true`"
                 height="100%" width="100%"></iframe>
       </q-card-section>
 
@@ -666,6 +671,13 @@ export default {
     getLessonFiles(){
       let curr_lesson = this.teacher_current_group.lessons.find(x=>x.id===this.selected_lesson_id)
       console.log(curr_lesson)
+      this.selectedMaterials=[]
+      this.selectedHomework=[]
+      this.uploadedMaterials=[]
+      this.uploadedHomework=[]
+      this.uploadedMaterialsFiles=[]
+      this.uploadedHomeworkFiles=[]
+      this.comment=''
       this.comment = curr_lesson.comment
       for(let file of curr_lesson.material){
         this.selectedMaterials.push(file)
@@ -679,6 +691,7 @@ export default {
       for(let file of curr_lesson.uploaded_material){
         this.uploadedMaterials.push(file)
       }
+
 
     },
     async saveLessonFiles(){

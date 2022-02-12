@@ -303,8 +303,8 @@ export default {
 
 @media (max-width: 768px)
   .faq
-    padding: 30px 0
-    margin-bottom: 60px
+    padding: 0
+
     height: fit-content
     & .container
       padding-bottom: 30px
