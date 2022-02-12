@@ -553,10 +553,8 @@
 <!--        <iframe frameborder="0"  scrolling="yes"-->
 <!--                :src="`https://docs.google.com/gview?url=${currentFileUrl}&embedded=true`"-->
 <!--                height="100%" width="100%"></iframe>-->
+        <iframe :src="`https://docs.google.com/viewer?url=${currentFileUrl}&embedded=true`" style="border: none; width: 100%; height: 700px;"></iframe>
 
-                <iframe frameborder="0"  scrolling="yes"
-                :src="`https://docviewer.yandex.ru/?url=${currentFileUrl}&embedded=true`"
-                height="100%" width="100%"></iframe>
       </q-card-section>
 
 
