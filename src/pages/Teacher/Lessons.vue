@@ -17,7 +17,7 @@
           :style="{'height':height - 100 + 'px'}">
           <div class="lessons-list-row"  v-for="lesson in lessons.filter(x=>!x.is_over)" :key="lesson.id">
             <q-no-ssr>
-              <p class="no-margin text-weight-light">{{new Date(lesson.date).toLocaleDateString()}} | {{$filters.normalizeTime(lesson.date,lesson.time)}}</p>
+              <p class="no-margin text-weight-light">{{new Date(lesson.date).toLocaleDateString()}} | {{$filters.normalizeTime(lesson.date,lesson.time,lesson.timeoffset)}}</p>
             </q-no-ssr>
             <p @click="$router.push({name:'teacher-group',params:{id:lesson.group.id}})" class="no-margin  link text-weight-bold cursor-pointer">{{lesson.group.label}}</p>
 

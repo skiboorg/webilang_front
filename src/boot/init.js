@@ -2,6 +2,7 @@ import {Cookies} from 'quasar'
 import api from 'axios'
 
 
+
 export default async ({ app, router, Vue, store, ssrContext }) => {
   console.info('boot: init entered')
 
@@ -19,9 +20,10 @@ export default async ({ app, router, Vue, store, ssrContext }) => {
   app.config.globalProperties.$auth = store.state.auth
 
   app.config.globalProperties.$filters = {
-  normalizeTime(date,time) {
+  normalizeTime(date,time,offset) {
     // return `${value.split(':')[0]}:${value.split(':')[1]}`
-  return new Date(date + 'T' + time+'+00:00').toLocaleTimeString()
+    console.log(`${date}T${time}${offset}`)
+  return new Date(`${date}T${time}${offset}`).toLocaleTimeString()
   }
 
 }

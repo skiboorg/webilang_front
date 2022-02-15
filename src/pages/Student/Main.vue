@@ -24,7 +24,7 @@
 
 
               <p v-if="student_upcoming_lessons.length>0" class="text-bold">{{new Date(student_upcoming_lessons[0].date).toLocaleDateString()}} |
-                {{$filters.normalizeTime(student_upcoming_lessons[0].date, student_upcoming_lessons[0].time)}}</p>
+                {{$filters.normalizeTime(student_upcoming_lessons[0].date, student_upcoming_lessons[0].time,student_upcoming_lessons[0].timeoffset)}}</p>
               <!--              <p class="text-bold">{{new Date(student_upcoming_lessons[0].date).toLocaleDateString()}} | {{new Date(student_upcoming_lessons[0].date + 'T' + student_upcoming_lessons[0].time+'+03:00').toLocaleTimeString()}}</p>-->
 
               <p class="q-mb-none text-weight-light">{{$t('lessons_left')}}</p>

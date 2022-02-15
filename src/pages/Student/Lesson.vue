@@ -20,7 +20,7 @@
               <div class="">
                 <p class="lt-md no-margin text-bold ">{{$t('lessons_date')}}</p>
                 <p class="no-margin text-weight-light">{{new Date(lesson.date).toLocaleDateString()}} |
-                  {{$filters.normalizeTime(lesson.date,lesson.time)}}
+                  {{$filters.normalizeTime(lesson.date,lesson.time,lesson.timeoffset)}}
                 </p>
               </div>
 

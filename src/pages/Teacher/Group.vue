@@ -49,7 +49,7 @@
                 <q-no-ssr>
                   <p class="lt-md q-mb-sm text-bold ">{{$t('lessons_date')}}</p>
                   <p class="no-margin ">{{new Date(lesson.date).toLocaleDateString()}} |
-                    {{$filters.normalizeTime(lesson.date,lesson.time)}}</p>
+                    {{$filters.normalizeTime(lesson.date,lesson.time,lesson.timeoffset)}}</p>
                 </q-no-ssr>
               </div>
 
@@ -571,6 +571,7 @@
 
 import AvatarWithModal from "components/Student/AvatarWithModal";
 import {mapGetters,mapActions} from "vuex";
+import moment from 'moment'
 
 export default {
    components: {AvatarWithModal},
@@ -662,6 +663,7 @@ export default {
     this.height = this.$refs['group-list'].offsetHeight
     this.recent_dates = this.teacher_current_group.lessons.map(x=>x.date.replaceAll('-','/'))
     await this.updateFiles()
+
   },
   methods: {
     ...mapActions('data',['getTeacherGroups','setTeacherCurrentGroup']),
@@ -846,6 +848,8 @@ export default {
       this.is_loading = true
       await this.$api.post('/api/lesson/update',{
         data:this.lesson_to_edit,
+        offset: moment().format("Z")
+
       })
       await this.getTeacherGroups()
       this.setTeacherCurrentGroup(this.teacher_current_group.id)
@@ -881,7 +885,8 @@ export default {
       await this.$api.post('/api/lesson/add',{
         group_id:this.teacher_current_group.id,
         lessons:this.new_lessons,
-        link:this.link
+        link:this.link,
+        offset: moment().format("Z")
       })
       await this.getTeacherGroups()
       this.setTeacherCurrentGroup(this.teacher_current_group.id)
