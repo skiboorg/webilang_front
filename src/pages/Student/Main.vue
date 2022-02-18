@@ -6,6 +6,8 @@
           <p class="text-bold">{{$t('your_progress')}}</p>
           <q-separator class="bg-grey-3 q-mb-lg"/>
           <div class="q-mb-lg row ">
+
+
             <q-circular-progress
               show-value
               :value="$auth.user.total_progress"
@@ -33,7 +35,7 @@
               <p class="text-bold">{{$auth.user.group_lessons_left}} {{$t('group_lessons_left')}}</p>
             </div>
           </div>
-          <a v-if="$auth.user.personal_lessons_left>0 || $auth.user.group_lessons_left>0 || student_upcoming_lessons[0]"
+          <a v-if="student_upcoming_lessons.length>0"
              target="_blank" class="btn" :href="student_upcoming_lessons[0].link">{{$t('enter_classroom')}}</a>
         </div>
         <div v-if="student_upcoming_lessons.length>0" class="lt-md rounded-block">
@@ -64,7 +66,8 @@
           </div>
           <q-separator class="bg-grey-3 q-mb-lg"/>
           <p class="text-caption text-weight-light">{{$t('home_work')}}</p>
-          <div class="files-grid">
+          <div v-if="student_upcoming_lessons.length>0">
+            <div class="files-grid">
             <div class="file-item" v-for="item in student_upcoming_lessons[0].homeWork" :key="item.id">
               <q-icon class="q-mr-md" size="40px" name="description" color="grey-7"/>
               <p class="no-margin text-weight-regular ellipsis">{{item.filename}}</p>
@@ -91,6 +94,8 @@
             <p  class="text-primary q-mb-none">{{$t('teacher_comment')}}</p>
             <div class="q-mb-none q-pt-md teacher-comment" v-html="student_upcoming_lessons[0].comment"></div>
           </div>
+          </div>
+
         </div>
          <div v-if="current_group.teacher" class="rounded-block">
           <p class="text-bold ">{{$t('your_teacher')}}</p>
