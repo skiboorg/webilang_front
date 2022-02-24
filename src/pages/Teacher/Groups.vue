@@ -1,7 +1,8 @@
 <template>
   <div class="page-wrapper">
+
      <div class="rounded-block lessons-material">
-      <q-input :dense="$q.screen.lt.md" outlined bg-color="white" :label="$t('dictionary_search')"/>
+      <q-input :dense="$q.screen.lt.md" outlined bg-color="white" @keydown="filterGroups" v-model="search" :label="$t('dictionary_search')"/>
     </div>
     <div ref="group-list" class="rounded-block  group-list">
       <div class="gt-sm group-list-header q-mb-md">
@@ -38,7 +39,7 @@
 <script>
 
 
-import {mapGetters} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   async preFetch ({ store, currentRoute, previousRoute, redirect, ssrContext, urlPath, publicPath }) {
@@ -72,7 +73,13 @@ export default {
     this.height = this.$refs['group-list'].offsetHeight
   },
   methods: {
-
+    ...mapActions('data',['getTeacherGroups']),
+    async filterGroups(e){
+      if (e.keyCode===13) {
+        console.log(this.search)
+        await this.getTeacherGroups({filter:this.search})
+      }
+    }
   },
    computed:{
     ...mapGetters('data',['teacher_groups'])

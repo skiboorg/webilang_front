@@ -403,9 +403,13 @@ export default {
   padding-bottom: 15px
   &:last-child
     border-bottom: none
+
 @media (max-width: 1024px)
   .grid
     grid-template-columns: 1fr
+@media (max-width: 768px)
+  .rewards
+    grid-template-columns: repeat(3,1fr)
 
 .info-block
   background: #EFFBEF

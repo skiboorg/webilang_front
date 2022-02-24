@@ -123,9 +123,16 @@ const actions = {
     }
 
   },
-  async getTeacherGroups ({commit}){
+  async getTeacherGroups ({commit},data){
    const response = await api.get( '/api/group/teacher')
-    commit('updateTeacherGroups', response.data)
+    if (data){
+      console.log('data.filter',data.filter)
+      console.log(response.data.filter(x=>x.label.includes(data.filter)))
+      commit('updateTeacherGroups', response.data.filter(x=>x.label.includes(data.filter)))
+    }else {
+      commit('updateTeacherGroups', response.data)
+    }
+
   },
   setTeacherCurrentGroup({commit,getters},data){
 
