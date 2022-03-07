@@ -60,7 +60,9 @@ module.exports = configure(function (ctx) {
         API: 'http://localhost:8000',
         WS: 'ws://localhost:8000',
         VK_ID:'7931846',
-        FB_ID:'587005952312796'
+        FB_ID:'587005952312796',
+        GOOGLE_CLIENT_ID:'16222730428-0ja3977a20v0rq51su8v6u303qc159el.apps.googleusercontent.com',
+        GOOGLE_CLIENT_secret:'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',
 
       },
 

@@ -37,7 +37,7 @@
       </q-form>
       <p @click="is_password_recover=true" class="text-right q-mb-lg cursor-pointer link">{{$t('lost_password')}}</p>
       <div class="divider q-mb-lg"><p class="no-margin text-fs-18">{{$t('or')}}</p></div>
-      <div class="social-button google">
+      <div class="social-button google" @click="gLogin">
         <div class="social-button__icon">
           <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M11.6698 0.52536C9.41338 0.647848 7.36936 1.31196 5.53587 2.5177C3.78084 3.67369 2.35118 5.25263 1.38084 7.10718C-0.538774 10.7799 -0.452649 15.2545 1.61242 18.8488C3.42678 22.0105 6.5885 24.2287 10.1292 24.8278C10.9215 24.9617 11.3847 25 12.2631 25C12.9789 25 13.2335 24.9866 13.7942 24.9234C16.2172 24.6498 18.2689 23.8019 20.0143 22.355C20.3014 22.1158 21.0268 21.3904 21.2698 21.0957C22.8316 19.2144 23.7062 16.9847 23.9512 14.2555C23.9914 13.7904 23.9971 12.445 23.9607 12.0163C23.9148 11.4957 23.8517 10.9828 23.7923 10.6402C23.777 10.5522 23.7655 10.4775 23.7655 10.4737C23.7655 10.4699 21.1741 10.466 18.0048 10.466H12.244V12.8584V15.2507H15.5741C17.8191 15.2507 18.9043 15.2565 18.9043 15.2699C18.9043 15.3158 18.8182 15.6813 18.7588 15.8823C18.4718 16.8775 17.8555 17.8536 17.088 18.5368C16.1904 19.3368 14.9713 19.89 13.622 20.11C12.7588 20.2498 11.7464 20.2517 10.9847 20.112C8.92917 19.733 7.08228 18.4335 5.97989 16.5904C5.72151 16.1579 5.41338 15.4842 5.31769 15.1397C5.29855 15.0689 5.2507 14.9043 5.21242 14.7722C5.01721 14.1024 4.94257 13.5455 4.94257 12.7531C4.94257 12.1923 4.95596 12.022 5.0306 11.5665C5.24879 10.2191 5.84017 8.95024 6.74352 7.89187C7.9818 6.43732 9.66218 5.54354 11.5263 5.34641C11.8402 5.31388 12.6421 5.30813 12.9349 5.33684C14.4775 5.48995 15.7349 6.04115 16.8909 7.07081L16.9923 7.16268L18.4411 5.7177C19.2373 4.92344 19.9435 4.22297 20.0086 4.16364C20.0737 4.10431 20.1923 3.97608 20.2727 3.88038L20.4182 3.70813L20.355 3.63349C20.3206 3.59139 20.267 3.52632 20.2363 3.48995C20.2057 3.45168 20.1426 3.39809 20.0928 3.37129C20.045 3.34258 19.9148 3.24498 19.8038 3.15502C18.5253 2.10048 16.9674 1.3177 15.3119 0.898565C14.6268 0.726316 14.0871 0.634451 13.3253 0.559809C13.0536 0.534929 11.9378 0.510048 11.6698 0.52536Z" fill="white"/>
@@ -177,6 +177,22 @@ export default {
         const resp = await this.$hello('facebook').login({scope: 'email'})
         //console.log(resp)
         const resp1 = await this.$hello('facebook').api('me')
+        //console.log(resp1)
+        this.userLogin.email = resp1.email
+        this.userLogin.password = btoa(resp1.id)
+        this.userLogin.is_social_register = true
+        //console.log(this.userLogin.password)
+        this.loginUser(this.userLogin)
+      }catch (e) {
+          console.log(e)
+      }
+    },
+    async gLogin(){
+      console.log('ff')
+      try {
+        const resp = await this.$hello('google').login({scope: 'email'})
+        //console.log(resp)
+        const resp1 = await this.$hello('google').api('me')
         //console.log(resp1)
         this.userLogin.email = resp1.email
         this.userLogin.password = btoa(resp1.id)

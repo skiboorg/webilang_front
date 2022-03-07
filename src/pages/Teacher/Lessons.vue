@@ -1,5 +1,7 @@
 <template>
-  <div class="lessons-wrapper">
+  <q-no-ssr>
+     <div class="lessons-wrapper">
+
     <div ref="lessons-list" class="rounded-block  lessons-list">
       <div class="lessons-list-header q-mb-md">
         <p class="no-margin text-bold ">{{$t('lessons_date')}}</p>
@@ -34,7 +36,7 @@
           </div>
           <div class="lessons-list-divider"></div>
 
-            <div class="lessons-list-row"  v-for="lesson in lessons.filter(x=>x.is_over)" :key="lesson.id">
+            <div class="lessons-list-row"  v-for="lesson in over_lessons" :key="lesson.id">
             <q-no-ssr>
               <p class="no-margin text-weight-light">{{new Date(lesson.date).toLocaleDateString()}}</p>
             </q-no-ssr>
@@ -57,6 +59,8 @@
     </div>
 
   </div>
+  </q-no-ssr>
+
 
 
 </template>
@@ -65,7 +69,7 @@
 
 
 import {mapGetters} from "vuex";
-
+import _ from 'lodash';
 export default {
   // preFetch ({ store, currentRoute, previousRoute, redirect, ssrContext, urlPath, publicPath }) {
   //
@@ -96,6 +100,8 @@ export default {
     }
   },
   async mounted() {
+
+
     this.height = this.$refs['lessons-list'].offsetHeight
     const resp = await this.$api.get('/api/lesson/teacher')
     this.lessons = resp.data
@@ -106,6 +112,19 @@ export default {
   },
   computed: {
     ...mapGetters('data', ['current_group','student_upcoming_lessons','student_over_lessons']),
+    over_lessons(){
+    //   var flipped = _.flip(function() {
+    //   return _.toArray(arguments);
+    // });
+    //  return flipped(this.lessons.filter(x=>x.is_over))
+      return _.reverse(this.lessons.filter(x=>x.is_over))
+      // let arr=[]
+      // for(let x in this.lessons.filter(x=>x.is_over)){
+      //   arr.push(this.lessons.filter(x=>x.is_over).unshift())
+      // }
+      //  return arr;
+
+    }
 
   }
 

@@ -1,5 +1,5 @@
 import { api } from 'boot/axios'
-
+import _ from 'lodash';
 
 const state = () => ({
   feedbacks:[],
@@ -191,7 +191,7 @@ export const getters = {
   },
   student_over_lessons: (state) =>{
     try{
-      return state.current_group.lessons.filter(x=>x.is_over)
+      return _.reverse(state.current_group.lessons.filter(x=>x.is_over))
     }catch (e) {
      console.log(e)
     }
