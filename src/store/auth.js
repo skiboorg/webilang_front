@@ -95,26 +95,32 @@ const actions = {
   },
   async getUser ({commit,dispatch},redirect) {
     console.log('getting user')
-
-    const response = await api.get('/api/user/me/')
+    try {
+       const response = await api.get('/api/user/me/')
     //console.log('getUser', response.data)
     commit('updateUser', response.data)
     commit('updateUserStatus', true)
-
-
-
      if (!process.env.SERVER) {
           dispatch('connectWS', response.data.id)
         }
     if (redirect){
-
-
       if (response.data.is_teacher) {
         await this.$router.push({name:'teacher-groups'})
       } else {
         await this.$router.push({name:'student-index'})
       }
     }
+    }catch (e) {
+
+      console.log(e)
+      api.defaults.headers.common['Authorization'] = null
+      if (!process.env.SERVER) {
+           Cookies.remove('auth_token')
+        }
+
+       this.$router.push('/')
+    }
+
   },
 
   logoutUser({commit}){
