@@ -35,7 +35,7 @@
               <p class="text-bold">{{$auth.user.group_lessons_left}} {{$t('group_lessons_left')}}</p>
             </div>
           </div>
-          <a v-if="student_upcoming_lessons.length>0"
+          <a v-if="$auth.user.personal_lessons_left.length>0 || $auth.user.group_lessons_left >0"
              target="_blank" class="btn" :href="student_upcoming_lessons[0].link">{{$t('enter_classroom')}}</a>
         </div>
         <div v-if="student_upcoming_lessons.length>0" class="lt-md rounded-block">
