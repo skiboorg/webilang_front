@@ -27,13 +27,9 @@ export default {
 
 
 
-  contacts_company_info:'WEBILANG LLC',
+  contacts_company_info:'Webilang Global LLC',
   contacts_address:'Address',
-  contacts_address_place:`Russia, Moscow<br>
-2-nd Frunzenskaya street, 8<br>
-Office 36<br>
-119146<br>
-`,
+  contacts_address_place:`Kazakhstan, Astana,<br>Aray Street 28 `,
    payment_info:'Для оплаты (ввода реквизитов Вашей карты) Вы будете перенаправлены на платёжный шлюз ПАО СБЕРБАНК. Соединение с платёжным шлюзом и передача информации осуществляется в защищённом режиме с использованием протокола шифрования SSL. В случае если Ваш банк поддерживает технологию безопасного проведения интернет-платежей Verified By Visa, MasterCard SecureCode, MIR Accept, J-Secure, для проведения платежа также может потребоваться ввод специального пароля.\n' +
    '<br>' +
     '<br>' +

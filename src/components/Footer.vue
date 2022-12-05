@@ -117,6 +117,8 @@
       <div class="flex items-center q-mb-sm">
         <p class="text-weight-thin q-mb-none q-mr-xs" v-html="$t('copyright_text_top')"></p>
       <a class="link" target="_blank" :href="$i18n.locale === 'ru' ? '/policy.pdf' : '/policy_en.pdf'" >{{$t('policy_link_text')}}</a>
+      <a class="link" v-if="$i18n.locale === 'ru'" target="_blank" href="/oferta.pdf" >&nbsp;публичным договором оферты, </a>
+      <a class="link" v-if="$i18n.locale === 'ru'" target="_blank" href="/payments.pdf" >&nbsp;информацией об онлайн оплате.</a>
       </div>
 
       <p class="text-weight-thin text-caption" v-html="$t('copyright_text_bottom')"></p>
