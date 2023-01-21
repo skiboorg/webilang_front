@@ -70,7 +70,7 @@
         <div class="footer-contacts">
           <p class="text-weight-bold">{{$t('contacts')}}</p>
           <a href="tel:+79853045253" class="text-weight-thin block ">+7 (960) 998 - 01 - 36</a>
-          <a href="tel:+79853045253" class="text-weight-thin block ">+7 (985) 304 - 52 - 53</a>
+          <a href="tel:+77077603403" class="text-weight-thin block ">+7 (707) 760 - 34 - 03</a>
           <p class="text-weight-thin q-mb-lg ">{{$t('work_time')}}</p>
           <p class="">{{$t('we_accept')}}</p>
           <img  draggable="false" src="~assets/pays.svg" alt="">
